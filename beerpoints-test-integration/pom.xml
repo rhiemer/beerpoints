@@ -1,0 +1,195 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>beerpoints-test-integration</artifactId>
+	<parent>
+		<groupId>br.com.rhiemer.beerpoints</groupId>
+		<artifactId>beerpoints</artifactId>
+		<version>1.0.0-SNAPSHOT</version>
+	</parent>
+
+	<properties>
+		<!-- Versão Bibliotecas -->
+		<version.arquillian.container>8.2.1.Final</version.arquillian.container>
+
+		<!-- Propriedades do Arquillian -->
+		<arquillian.management.address>127.0.0.1</arquillian.management.address>
+		<arquillian.management.username />
+		<arquillian.management.password />
+		<arquillian.management.httpPort>8080</arquillian.management.httpPort>
+
+		<!-- Propriedades do Arquillian managed -->
+		<!-- variável de ambiente $JBOSS_HOME -->
+		<arquillian.jboss.home />
+		<!-- variável de ambiente $JAVA_HOME -->
+		<arquillian.java.home />
+
+	</properties>
+
+
+
+	<dependencies>
+		<dependency>
+			<groupId>br.com.rhiemer.beerpoints</groupId>
+			<artifactId>beerpoints-domain</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>br.com.rhiemer.beerpoints</groupId>
+			<artifactId>beerpoints-service</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>br.com.rhiemer.beerpoints</groupId>
+			<artifactId>beerpoints-rest</artifactId>
+			<version>${project.version}</version>
+			<classifier>classes</classifier>
+		</dependency>
+		<!-- API's -->
+		<dependency>
+			<groupId>br.com.rhiemer</groupId>
+			<artifactId>rhiemer-api-test-integration</artifactId>
+			<version>${version.rhiemer.api}</version>
+		</dependency>
+		<dependency>
+			<groupId>br.com.rhiemer</groupId>
+			<artifactId>rhiemer-api-rest-client</artifactId>
+			<version>${version.rhiemer.api}</version>
+		</dependency>		
+		<dependency>
+			<groupId>org.jboss.resteasy</groupId>
+			<artifactId>resteasy-jaxrs</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.resteasy</groupId>
+			<artifactId>resteasy-client</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.resteasy</groupId>
+			<artifactId>resteasy-jackson2-provider</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.resteasy</groupId>
+			<artifactId>resteasy-jettison-provider</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+
+
+
+	</dependencies>
+
+	<build>
+		<testResources>
+			<testResource>
+				<directory>src/test/resources</directory>
+				<filtering>true</filtering>
+			</testResource>
+		</testResources>
+
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.17</version>
+				<dependencies>
+					<dependency>
+						<groupId>org.apache.maven.surefire</groupId>
+						<artifactId>surefire-junit47</artifactId>
+						<version>2.17</version>
+					</dependency>
+				</dependencies>
+				<configuration>
+					<includes>
+						<include>**/*.java</include>
+					</includes>
+					<runOrder>alphabetical</runOrder>
+				</configuration>
+			</plugin>
+			<!-- Testes de Integração -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-failsafe-plugin</artifactId>
+				<version>2.17</version>
+				<configuration>
+					<encoding>UTF-8</encoding>
+					<runOrder>alphabetical</runOrder>
+				</configuration>
+				<executions>
+					<execution>
+						<id>default-integration-test</id>
+						<goals>
+							<goal>integration-test</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+
+	</build>
+
+	<reporting>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-report-plugin</artifactId>
+				<version>2.18.1</version>
+				<reportSets>
+					<reportSet>
+						<reports>
+							<report>report-only</report>
+						</reports>
+					</reportSet>
+				</reportSets>
+			</plugin>
+		</plugins>
+	</reporting>
+
+	<profiles>
+		<!-- arquillian remoto -->
+		<!-- por padrão sempre utilizar o servidor que já foi iniciado -->
+		<profile>
+			<id>arquillian-jbossas-remote</id>
+			<dependencies>
+				<dependency>
+					<groupId>org.wildfly</groupId>
+					<artifactId>wildfly-arquillian-container-remote</artifactId>
+					<version>${version.arquillian.container}</version>
+					<scope>test</scope>
+				</dependency>
+			</dependencies>
+		</profile>
+		<!-- arquillian gerenciado -->
+		<profile>
+			<id>arquillian-jbossas-managed</id>
+			<dependencies>
+				<dependency>
+					<groupId>org.wildfly</groupId>
+					<artifactId>wildfly-arquillian-container-managed</artifactId>
+					<version>${version.arquillian.container}</version>
+					<scope>test</scope>
+				</dependency>
+			</dependencies>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-surefire-plugin</artifactId>
+						<configuration>
+							<systemPropertyVariables>
+								<arquillian.launch>arquillian-jbossas-managed</arquillian.launch>
+							</systemPropertyVariables>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+
+
+
+	</profiles>
+
+</project>

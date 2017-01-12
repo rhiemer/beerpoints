@@ -1,0 +1,245 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>br.com.rhiemer.beerpoints</groupId>
+	<artifactId>beerpoints</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	<packaging>pom</packaging>
+	<modules>
+		<module>beerpoints-domain</module>
+		<module>beerpoints-service</module>
+		<module>beerpoints-rest</module>
+		<module>beerpoints-web</module>
+		<module>beerpoints-test-integration</module>
+		<module>beerpoints-test-integration-web</module>
+		<module>beerpoints-ear</module>
+		<module>beerpoints-flyway</module>
+	</modules>
+
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.compile.java.version>1.8</project.compile.java.version>
+		<version.rhiemer.api>1.0.0-SNAPSHOT</version.rhiemer.api>
+		<version.jboss.pom>10.1.0.Final</version.jboss.pom>
+
+		<version.maven.dependency.plugin>2.10</version.maven.dependency.plugin>
+		<version.maven.war.plugin>3.0.0</version.maven.war.plugin>
+		<version.maven.ear.plugin>2.10.1</version.maven.ear.plugin>
+		<wildfly.maven.plugin.version>1.0.2.Final</wildfly.maven.plugin.version>
+
+		<persistence.unit.name.aplicacao>default</persistence.unit.name.aplicacao>
+
+	</properties>
+
+	<distributionManagement>
+		<repository>
+			<id>nexus-release-ancine</id>
+			<url>http://nexus.rhiemer.com.br/repository/maven-releases/</url>
+		</repository>
+		<snapshotRepository>
+			<id>nexus-snapshots-ancine</id>
+			<url>http://nexus.rhiemer.com.br/repository/maven-snapshots/</url>
+		</snapshotRepository>
+	</distributionManagement>
+
+
+	<developers>
+		<developer>
+			<id>rhiemer</id>
+			<name>Rodrigo de Alcantara Hiemer</name>
+			<email>rodrigo.hiemer@hotmail.com</email>
+			<organization>Precision LTDA</organization>
+			<organizationUrl>http://www.precision.com.br</organizationUrl>
+			<roles>
+				<role>Software Architect</role>
+			</roles>
+		</developer>
+	</developers>
+
+	<dependencyManagement>
+		<dependencies>
+
+			<dependency>
+				<groupId>org.wildfly.bom</groupId>
+				<artifactId>wildfly-javaee7-with-tools</artifactId>
+				<version>${version.jboss.pom}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.wildfly.bom</groupId>
+				<artifactId>jboss-javaee-7.0-with-hibernate</artifactId>
+				<version>8.2.2.Final</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+
+		</dependencies>
+	</dependencyManagement>
+
+
+	<dependencies>
+		<!-- Dependência da API do Java EE 7 para todos os módulos do projeto -->
+		<dependency>
+			<groupId>javax.enterprise</groupId>
+			<artifactId>cdi-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.spec.javax.annotation</groupId>
+			<artifactId>jboss-annotations-api_1.2_spec</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.spec.javax.ws.rs</groupId>
+			<artifactId>jboss-jaxrs-api_2.0_spec</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate.javax.persistence</groupId>
+			<artifactId>hibernate-jpa-2.1-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.spec.javax.ejb</groupId>
+			<artifactId>jboss-ejb-api_3.2_spec</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+
+		<!-- API padrão dos projetos -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- API's -->
+		<dependency>
+			<groupId>br.com.rhiemer</groupId>
+			<artifactId>rhiemer-api-util</artifactId>
+			<version>${version.rhiemer.api}</version>
+		</dependency>
+
+
+		
+	</dependencies>
+
+	<build>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.5.1</version>
+				<configuration>
+					<source>${project.compile.java.version}</source>
+					<target>${project.compile.java.version}</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-ejb-plugin</artifactId>
+				<version>2.5.1</version>
+				<configuration>
+					<ejbVersion>3.0</ejbVersion>
+				</configuration>
+			</plugin>
+		</plugins>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<artifactId>maven-release-plugin</artifactId>
+					<version>2.5.3</version>
+					<configuration>
+						<tagNameFormat>v@{project.version}</tagNameFormat>
+						<autoVersionSubmodules>true</autoVersionSubmodules>
+						<!-- do not release profile from Maven super pom -->
+						<useReleaseProfile>false</useReleaseProfile>
+						<!-- instead use our own one called release, see below -->
+						<releaseProfiles>release</releaseProfiles>
+					</configuration>
+				</plugin>
+				<plugin>
+					<artifactId>maven-javadoc-plugin</artifactId>
+					<version>2.10.4</version>
+					<configuration>
+						<show>private</show>
+						<nohelp>true</nohelp>
+					</configuration>
+				</plugin>
+				<plugin>
+					<artifactId>maven-resources-plugin</artifactId>
+					<version>2.5</version>
+					<configuration>
+						<encoding>${project.build.sourceEncoding}</encoding>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-eclipse-plugin</artifactId>
+					<version>2.9</version>
+					<configuration>
+						<additionalProjectFacets>
+							<jst.ear>1.3</jst.ear>
+						</additionalProjectFacets>
+						<additionalProjectnatures>
+							<projectnature>org.eclipse.m2e.core.maven2Nature</projectnature>
+						</additionalProjectnatures>
+						<downloadJavadocs>true</downloadJavadocs>
+						<wtpdefaultserver>${eclipse.wtpdefaultserver}</wtpdefaultserver>
+						<wtpversion>2.0</wtpversion>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.eclipse.m2e</groupId>
+					<artifactId>lifecycle-mapping</artifactId>
+					<version>1.0.0</version>
+					<configuration>
+						<lifecycleMappingMetadata>
+							<pluginExecutions>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>
+											org.apache.maven.plugins
+										</groupId>
+										<artifactId>
+											maven-dependency-plugin
+										</artifactId>
+										<versionRange>
+											[2.1,)
+										</versionRange>
+										<goals>
+											<goal>unpack</goal>
+											<goal>
+												copy-dependencies
+											</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore />
+									</action>
+								</pluginExecution>
+							</pluginExecutions>
+						</lifecycleMappingMetadata>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+
+
+</project>

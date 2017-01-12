@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1"
+	xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+	<persistence-unit name="beerpoints-pu"
+		transaction-type="JTA">
+		<description>BeerPoints Persistence Unit</description>
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+		<jta-data-source>java:/ds.beerpoints</jta-data-source>
+		<mapping-file>META-INF/orm.xml</mapping-file>
+		<class>br.com.rhiemer.beerpoints.modelo.Bar</class>
+		<class>br.com.rhiemer.beerpoints.modelo.Cerveja</class>
+		<class>br.com.rhiemer.beerpoints.modelo.BarCerveja</class>
+		<class>br.com.rhiemer.beerpoints.modelo.Fabricante</class>
+		<class>br.com.rhiemer.beerpoints.modelo.Estilo</class>
+		<class>br.com.rhiemer.beerpoints.modelo.Pais</class>
+		
+		<exclude-unlisted-classes>true</exclude-unlisted-classes>
+
+		<properties>
+
+			<!-- <property name="javax.persistence.validation.mode" value="NONE"/> -->
+
+			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect" />
+
+
+			<!--<property name="hibernate.hbm2ddl.auto" value="create-drop" />-->
+			<property name="hibernate.hbm2ddl.auto" value="validate"/>
+			<!-- <property name="hibernate.hbm2ddl.auto" value="update" /> -->
+
+			<property name="hibernate.max_fetch_depth" value="3" />
+			<property name="hibernate.format_sql" value="true" />
+			<property name="hibernate.transaction.flush_before_completion"
+				value="true" />
+			<property name="hibernate.order_updates" value="true" />
+			<property name="hibernate.order_inserts" value="true" />
+			<property name="hibernate.jdbc.batch_versioned_data" value="true" />
+			<property name="hibernate.jdbc.fetch_size" value="50" />
+			<property name="hibernate.jdbc.batch_size" value="50" />
+			<property name="hibernate.default_batch_fetch_size" value="8" />
+			<property name="hibernate.connection.release_mode" value="auto" />
+			<property name="hibernate.cache.use_second_level_cache"
+				value="true" />
+			<property name="use_sql_comments" value="true" />
+
+			<!-- BZ 841786: AS7/EAP 6/Hib 4 uses new (sequence) generators which seem 
+				to cause problems -->
+			<property name="hibernate.id.new_generator_mappings" value="false" />
+			<property name="hibernate.transaction.jta.platform"
+				value="org.hibernate.service.jta.platform.internal.JBossAppServerJtaPlatform" />
+			<property name="hibernate.event.merge.entity_copy_observer"
+				value="allow" />
+			<property name="org.hibernate.envers.do_not_audit_optimistic_locking_field"
+				value="false" />
+
+			
+
+		</properties>
+
+	</persistence-unit>
+</persistence>
