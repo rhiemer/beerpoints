@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1"
+	xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+	
+	<persistence-unit name="beerpoints-generete-ddl"
+		transaction-type="RESOURCE_LOCAL">
+		
+		<description>BeerPoints Persistence Unit Local para gerar ddl</description>
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+		<mapping-file>META-INF/orm.xml</mapping-file>
+		<jar-file>${generete.ddl.folder.jar}/beerpoints-domain-${project.version}.jar</jar-file>
+		<exclude-unlisted-classes>false</exclude-unlisted-classes>
+
+		<properties>
+			<property name="javax.persistence.jdbc.driver" value="${generete.ddl.driver}" />
+			<property name="javax.persistence.jdbc.url"
+				value="${generete.ddl.url}"/>
+			<property name="javax.persistence.jdbc.user" value="${generete.ddl.user}" />
+			<property name="javax.persistence.jdbc.password" value="${generete.ddl.password}" />
+			<property name="hibernate.dialect" value="${generete.ddl.hibernate.dialect}" />			
+			<property name="javax.persistence.schema-generation.scripts.action"
+				value="create" />
+			<property name="javax.persistence.schema-generation.create-source"
+				value="metadata" />
+			<property name="javax.persistence.schema-generation.scripts.create-target"
+				value="${generete.ddl.file.schema.create}" />
+
+		</properties>
+
+	</persistence-unit>
+</persistence>

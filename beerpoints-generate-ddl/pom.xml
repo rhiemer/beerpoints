@@ -1,0 +1,110 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+  <artifactId>beerpoints-generate-ddl</artifactId>
+	<parent>
+		<groupId>br.com.rhiemer.beerpoints</groupId>
+		<artifactId>beerpoints</artifactId>
+		<version>1.0.0-SNAPSHOT</version>
+	</parent>
+	
+	<properties>
+	    <generete.ddl.folder.jar>c:/desenvolvimento</generete.ddl.folder.jar>
+        <generete.ddl.pu>beerpoints-generete-ddl</generete.ddl.pu>
+		<generete.ddl.url>jdbc:mysql://localhost:3306/beerpoints</generete.ddl.url>
+		<generete.ddl.user>root</generete.ddl.user>
+		<generete.ddl.password>root</generete.ddl.password>
+		<generete.ddl.driver>com.mysql.jdbc.Driver</generete.ddl.driver>
+		<generete.ddl.file.schema.create>target/jpa/sql/schema-create.sql</generete.ddl.file.schema.create>		
+		<generete.ddl.hibernate.dialect>org.hibernate.dialect.MySQL5InnoDBDialect</generete.ddl.hibernate.dialect>			
+	</properties>
+	
+	
+	<dependencies>
+		<!-- API's -->
+		<dependency>
+			<groupId>br.com.rhiemer.beerpoints</groupId>
+			<artifactId>beerpoints-service</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+
+	</dependencies>
+	
+	
+	<profiles>
+		<!-- arquillian gerenciado -->
+		<profile>
+			<id>generate-ddl-create</id>
+			<build>
+				<plugins>
+					<plugin>
+						<artifactId>maven-antrun-plugin</artifactId>
+						<version>1.8</version>
+						<executions>
+							<execution>
+								<id>generate-ddl-create</id>
+								<phase>process-classes</phase>
+								<goals>
+									<goal>run</goal>
+								</goals>
+								<configuration>
+									<target>
+										<!-- ANT Task definition -->
+										<java
+											classname="br.com.rhiemer.api.jpa.schema.generation.JpaSchemaExport"
+											fork="true" failonerror="true">
+											<arg value="${generete.ddl.pu}" />
+											<arg value="${generete.ddl.file.schema.create}" />
+											<!-- reference to the passed-in classpath reference -->
+											<classpath refid="maven.compile.classpath" />
+										</java>
+									</target>
+								</configuration>
+
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+				<pluginManagement>
+					<plugins>
+						<!--This plugin's configuration is used to store Eclipse m2e settings 
+							only. It has no influence on the Maven build itself. -->
+						<plugin>
+							<groupId>org.eclipse.m2e</groupId>
+							<artifactId>lifecycle-mapping</artifactId>
+							<version>1.0.0</version>
+							<configuration>
+								<lifecycleMappingMetadata>
+									<pluginExecutions>
+										<pluginExecution>
+											<pluginExecutionFilter>
+												<groupId>
+													org.apache.maven.plugins
+												</groupId>
+												<artifactId>
+													maven-antrun-plugin
+												</artifactId>
+												<versionRange>
+													[1.8,)
+												</versionRange>
+												<goals>
+													<goal>run</goal>
+												</goals>
+											</pluginExecutionFilter>
+											<action>
+												<ignore></ignore>
+											</action>
+										</pluginExecution>
+									</pluginExecutions>
+								</lifecycleMappingMetadata>
+							</configuration>
+						</plugin>
+					</plugins>
+				</pluginManagement>
+			</build>
+		</profile>
+
+
+
+	</profiles>
+</project>
