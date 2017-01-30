@@ -17,18 +17,18 @@ import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.shrinkwrap.api.Archive;
 import org.junit.After;
 
-import br.com.rhiemer.beerpoints.modelo.Cerveja;
-import br.com.rhiemer.beerpoints.modelo.Estilo;
-import br.com.rhiemer.beerpoints.modelo.Fabricante;
-import br.com.rhiemer.beerpoints.modelo.Pais;
-import br.com.rhiemer.beerpoints.modelo.enums.EnumTipoFabricante;
+import br.com.rhiemer.beerpoints.modelo.entidades.Cerveja;
+import br.com.rhiemer.beerpoints.modelo.entidades.Cervejaria;
+import br.com.rhiemer.beerpoints.modelo.entidades.Estilo;
+import br.com.rhiemer.beerpoints.modelo.entidades.Pais;
+import br.com.rhiemer.beerpoints.modelo.enums.EnumTipoCervejaria;
 import br.com.rhiemer.beerpoints.test.integration.util.BeerPointstWSUtilsArquillian;
 
 public class TestIntegrationCervejaService extends TestGenericEntidadeBeerPoints<Cerveja> {
 
 	private Pais pais;
 	private Estilo estilo;
-	private Fabricante fabricante;
+	private Cervejaria cervejaria;
 
 	@Deployment
 	public static Archive<?> createTestableDeployment() {
@@ -46,9 +46,9 @@ public class TestIntegrationCervejaService extends TestGenericEntidadeBeerPoints
 		Estilo estilo = criarNovaInstanciaEntidade(Estilo.class);
 		this.estilo = (Estilo) rest.add("Estilo", estilo);
 
-		Fabricante fabricante = criarNovaInstanciaEntidade(Fabricante.class);
-		fabricante.setTipoFabricante(EnumTipoFabricante.GRANDE);
-		this.fabricante = (Fabricante) rest.add("Fabricante", fabricante);
+		Cervejaria cervejaria = criarNovaInstanciaEntidade(Cervejaria.class);
+		cervejaria.setTipoCervejaria(EnumTipoCervejaria.GRANDE);
+		this.cervejaria = (Cervejaria) rest.add("Cervejaria", cervejaria);
 
 	}
 
@@ -56,7 +56,7 @@ public class TestIntegrationCervejaService extends TestGenericEntidadeBeerPoints
 	public void carregarCampos(Cerveja entidade) {
 		entidade.setPais(pais);
 		entidade.setEstilo(estilo);
-		entidade.setFabricante(fabricante);
+		entidade.setCervejaria(cervejaria);
 		entidade.setTeorAlcolico(new BigDecimal("5.55"));
 	}
 
@@ -65,7 +65,7 @@ public class TestIntegrationCervejaService extends TestGenericEntidadeBeerPoints
 		super.testarCamposBasicos(entidadeNova, entidade);
 		assertNotNull(String.format("Pais da cerveja nula - %s", fase), entidadeNova.getPais());
 		assertNotNull(String.format("Estilo da cerveja nulo - %s", fase), entidadeNova.getEstilo());
-		assertNotNull(String.format("Fabricante da cerveja nulo - %s", fase), entidadeNova.getFabricante());
+		assertNotNull(String.format("Cervejaria da cerveja nulo - %s", fase), entidadeNova.getCervejaria());
 		assertNotNull(String.format("Teor alcolico da cerveja nulo - %s", fase), entidadeNova.getTeorAlcolico());
 
 		assertEquals(String.format("Teor alcolico diferente do incluido - %s", fase), entidadeNova.getTeorAlcolico(),
@@ -74,8 +74,8 @@ public class TestIntegrationCervejaService extends TestGenericEntidadeBeerPoints
 				entidade.getPais());
 		assertEquals(String.format("Estilo da cerveja diferente do incluido - %s", fase), entidadeNova.getEstilo(),
 				entidade.getEstilo());
-		assertEquals(String.format("Fabricante da cerveja diferente do incluido - %s", fase),
-				entidadeNova.getFabricante(), entidade.getFabricante());
+		assertEquals(String.format("Cervejaria da cerveja diferente do incluido - %s", fase),
+				entidadeNova.getCervejaria(), entidade.getCervejaria());
 	}
 	
 	@Override
@@ -105,9 +105,9 @@ public class TestIntegrationCervejaService extends TestGenericEntidadeBeerPoints
 			rest.delete("Estilo", estilo.getId().toString());
 			estilo = null;
 		}
-		if (fabricante != null) {
-			rest.delete("Fabricante", fabricante.getId().toString());
-			fabricante = null;
+		if (cervejaria != null) {
+			rest.delete("Cervejaria", cervejaria.getId().toString());
+			cervejaria = null;
 		}
 
 	}

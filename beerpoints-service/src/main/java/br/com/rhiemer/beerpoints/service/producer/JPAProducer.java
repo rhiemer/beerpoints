@@ -7,7 +7,7 @@ import javax.persistence.PersistenceContext;
 public class JPAProducer {
 	
 	@Produces	
-	@PersistenceContext
+	@PersistenceContext(unitName="beerpoints-pu")
     public EntityManager entityManager;
 	
 	

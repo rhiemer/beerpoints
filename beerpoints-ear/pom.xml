@@ -41,6 +41,7 @@
 			<artifactId>beerpoints-web</artifactId>
 			<type>war</type>
 		</dependency>
+		
 	</dependencies>
 
 
@@ -103,6 +104,8 @@
 
 
 	</build>
+	
+	
 
 
 
