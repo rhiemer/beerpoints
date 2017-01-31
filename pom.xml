@@ -30,7 +30,7 @@
 		<wildfly.maven.plugin.version>1.0.2.Final</wildfly.maven.plugin.version>
 
 		<persistence.unit.name.aplicacao>default</persistence.unit.name.aplicacao>
-		<projectBaseUri>${project.baseUri}</projectBaseUri>
+		<jar.file.beerpoints.pu>lib/beerpoints-domain-${project.version}.jar</jar.file.beerpoints.pu>
 
 	</properties>
 

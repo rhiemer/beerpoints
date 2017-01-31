@@ -8,7 +8,7 @@
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 		<jta-data-source>java:/ds.beerpoints</jta-data-source>
 		<mapping-file>META-INF/orm.xml</mapping-file>
-		<jar-file>lib/beerpoints-domain-${project.version}.jar</jar-file>
+		<jar-file>${jar.file.beerpoints.pu}</jar-file>
 
 		<exclude-unlisted-classes>true</exclude-unlisted-classes>
 
@@ -49,18 +49,10 @@
 				name="org.hibernate.envers.do_not_audit_optimistic_locking_field"
 				value="false" />
 
-			<property name="javax.persistence.schema-generation.scripts.action"
-				value="create" />
-			<property name="javax.persistence.schema-generation.create-source"
-				value="metadata" />
-			<property name="javax.persistence.schema-generation.scripts.create-target"
-				value="target/jpa/sql/create-schema.sql" />
-
-
 
 		</properties>
 
 	</persistence-unit>
-	
-	
+
+
 </persistence>
