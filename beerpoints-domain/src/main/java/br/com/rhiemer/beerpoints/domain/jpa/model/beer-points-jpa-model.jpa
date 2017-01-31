@@ -1,0 +1,901 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<jpa:entity-mappings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:java="http://jcp.org/en/jsr/detail?id=270" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:jpa="http://java.sun.com/xml/ns/persistence/orm" pkg="br.com.rhiemer.beerpoints.domain.modelo.entidades.cerveja" v="3.1" sm="false" xs="false" id="_14858264963682" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm orm_2_1.xsd">
+    <jpa:mapped-superclass xre="false" compositePrimaryKeyClass="EntityBeerPointsComNomePK" abs="true" class="EntityBeerPointsComNome" v="true" m="false" rootElement="_14858264963682" id="_148582649711516">
+        <jpa:ext e="true" n="br.com.rhiemer.beerpoints.domain.entity.EntityBeerPointsCoreComIdIncrementalDeleteLogico"/>
+        <jpa:inf e="true" n="br.com.rhiemer.beerpoints.domain.interfaces.IEntityBeerPointsComNome"/>
+        <jpa:attributes>
+            <jpa:basic attribute-type="String" v="true" name="nome" ft="false" id="_148582649711517">
+                <jpa:an e="true" n="@org.hibernate.validator.constraints.NotBlank"/>
+                <jpa:an e="true" n="@org.hibernate.validator.constraints.Length(min=1, max=250)"/>
+                <jpa:an e="true" n="@br.com.rhiemer.api.util.annotations.ToString"/>
+                <jpa:an e="true" n="@org.hibernate.envers.Audited"/>
+                <jpa:bv/>
+                <jpa:column unique="false" nullable="false" insertable="true" updatable="true" length="250"/>
+            </jpa:basic>
+        </jpa:attributes>
+    </jpa:mapped-superclass>
+    <jpa:mapped-superclass xre="false" compositePrimaryKeyClass="EntityBeerPointsComNomeTextoPK" abs="true" class="EntityBeerPointsComNomeTexto" superclassId="_148582649711516" v="true" m="false" rootElement="_14858264963682" id="_148582649711414">
+        <jpa:inf e="true" n="br.com.rhiemer.beerpoints.domain.interfaces.IEntityBeerPointsComNomeTexto"/>
+        <jpa:attributes>
+            <jpa:basic attribute-type="String" v="true" name="texto" ft="false" id="_148582649711415">
+                <jpa:an e="true" n="@org.hibernate.validator.constraints.Length(min=1, max=1000)"/>
+                <jpa:an e="true" n="@org.hibernate.envers.Audited"/>
+                <jpa:bv/>
+                <jpa:column unique="false" nullable="true" insertable="true" updatable="true" length="1000"/>
+            </jpa:basic>
+        </jpa:attributes>
+    </jpa:mapped-superclass>
+    <jpa:mapped-superclass xre="false" compositePrimaryKeyClass="EntityBeerPointsCoreModeloPK" abs="true" class="EntityBeerPointsCoreModelo" superclassId="_148582649711414" v="true" m="false" rootElement="_14858264963682" id="_148582649709112">
+        <jpa:inf e="true" n="br.com.rhiemer.beerpoints.domain.interfaces.IEntityBeerPointsComControle"/>
+        <jpa:inf e="true" n="br.com.rhiemer.beerpoints.domain.interfaces.IEntityBeerPointsCoreModelo"/>
+        <jpa:attributes>
+            <jpa:basic attribute-type="Integer" v="true" name="controleId" ft="false" id="_148582649709113">
+                <jpa:bv>
+                    <jpa:nn/>
+                </jpa:bv>
+                <jpa:column unique="true" nullable="false" insertable="true" updatable="true"/>
+            </jpa:basic>
+        </jpa:attributes>
+    </jpa:mapped-superclass>
+    <jpa:mapped-superclass xre="false" compositePrimaryKeyClass="EntityBeerPointsCoreComControlePK" abs="true" class="EntityBeerPointsCoreComControle" v="true" m="false" rootElement="_14858264963682" id="_148582649724022">
+        <jpa:ext e="true" n="br.com.rhiemer.beerpoints.domain.entity.EntityBeerPointsCoreComIdIncrementalDeleteLogico"/>
+        <jpa:inf e="true" n="br.com.rhiemer.beerpoints.domain.interfaces.IEntityBeerPointsComControle"/>
+        <jpa:attributes>
+            <jpa:basic attribute-type="Integer" v="true" name="controleId" ft="false" id="_148582649724023">
+                <jpa:bv>
+                    <jpa:nn/>
+                </jpa:bv>
+                <jpa:column unique="true" nullable="false" insertable="true" updatable="true"/>
+            </jpa:basic>
+        </jpa:attributes>
+    </jpa:mapped-superclass>
+    <jpa:mapped-superclass xre="false" compositePrimaryKeyClass="EntityBeerPointsCoreInformacaoPK" abs="true" class="EntityBeerPointsCoreInformacao" superclassId="_148582649724022" v="true" m="false" rootElement="_14858264963682" id="_148582649723921">
+        <jpa:inf e="true" n="br.com.rhiemer.beerpoints.domain.interfaces.IEntityBeerPointsCoreInformacao"/>
+        <jpa:attributes/>
+    </jpa:mapped-superclass>
+    <jpa:mapped-superclass xre="false" compositePrimaryKeyClass="GenericEntityPK" abs="true" class="GenericEntity" v="true" m="false" rootElement="_14858264963682" id="_148582649896872">
+        <jpa:ext e="true" n="br.com.rhiemer.api.util.pojo.PojoKeyAbstract"/>
+        <jpa:inf e="true" n="br.com.rhiemer.api.jpa.entity.Entity"/>
+        <jpa:attributes>
+            <jpa:basic attribute-type="java.util.Date" v="true" name="inclusao" ft="false" id="_148582649896873">
+                <jpa:an e="true" n="@javax.xml.bind.annotation.XmlTransient"/>
+                <jpa:an e="true" n="@com.fasterxml.jackson.annotation.JsonIgnore"/>
+                <jpa:an e="true" n="@org.hibernate.envers.Audited"/>
+                <jpa:bv/>
+                <jpa:column name="Inclusao" unique="false" nullable="true" insertable="true" updatable="false"/>
+            </jpa:basic>
+            <jpa:basic attribute-type="java.util.Date" v="true" name="ultimaAlteracao" ft="false" id="_148582649896874">
+                <jpa:an e="true" n="@javax.xml.bind.annotation.XmlTransient"/>
+                <jpa:an e="true" n="@com.fasterxml.jackson.annotation.JsonIgnore"/>
+                <jpa:an e="true" n="@org.hibernate.envers.Audited"/>
+                <jpa:bv/>
+                <jpa:column name="ultimaAlteracao" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic attribute-type="Boolean" v="true" name="ativo" ft="false" id="_148582649896876">
+                <jpa:an e="true" n="@com.fasterxml.jackson.annotation.JsonIgnore"/>
+                <jpa:an e="true" n="@javax.xml.bind.annotation.XmlTransient"/>
+                <jpa:an e="true" n="@org.hibernate.envers.Audited"/>
+                <jpa:bv/>
+                <jpa:column unique="false" nullable="false" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic attribute-type="java.util.Date" v="true" name="exclusao" ft="false" id="_148582649896877">
+                <jpa:an e="true" n="@com.fasterxml.jackson.annotation.JsonIgnore"/>
+                <jpa:an e="true" n="@javax.xml.bind.annotation.XmlTransient"/>
+                <jpa:an e="true" n="@org.hibernate.envers.Audited"/>
+                <jpa:bv/>
+                <jpa:column name="exclusao" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:version attribute-type="Long" v="true" name="version" ft="false" id="_148582649896875">
+                <jpa:an e="true" n="@javax.xml.bind.annotation.XmlTransient"/>
+                <jpa:an e="true" n="@com.fasterxml.jackson.annotation.JsonIgnore"/>
+                <jpa:an e="true" n="@org.hibernate.envers.Audited"/>
+                <jpa:bv/>
+                <jpa:column name="VERSAO" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:version>
+        </jpa:attributes>
+        <jpa:el>
+            <jpa:ln e="true" n="br.com.rhiemer.api.jpa.listener.ListenerEntity.class"/>
+        </jpa:el>
+    </jpa:mapped-superclass>
+    <jpa:mapped-superclass xre="false" compositePrimaryKeyClass="GenericEntityComIdPK" abs="true" class="GenericEntityComId" superclassId="_148582649896872" v="true" m="false" rootElement="_14858264963682" id="_148582649896871">
+        <jpa:inf e="true" n="br.com.rhiemer.api.jpa.entity.EntityComId&lt;Chave&gt;"/>
+        <jpa:attributes/>
+    </jpa:mapped-superclass>
+    <jpa:mapped-superclass xre="false" compositePrimaryKeyClass="GenericEntityComIdStringPK" abs="true" class="GenericEntityComIdString" superclassId="_148582649896871" v="true" m="false" rootElement="_14858264963682" id="_148582649896869">
+        <jpa:inf e="true" n="br.com.rhiemer.api.jpa.entity.EntityComIdString"/>
+        <jpa:attributes>
+            <jpa:id attribute-type="String" v="true" name="id" ft="false" id="_148582649896870">
+                <jpa:bv/>
+                <jpa:generated-value/>
+            </jpa:id>
+        </jpa:attributes>
+    </jpa:mapped-superclass>
+    <jpa:mapped-superclass xre="false" compositePrimaryKeyClass="GenericEntityComIdStringDeleteLogicoPK" abs="true" class="GenericEntityComIdStringDeleteLogico" superclassId="_148582649896869" v="true" m="false" rootElement="_14858264963682" id="_148582649896868">
+        <jpa:annotation e="true" n="@org.hibernate.annotations.SQLDelete(sql=&quot;UPDATE #{#entityName} SET ativo = \'N\' WHERE id = ? and version = ?&quot;)"/>
+        <jpa:annotation e="true" n="@org.hibernate.annotations.Where(clause=&quot;ativo = \'S\' &quot;)"/>
+        <jpa:inf e="true" n="br.com.rhiemer.api.jpa.entity.EntityDeleteLogico"/>
+        <jpa:attributes/>
+    </jpa:mapped-superclass>
+    <jpa:mapped-superclass xre="false" compositePrimaryKeyClass="GenericEntityComIdIncrementalPK" abs="true" class="GenericEntityComIdIncremental" superclassId="_148582649896871" v="true" m="false" rootElement="_14858264963682" id="_148582649961595">
+        <jpa:inf e="true" n="br.com.rhiemer.api.jpa.entity.EntityComIdIncremental"/>
+        <jpa:attributes>
+            <jpa:id attribute-type="Integer" v="true" name="id" ft="false" id="_148582649961596">
+                <jpa:bv/>
+                <jpa:generated-value strategy="IDENTITY"/>
+            </jpa:id>
+        </jpa:attributes>
+    </jpa:mapped-superclass>
+    <jpa:mapped-superclass xre="false" compositePrimaryKeyClass="GenericEntityComIdIncrementalDeleteLogicoPK" abs="true" class="GenericEntityComIdIncrementalDeleteLogico" superclassId="_148582649961595" v="true" m="false" rootElement="_14858264963682" id="_148582649961594">
+        <jpa:ts e="true"/>
+        <jpa:hc e="true"/>
+        <jpa:eq e="true"/>
+        <jpa:annotation e="true" n="@org.hibernate.annotations.SQLDelete(sql=&quot;UPDATE #{#entityName} SET ativo = \'N\' WHERE id = ? and version = ?&quot;)"/>
+        <jpa:annotation e="true" n="@org.hibernate.annotations.Where(clause=&quot;ativo = \'S\' &quot;)"/>
+        <jpa:inf e="true" n="br.com.rhiemer.api.jpa.entity.EntityDeleteLogico"/>
+        <jpa:attributes/>
+        <jpa:el/>
+    </jpa:mapped-superclass>
+    <jpa:entity xre="false" compositePrimaryKeyClass="CervejaPK" abs="false" class="Cerveja" superclassId="_148582649709112" v="true" m="false" rootElement="_14858264963682" id="_14858264970373">
+        <jpa:ts e="true"/>
+        <jpa:annotation e="true" n="@br.com.rhiemer.api.rest.annotations.RESTful(&quot;Cerveja&quot;)"/>
+        <jpa:annotation e="true" n="@org.hibernate.envers.Audited"/>
+        <jpa:annotation e="true" n="@org.hibernate.envers.AuditTable(&quot;TB_AUDITORIA_CERVEJA&quot;)"/>
+        <jpa:annotation e="true" n="@org.hibernate.annotations.SQLDelete(sql=&quot;UPDATE TB_CERVEJA SET ativo = \'N\', exclusao = sysdate() WHERE id = ? and VERSAO = ? &quot;)"/>
+        <jpa:annotation e="true" n="@org.hibernate.annotations.Where(clause=&quot;ativo = \'S\' &quot;)"/>
+        <jpa:attributes>
+            <jpa:basic attribute-type="java.math.BigDecimal" v="true" name="teorAlcolico" ft="false" id="_14858264970545">
+                <jpa:bv/>
+                <jpa:column unique="false" nullable="true" insertable="true" updatable="true" length="255" precision="5" scale="2"/>
+            </jpa:basic>
+            <jpa:many-to-one primaryKey="false" connected-entity-id="_1485826500301107" fetch="LAZY" v="true" name="estilo" ft="false" id="_14858264970546">
+                <jpa:bv/>
+                <jpa:join-column name="estilo_id" unique="false" nullable="false" insertable="true" updatable="true"/>
+            </jpa:many-to-one>
+            <jpa:many-to-one primaryKey="false" connected-entity-id="_148582649989798" fetch="LAZY" v="true" name="pais" ft="false" id="_14858264970707">
+                <jpa:bv/>
+                <jpa:join-column name="pais_id" unique="false" nullable="false" insertable="true" updatable="true"/>
+            </jpa:many-to-one>
+            <jpa:many-to-one primaryKey="false" connected-entity-id="_148582649734824" fetch="LAZY" v="true" name="regiaoPais" ft="false" id="_14858264970708">
+                <jpa:bv/>
+                <jpa:join-column name="regiao_pais_id" unique="false" nullable="false" insertable="true" updatable="true"/>
+            </jpa:many-to-one>
+            <jpa:many-to-one primaryKey="false" connected-entity-id="_148582649754126" fetch="LAZY" v="true" name="familia" ft="false" id="_14858264970709">
+                <jpa:bv/>
+                <jpa:join-column name="familia_id" unique="false" nullable="false" insertable="true" updatable="true"/>
+            </jpa:many-to-one>
+            <jpa:many-to-one primaryKey="false" connected-entity-id="_148582649853456" fetch="LAZY" v="true" name="cervejaria" ft="false" id="_148582649707010">
+                <jpa:bv/>
+                <jpa:join-column name="cervejaria_id" unique="false" nullable="false" insertable="true" updatable="true"/>
+            </jpa:many-to-one>
+            <jpa:many-to-one primaryKey="false" connected-entity-id="_1485826500682114" fetch="LAZY" v="true" name="amargor" ft="false" id="_148582649707011">
+                <jpa:bv/>
+                <jpa:join-column name="amargor_id" unique="false" nullable="false" insertable="true" updatable="true"/>
+            </jpa:many-to-one>
+            <jpa:one-to-many own="false" collection-type="java.util.List" connected-entity-id="_148582649722918" connected-attribute-id="_148582649722919" fetch="LAZY" v="true" name="bares" ft="false" id="_14858264970544">
+                <jpa:an e="true" n="@com.fasterxml.jackson.annotation.JsonIgnore"/>
+                <jpa:an e="true" n="@javax.xml.bind.annotation.XmlTransient"/>
+                <jpa:bv/>
+            </jpa:one-to-many>
+        </jpa:attributes>
+        <jpa:nq e="true" name="Cerveja.procurarPeloIdLazy">
+            <jpa:query>select a from Cerveja a left join fetch a.estilo left join fetch a.cervejaria left join fetch a.pais where a.id =:id</jpa:query>
+        </jpa:nq>
+        <jpa:el/>
+        <jpa:table name="TB_CERVEJA"/>
+    </jpa:entity>
+    <jpa:entity xre="false" compositePrimaryKeyClass="BarCervejaPK" abs="false" class="BarCerveja" superclassId="_148582649723921" v="true" m="false" rootElement="_14858264963682" id="_148582649722918">
+        <jpa:annotation e="true" n="@org.hibernate.envers.Audited"/>
+        <jpa:annotation e="true" n="@org.hibernate.envers.AuditTable(&quot;TB_AUDITORIA_BAR_CERVEJA&quot;)"/>
+        <jpa:annotation e="true" n="@br.com.rhiemer.api.rest.annotations.RESTful(&quot;BarCerveja&quot;)"/>
+        <jpa:annotation e="true" n="@org.hibernate.annotations.SQLDelete(sql=&quot;UPDATE TB_BAR_CERVEJA SET ativo = \'N\', exclusao = sysdate() WHERE id = ? and VERSAO = ? &quot;)"/>
+        <jpa:annotation e="true" n="@org.hibernate.annotations.Where(clause=&quot;ativo = \'S\' &quot;)"/>
+        <jpa:annotation e="true" n="@br.com.rhiemer.api.jpa.annotations.UniqueKey(columnNames={&quot;cerveja&quot;, &quot;bar&quot;}, validar=true)"/>
+        <jpa:attributes>
+            <jpa:many-to-one primaryKey="false" connected-entity-id="_14858264970373" connected-attribute-id="_14858264970544" fetch="LAZY" v="true" name="cerveja" ft="false" id="_148582649722919">
+                <jpa:bv/>
+                <jpa:join-column name="cerveja_id" unique="false" nullable="false" insertable="true" updatable="false"/>
+            </jpa:many-to-one>
+            <jpa:many-to-one primaryKey="false" connected-entity-id="_148582649778627" connected-attribute-id="_148582649778628" fetch="LAZY" v="true" name="bar" ft="false" id="_148582649722920">
+                <jpa:bv/>
+                <jpa:join-column name="bar_id" unique="false" nullable="false" insertable="true" updatable="false"/>
+            </jpa:many-to-one>
+        </jpa:attributes>
+        <jpa:nq e="true" name="BarCerveja.procurarPeloIdLazy">
+            <jpa:query>select a from BarCerveja a left join fetch a.cerveja left join fetch a.bar  where a.id =:id</jpa:query>
+        </jpa:nq>
+        <jpa:table name="TB_BAR_CERVEJA">
+            <jpa:unique-constraint>
+                <jpa:column-name>cerveja_id</jpa:column-name>
+                <jpa:column-name>bar_id</jpa:column-name>
+            </jpa:unique-constraint>
+        </jpa:table>
+    </jpa:entity>
+    <jpa:entity xre="false" compositePrimaryKeyClass="RegiaoPaisPK" abs="false" class="RegiaoPais" superclassId="_148582649709112" v="true" m="false" rootElement="_14858264963682" id="_148582649734824">
+        <jpa:annotation e="true" n="@br.com.rhiemer.api.rest.annotations.RESTful(&quot;RegiaoPais&quot;)"/>
+        <jpa:annotation e="true" n="@org.hibernate.envers.Audited"/>
+        <jpa:annotation e="true" n="@org.hibernate.envers.AuditTable(&quot;TB_AUDITORIA_REGIAO_PAIS&quot;)"/>
+        <jpa:annotation e="true" n="@org.hibernate.annotations.SQLDelete(sql=&quot;UPDATE TB_REGIAO_PAIS SET ativo = \'N\', exclusao = sysdate() WHERE id = ? and VERSAO = ? &quot;)"/>
+        <jpa:annotation e="true" n="@org.hibernate.annotations.Where(clause=&quot;ativo = \'S\' &quot;)"/>
+        <jpa:attributes>
+            <jpa:many-to-one primaryKey="false" connected-entity-id="_148582649989798" fetch="LAZY" v="true" name="pais" ft="false" id="_148582649734825">
+                <jpa:bv/>
+                <jpa:join-column name="pais_id" unique="false" nullable="false" insertable="true" updatable="true"/>
+            </jpa:many-to-one>
+        </jpa:attributes>
+        <jpa:table name="TB_REGIAO_PAIS"/>
+    </jpa:entity>
+    <jpa:entity xre="false" compositePrimaryKeyClass="FamiliaPK" abs="false" class="Familia" superclassId="_148582649709112" v="true" m="false" rootElement="_14858264963682" id="_148582649754126">
+        <jpa:annotation e="true" n="@br.com.rhiemer.api.rest.annotations.RESTful(&quot;Familia&quot;)"/>
+        <jpa:annotation e="true" n="@org.hibernate.envers.Audited"/>
+        <jpa:annotation e="true" n="@org.hibernate.envers.AuditTable(&quot;TB_AUDITORIA_FAMILIA&quot;)"/>
+        <jpa:annotation e="true" n="@org.hibernate.annotations.SQLDelete(sql=&quot;UPDATE TB_FAMILIA SET ativo = \'N\', exclusao = sysdate() WHERE id = ? and VERSAO = ? &quot;)"/>
+        <jpa:annotation e="true" n="@org.hibernate.annotations.Where(clause=&quot;ativo = \'S\' &quot;)"/>
+        <jpa:attributes/>
+        <jpa:table name="TB_FAMILIA"/>
+    </jpa:entity>
+    <jpa:entity xre="false" compositePrimaryKeyClass="BarPK" abs="false" class="Bar" superclassId="_148582649709112" v="true" m="false" rootElement="_14858264963682" id="_148582649778627">
+        <jpa:annotation e="true" n="@br.com.rhiemer.api.rest.annotations.RESTful(&quot;Bar&quot;)"/>
+        <jpa:annotation e="true" n="@org.hibernate.envers.Audited"/>
+        <jpa:annotation e="true" n="@org.hibernate.envers.AuditTable(&quot;TB_AUDITORIA_BAR&quot;)"/>
+        <jpa:annotation e="true" n="@org.hibernate.annotations.SQLDelete(sql=&quot;UPDATE TB_BAR SET ativo = \'N\', exclusao = sysdate() WHERE id = ? and VERSAO = ? &quot;)"/>
+        <jpa:annotation e="true" n="@org.hibernate.annotations.Where(clause=&quot;ativo = \'S\' &quot;)"/>
+        <jpa:inf e="true" n="br.com.rhiemer.beerpoints.domain.interfaces.IEntityBeerPointsComEnderecoLocalizacao"/>
+        <jpa:attributes>
+            <jpa:one-to-many own="false" collection-type="java.util.List" connected-entity-id="_148582649722918" connected-attribute-id="_148582649722920" fetch="LAZY" v="true" name="cervejas" ft="false" id="_148582649778628">
+                <jpa:an e="true" n="@com.fasterxml.jackson.annotation.JsonIgnore"/>
+                <jpa:an e="true" n="@javax.xml.bind.annotation.XmlTransient"/>
+                <jpa:bv/>
+            </jpa:one-to-many>
+            <jpa:embedded connected-class-id="_148582649781430" v="true" name="enderecoLocalizacao" ft="false" id="_148582649780329">
+                <jpa:an e="true" n="@org.hibernate.envers.Audited"/>
+                <jpa:bv/>
+            </jpa:embedded>
+        </jpa:attributes>
+        <jpa:table name="TB_BAR"/>
+    </jpa:entity>
+    <jpa:entity xre="false" compositePrimaryKeyClass="ComidaPK" abs="false" class="Comida" superclassId="_148582649709112" v="true" m="false" rootElement="_14858264963682" id="_148582649815544">
+        <jpa:annotation e="true" n="@br.com.rhiemer.api.rest.annotations.RESTful(&quot;Comida&quot;)"/>
+        <jpa:annotation e="true" n="@org.hibernate.envers.Audited"/>
+        <jpa:annotation e="true" n="@org.hibernate.envers.AuditTable(&quot;TB_AUDITORIA_COMIDA&quot;)"/>
+        <jpa:annotation e="true" n="@org.hibernate.annotations.SQLDelete(sql=&quot;UPDATE TB_COMIDA SET ativo = \'N\', exclusao = sysdate() WHERE id = ? and VERSAO = ? &quot;)"/>
+        <jpa:annotation e="true" n="@org.hibernate.annotations.Where(clause=&quot;ativo = \'S\' &quot;)"/>
+        <jpa:attributes>
+            <jpa:many-to-one primaryKey="false" connected-entity-id="_148582649815544" fetch="LAZY" v="true" name="comidaPai" ft="false" id="_148582649815545">
+                <jpa:bv/>
+                <jpa:join-column name="comida_pai_id" unique="false" nullable="false" insertable="true" updatable="true"/>
+            </jpa:many-to-one>
+        </jpa:attributes>
+        <jpa:table name="TB_COMIDA"/>
+    </jpa:entity>
+    <jpa:entity xre="false" compositePrimaryKeyClass="LocalizacaoPK" abs="false" class="Localizacao" superclassId="_148582649709112" v="true" m="false" rootElement="_14858264963682" id="_148582649834546">
+        <jpa:annotation e="true" n="@br.com.rhiemer.api.rest.annotations.RESTful(&quot;Localizacao&quot;)"/>
+        <jpa:annotation e="true" n="@org.hibernate.envers.Audited"/>
+        <jpa:annotation e="true" n="@org.hibernate.envers.AuditTable(&quot;TB_AUDITORIA_LOCALIZACAO&quot;)"/>
+        <jpa:annotation e="true" n="@org.hibernate.annotations.SQLDelete(sql=&quot;UPDATE TB_LOCALIZACAO SET ativo = \'N\', exclusao = sysdate() WHERE id = ? and VERSAO = ? &quot;)"/>
+        <jpa:annotation e="true" n="@org.hibernate.annotations.Where(clause=&quot;ativo = \'S\' &quot;)"/>
+        <jpa:attributes>
+            <jpa:many-to-one primaryKey="false" connected-entity-id="_148582649961491" fetch="LAZY" v="true" name="tipo" ft="false" id="_148582649838555">
+                <jpa:bv/>
+                <jpa:join-column name="tipo_id" unique="false" nullable="false" insertable="true" updatable="true"/>
+            </jpa:many-to-one>
+            <jpa:many-to-many own="false" collection-type="java.util.Set" connected-entity-id="_148582649834546" connected-attribute-id="_148582649835348" fetch="LAZY" v="true" name="localizacaoPais" ft="false" id="_148582649834547">
+                <jpa:an e="true" n="@com.fasterxml.jackson.annotation.JsonIgnore"/>
+                <jpa:bv/>
+            </jpa:many-to-many>
+            <jpa:many-to-many own="true" collection-type="java.util.Set" connected-entity-id="_148582649834546" connected-attribute-id="_148582649834547" fetch="LAZY" v="true" name="localizacaoFilhas" ft="false" id="_148582649835348">
+                <jpa:an e="true" n="@com.fasterxml.jackson.annotation.JsonIgnore"/>
+                <jpa:bv/>
+                <jpa:join-table name="RE_LOCALIZACAO">
+                    <jpa:join-column name="id_localizacao_pai" rc="id" unique="false" nullable="true" insertable="true" updatable="true"/>
+                    <jpa:inverse-join-column name="id_localizacao_filha" rc="id" unique="false" nullable="true" insertable="true" updatable="true"/>
+                </jpa:join-table>
+            </jpa:many-to-many>
+            <jpa:embedded connected-class-id="_148582649838450" v="true" name="coordenadasRegiao" ft="false" id="_148582649835449">
+                <jpa:an e="true" n="@org.hibernate.envers.Audited"/>
+                <jpa:bv/>
+            </jpa:embedded>
+        </jpa:attributes>
+        <jpa:table name="TB_LOCALIZACAO"/>
+    </jpa:entity>
+    <jpa:entity xre="false" compositePrimaryKeyClass="CervejariaPK" abs="false" class="Cervejaria" superclassId="_148582649709112" v="true" m="false" rootElement="_14858264963682" id="_148582649853456">
+        <jpa:annotation e="true" n="@br.com.rhiemer.api.rest.annotations.RESTful(&quot;Cervejaria&quot;)"/>
+        <jpa:annotation e="true" n="@org.hibernate.envers.Audited"/>
+        <jpa:annotation e="true" n="@org.hibernate.envers.AuditTable(&quot;TB_AUDITORIA_CERVEJARIA&quot;)"/>
+        <jpa:annotation e="true" n="@org.hibernate.annotations.SQLDelete(sql=&quot;UPDATE TB_CERVEJARIA SET ativo = \'N\', exclusao = sysdate() WHERE id = ? and VERSAO = ? &quot;)"/>
+        <jpa:annotation e="true" n="@org.hibernate.annotations.Where(clause=&quot;ativo = \'S\' &quot;)"/>
+        <jpa:attributes>
+            <jpa:basic attribute-type="br.com.rhiemer.beerpoints.domain.enums.EnumTipoCervejaria" v="true" name="tipoCervejaria" ft="false" id="_148582649853557">
+                <jpa:bv>
+                    <jpa:nn/>
+                </jpa:bv>
+                <jpa:column unique="false" nullable="false" insertable="true" updatable="true" length="20"/>
+            </jpa:basic>
+            <jpa:one-to-many own="false" collection-type="java.util.List" connected-entity-id="_1485826500030100" connected-attribute-id="_1485826500030101" fetch="LAZY" v="true" name="localizacoes" ft="false" id="_148582649853558">
+                <jpa:an e="true" n="@com.fasterxml.jackson.annotation.JsonIgnore"/>
+                <jpa:an e="true" n="@javax.xml.bind.annotation.XmlTransient"/>
+                <jpa:bv/>
+            </jpa:one-to-many>
+        </jpa:attributes>
+        <jpa:table name="TB_CERVEJARIA"/>
+    </jpa:entity>
+    <jpa:entity xre="false" compositePrimaryKeyClass="ControleEntidadePK" abs="false" class="ControleEntidade" superclassId="_148582649711414" v="true" m="false" rootElement="_14858264963682" id="_148582649870959">
+        <jpa:annotation e="true" n="@br.com.rhiemer.api.rest.annotations.RESTful(&quot;Entidade&quot;)"/>
+        <jpa:annotation e="true" n="@org.hibernate.envers.Audited"/>
+        <jpa:annotation e="true" n="@org.hibernate.envers.AuditTable(&quot;TB_AUDITORIA_CONTROLE_ENTIDADE&quot;)"/>
+        <jpa:annotation e="true" n="@org.hibernate.annotations.SQLDelete(sql=&quot;UPDATE TB_CONTROLE_ENTIDADE SET ativo = \'N\', exclusao = sysdate() WHERE id = ? and VERSAO = ? &quot;)"/>
+        <jpa:annotation e="true" n="@org.hibernate.annotations.Where(clause=&quot;ativo = \'S\' &quot;)"/>
+        <jpa:annotation e="true" n="@br.com.rhiemer.api.jpa.annotations.UniqueKey(columnNames={&quot;entidade&quot;, &quot;entidadeId&quot;}, validar=true)"/>
+        <jpa:attributes>
+            <jpa:basic attribute-type="Integer" v="true" name="entidadeId" ft="false" id="_148582649871061">
+                <jpa:bv>
+                    <jpa:nn/>
+                </jpa:bv>
+                <jpa:column unique="false" nullable="false" insertable="true" updatable="false"/>
+            </jpa:basic>
+            <jpa:many-to-one primaryKey="false" connected-entity-id="_148582649896866" fetch="LAZY" v="true" name="entidade" ft="false" id="_148582649871060">
+                <jpa:bv/>
+                <jpa:join-column name="entidade" unique="false" nullable="false" insertable="true" updatable="false"/>
+            </jpa:many-to-one>
+        </jpa:attributes>
+        <jpa:table name="TB_CONTROLE_ENTIDADE">
+            <jpa:unique-constraint>
+                <jpa:column-name>entidade</jpa:column-name>
+                <jpa:column-name>entidadeId</jpa:column-name>
+            </jpa:unique-constraint>
+        </jpa:table>
+        <jpa:attribute-override name="nome">
+            <jpa:column unique="false" nullable="true" insertable="true" updatable="true" length="250"/>
+        </jpa:attribute-override>
+    </jpa:entity>
+    <jpa:entity xre="false" compositePrimaryKeyClass="MunicipioPK" abs="false" class="Municipio" superclassId="_148582649709112" v="true" m="false" rootElement="_14858264963682" id="_148582649883762">
+        <jpa:annotation e="true" n="@br.com.rhiemer.api.rest.annotations.RESTful(&quot;Municipio&quot;)"/>
+        <jpa:annotation e="true" n="@org.hibernate.envers.Audited"/>
+        <jpa:annotation e="true" n="@org.hibernate.envers.AuditTable(&quot;TB_AUDITORIA_MUNICIPIO&quot;)"/>
+        <jpa:annotation e="true" n="@org.hibernate.annotations.SQLDelete(sql=&quot;UPDATE TB_MUNICIPIO SET ativo = \'N\', exclusao = sysdate() WHERE id = ? and VERSAO = ? &quot;)"/>
+        <jpa:annotation e="true" n="@org.hibernate.annotations.Where(clause=&quot;ativo = \'S\' &quot;)"/>
+        <jpa:inf e="true" n="br.com.rhiemer.beerpoints.domain.interfaces.IEntityBeerPointsCadastroLocalizacao"/>
+        <jpa:inf e="true" n="br.com.rhiemer.beerpoints.domain.interfaces.IEntityBeerPointsIBGE"/>
+        <jpa:attributes>
+            <jpa:basic attribute-type="Integer" v="true" name="codigoIBGE" ft="false" id="_148582649883763">
+                <jpa:bv>
+                    <jpa:nn/>
+                </jpa:bv>
+                <jpa:column unique="false" nullable="false" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic attribute-type="br.com.rhiemer.beerpoints.domain.modelo.entidades.localizacao.Localizacao" v="true" name="localizacao" ft="false" id="_148582649883764">
+                <jpa:bv>
+                    <jpa:nn/>
+                </jpa:bv>
+                <jpa:column unique="false" nullable="false" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:many-to-one primaryKey="false" connected-entity-id="_148582649946686" fetch="LAZY" v="true" name="uf" ft="false" id="_148582649883765">
+                <jpa:bv/>
+                <jpa:join-column name="uf_id" unique="false" nullable="false" insertable="true" updatable="true"/>
+            </jpa:many-to-one>
+        </jpa:attributes>
+        <jpa:table name="TB_MUNICIPIO"/>
+    </jpa:entity>
+    <jpa:entity xre="false" compositePrimaryKeyClass="EntidadePK" abs="false" class="Entidade" superclassId="_148582649896868" v="true" m="false" rootElement="_14858264963682" id="_148582649896866">
+        <jpa:annotation e="true" n="@br.com.rhiemer.api.rest.annotations.RESTful(&quot;Entidade&quot;)"/>
+        <jpa:annotation e="true" n="@org.hibernate.envers.Audited"/>
+        <jpa:annotation e="true" n="@org.hibernate.envers.AuditTable(&quot;TB_AUDITORIA_ENTIDADE&quot;)"/>
+        <jpa:annotation e="true" n="@org.hibernate.annotations.SQLDelete(sql=&quot;UPDATE TB_ENTIDADE SET ativo = \'N\', exclusao = sysdate() WHERE id = ? and VERSAO = ? &quot;)"/>
+        <jpa:annotation e="true" n="@org.hibernate.annotations.Where(clause=&quot;ativo = \'S\' &quot;)"/>
+        <jpa:inf e="true" n="br.com.rhiemer.beerpoints.domain.interfaces.IEntityBeerPointsAuxiliar"/>
+        <jpa:attributes>
+            <jpa:basic attribute-type="Integer" v="true" name="ordemPesquisa" ft="false" id="_148582649896867">
+                <jpa:an e="true" n="@org.hibernate.validator.constraints.Length(min=1, max=3)"/>
+                <jpa:an e="true" n="@org.hibernate.envers.Audited"/>
+                <jpa:bv>
+                    <jpa:nn/>
+                </jpa:bv>
+                <jpa:column unique="false" nullable="false" insertable="true" updatable="true" length="3"/>
+            </jpa:basic>
+        </jpa:attributes>
+        <jpa:table name="TB_ENTIDADE"/>
+    </jpa:entity>
+    <jpa:entity xre="false" compositePrimaryKeyClass="RecepientePK" abs="false" class="Recepiente" superclassId="_148582649709112" v="true" m="false" rootElement="_14858264963682" id="_148582649910078">
+        <jpa:annotation e="true" n="@br.com.rhiemer.api.rest.annotations.RESTful(&quot;Recepiente&quot;)"/>
+        <jpa:annotation e="true" n="@org.hibernate.envers.Audited"/>
+        <jpa:annotation e="true" n="@org.hibernate.envers.AuditTable(&quot;TB_AUDITORIA_RECEPIENTE&quot;)"/>
+        <jpa:annotation e="true" n="@org.hibernate.annotations.SQLDelete(sql=&quot;UPDATE TB_RECEPIENTE SET ativo = \'N\', exclusao = sysdate() WHERE id = ? and VERSAO = ? &quot;)"/>
+        <jpa:annotation e="true" n="@org.hibernate.annotations.Where(clause=&quot;ativo = \'S\' &quot;)"/>
+        <jpa:attributes/>
+        <jpa:table name="TB_RECEPIENTE"/>
+    </jpa:entity>
+    <jpa:entity xre="false" compositePrimaryKeyClass="BarComidaPK" abs="false" class="BarComida" superclassId="_148582649709112" v="true" m="false" rootElement="_14858264963682" id="_148582649920079">
+        <jpa:annotation e="true" n="@br.com.rhiemer.api.rest.annotations.RESTful(&quot;BarComida&quot;)"/>
+        <jpa:annotation e="true" n="@org.hibernate.envers.Audited"/>
+        <jpa:annotation e="true" n="@org.hibernate.envers.AuditTable(&quot;TB_AUDITORIA_BAR_COMIDA&quot;)"/>
+        <jpa:annotation e="true" n="@org.hibernate.annotations.SQLDelete(sql=&quot;UPDATE TB_BAR_COMIDA SET ativo = \'N\', exclusao = sysdate() WHERE id = ? and VERSAO = ? &quot;)"/>
+        <jpa:annotation e="true" n="@org.hibernate.annotations.Where(clause=&quot;ativo = \'S\' &quot;)"/>
+        <jpa:annotation e="true" n="@br.com.rhiemer.api.jpa.annotations.UniqueKey(columnNames={&quot;bar&quot;, &quot;comida&quot;}, validar=true)"/>
+        <jpa:attributes>
+            <jpa:many-to-one primaryKey="false" connected-entity-id="_148582649778627" fetch="LAZY" v="true" name="bar" ft="false" id="_148582649920080">
+                <jpa:bv/>
+                <jpa:join-column name="bar_id" unique="false" nullable="false" insertable="true" updatable="false"/>
+            </jpa:many-to-one>
+            <jpa:many-to-one primaryKey="false" connected-entity-id="_148582649815544" fetch="LAZY" v="true" name="comida" ft="false" id="_148582649920081">
+                <jpa:bv/>
+                <jpa:join-column name="comida_id" unique="false" nullable="false" insertable="true" updatable="false"/>
+            </jpa:many-to-one>
+        </jpa:attributes>
+        <jpa:table name="TB_BAR_COMIDA">
+            <jpa:unique-constraint>
+                <jpa:column-name>comida_id</jpa:column-name>
+                <jpa:column-name>bar_id</jpa:column-name>
+            </jpa:unique-constraint>
+        </jpa:table>
+    </jpa:entity>
+    <jpa:entity xre="false" compositePrimaryKeyClass="PaisLocalizacaoPK" abs="false" class="PaisLocalizacao" superclassId="_148582649709112" v="true" m="false" rootElement="_14858264963682" id="_148582649934782">
+        <jpa:annotation e="true" n="@br.com.rhiemer.api.rest.annotations.RESTful(&quot;PaisLocalizacao&quot;)"/>
+        <jpa:annotation e="true" n="@org.hibernate.envers.Audited"/>
+        <jpa:annotation e="true" n="@org.hibernate.envers.AuditTable(&quot;TB_AUDITORIA_PAIS_LOCALIZACAO&quot;)"/>
+        <jpa:annotation e="true" n="@org.hibernate.annotations.SQLDelete(sql=&quot;UPDATE TB_PAIS_LOCALIZACAO SET ativo = \'N\', exclusao = sysdate() WHERE id = ? and VERSAO = ? &quot;)"/>
+        <jpa:annotation e="true" n="@org.hibernate.annotations.Where(clause=&quot;ativo = \'S\' &quot;)"/>
+        <jpa:inf e="true" n="br.com.rhiemer.beerpoints.domain.interfaces.IEntityBeerPointsCadastroLocalizacao"/>
+        <jpa:inf e="true" n="br.com.rhiemer.beerpoints.domain.interfaces.IEntityBeerPointsIBGE"/>
+        <jpa:attributes>
+            <jpa:basic attribute-type="Integer" v="true" name="codigoIBGE" ft="false" id="_148582649934783">
+                <jpa:bv>
+                    <jpa:nn/>
+                </jpa:bv>
+                <jpa:column unique="false" nullable="false" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic attribute-type="String" v="true" name="sigla" ft="false" id="_148582649934784">
+                <jpa:bv>
+                    <jpa:nn/>
+                </jpa:bv>
+                <jpa:column unique="false" nullable="false" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic attribute-type="br.com.rhiemer.beerpoints.domain.modelo.entidades.localizacao.Localizacao" v="true" name="localizacao" ft="false" id="_148582649934785">
+                <jpa:bv>
+                    <jpa:nn/>
+                </jpa:bv>
+                <jpa:column unique="false" nullable="false" insertable="true" updatable="true"/>
+            </jpa:basic>
+        </jpa:attributes>
+        <jpa:table name="TB_PAIS_LOCALIZACAO"/>
+    </jpa:entity>
+    <jpa:entity xre="false" compositePrimaryKeyClass="UFPK" abs="false" class="UF" superclassId="_148582649709112" v="true" m="false" rootElement="_14858264963682" id="_148582649946686">
+        <jpa:annotation e="true" n="@br.com.rhiemer.api.rest.annotations.RESTful(&quot;UF&quot;)"/>
+        <jpa:annotation e="true" n="@org.hibernate.envers.Audited"/>
+        <jpa:annotation e="true" n="@org.hibernate.envers.AuditTable(&quot;TB_AUDITORIA_UF&quot;)"/>
+        <jpa:annotation e="true" n="@org.hibernate.annotations.SQLDelete(sql=&quot;UPDATE TB_UF SET ativo = \'N\', exclusao = sysdate() WHERE id = ? and VERSAO = ? &quot;)"/>
+        <jpa:annotation e="true" n="@org.hibernate.annotations.Where(clause=&quot;ativo = \'S\' &quot;)"/>
+        <jpa:inf e="true" n="br.com.rhiemer.beerpoints.domain.interfaces.IEntityBeerPointsCadastroLocalizacao"/>
+        <jpa:inf e="true" n="br.com.rhiemer.beerpoints.domain.interfaces.IEntityBeerPointsIBGE"/>
+        <jpa:attributes>
+            <jpa:basic attribute-type="Integer" v="true" name="codigoIBGE" ft="false" id="_148582649946687">
+                <jpa:bv>
+                    <jpa:nn/>
+                </jpa:bv>
+                <jpa:column unique="false" nullable="false" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic attribute-type="String" v="true" name="sigla" ft="false" id="_148582649946688">
+                <jpa:bv>
+                    <jpa:nn/>
+                </jpa:bv>
+                <jpa:column unique="false" nullable="false" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic attribute-type="br.com.rhiemer.beerpoints.domain.modelo.entidades.localizacao.Localizacao" v="true" name="localizacao" ft="false" id="_148582649946789">
+                <jpa:bv>
+                    <jpa:nn/>
+                </jpa:bv>
+                <jpa:column unique="false" nullable="false" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:many-to-one primaryKey="false" connected-entity-id="_148582649934782" fetch="LAZY" v="true" name="pais" ft="false" id="_148582649946790">
+                <jpa:bv/>
+                <jpa:join-column name="pais_localizacao_id" unique="false" nullable="false" insertable="true" updatable="true"/>
+            </jpa:many-to-one>
+        </jpa:attributes>
+        <jpa:table name="TB_UF"/>
+    </jpa:entity>
+    <jpa:entity xre="false" compositePrimaryKeyClass="TipoLocalizacaoPK" abs="false" class="TipoLocalizacao" superclassId="_148582649961594" v="true" m="false" rootElement="_14858264963682" id="_148582649961491">
+        <jpa:annotation e="true" n="@br.com.rhiemer.api.rest.annotations.RESTful(&quot;TipoLocalizacao&quot;)"/>
+        <jpa:annotation e="true" n="@org.hibernate.envers.Audited"/>
+        <jpa:annotation e="true" n="@org.hibernate.envers.AuditTable(&quot;TB_AUDITORIA_TIPO_LOCALIZACAO&quot;)"/>
+        <jpa:annotation e="true" n="@org.hibernate.annotations.SQLDelete(sql=&quot;UPDATE TB_TIPO_LOCALIZACAO SET ativo = \'N\', exclusao = sysdate() WHERE id = ? and VERSAO = ? &quot;)"/>
+        <jpa:annotation e="true" n="@org.hibernate.annotations.Where(clause=&quot;ativo = \'S\' &quot;)"/>
+        <jpa:inf e="true" n="br.com.rhiemer.beerpoints.domain.interfaces.IEntityBeerPointsAuxiliar"/>
+        <jpa:attributes>
+            <jpa:basic attribute-type="String" v="true" name="nome" ft="false" id="_148582649961492">
+                <jpa:an e="true" n="@org.hibernate.validator.constraints.NotBlank"/>
+                <jpa:an e="true" n="@org.hibernate.validator.constraints.Length(min=1, max=250)"/>
+                <jpa:an e="true" n="@br.com.rhiemer.api.util.annotations.ToString"/>
+                <jpa:an e="true" n="@org.hibernate.envers.Audited"/>
+                <jpa:bv/>
+                <jpa:column unique="false" nullable="false" insertable="true" updatable="true" length="250"/>
+            </jpa:basic>
+            <jpa:basic attribute-type="String" v="true" name="classe" ft="false" id="_148582649961493">
+                <jpa:an e="true" n="@org.hibernate.validator.constraints.Length(min=1, max=250)"/>
+                <jpa:an e="true" n="@br.com.rhiemer.api.util.annotations.ToString"/>
+                <jpa:an e="true" n="@org.hibernate.envers.Audited"/>
+                <jpa:bv/>
+                <jpa:column unique="false" nullable="true" insertable="true" updatable="true" length="250"/>
+            </jpa:basic>
+        </jpa:attributes>
+        <jpa:table name="TB_TIPO_LOCALIZACAO"/>
+    </jpa:entity>
+    <jpa:entity xre="false" compositePrimaryKeyClass="TagPK" abs="false" class="Tag" superclassId="_148582649709112" v="true" m="false" rootElement="_14858264963682" id="_148582649977297">
+        <jpa:annotation e="true" n="@br.com.rhiemer.api.rest.annotations.RESTful(&quot;Tag&quot;)"/>
+        <jpa:annotation e="true" n="@org.hibernate.envers.Audited"/>
+        <jpa:annotation e="true" n="@org.hibernate.envers.AuditTable(&quot;TB_AUDITORIA_TAG&quot;)"/>
+        <jpa:annotation e="true" n="@org.hibernate.annotations.SQLDelete(sql=&quot;UPDATE TB_TAG SET ativo = \'N\', exclusao = sysdate() WHERE id = ? and VERSAO = ? &quot;)"/>
+        <jpa:annotation e="true" n="@org.hibernate.annotations.Where(clause=&quot;ativo = \'S\' &quot;)"/>
+        <jpa:attributes/>
+        <jpa:table name="TB_TAG"/>
+    </jpa:entity>
+    <jpa:entity xre="false" compositePrimaryKeyClass="PaisPK" abs="false" class="Pais" superclassId="_148582649709112" v="true" m="false" rootElement="_14858264963682" id="_148582649989798">
+        <jpa:annotation e="true" n="@br.com.rhiemer.api.rest.annotations.RESTful(&quot;Pais&quot;)"/>
+        <jpa:annotation e="true" n="@org.hibernate.envers.Audited"/>
+        <jpa:annotation e="true" n="@org.hibernate.envers.AuditTable(&quot;TB_AUDITORIA_PAIS&quot;)"/>
+        <jpa:annotation e="true" n="@org.hibernate.annotations.SQLDelete(sql=&quot;UPDATE TB_PAIS SET ativo = \'N\', exclusao = sysdate() WHERE id = ? and VERSAO = ? &quot;)"/>
+        <jpa:annotation e="true" n="@org.hibernate.annotations.Where(clause=&quot;ativo = \'S\' &quot;)"/>
+        <jpa:attributes>
+            <jpa:many-to-one primaryKey="false" connected-entity-id="_148582649934782" fetch="LAZY" v="true" name="paisLocalizacao" ft="false" id="_148582649989799">
+                <jpa:bv/>
+                <jpa:join-column name="pais_localizacao_id" unique="true" nullable="false" insertable="true" updatable="true"/>
+            </jpa:many-to-one>
+        </jpa:attributes>
+        <jpa:table name="TB_PAIS"/>
+    </jpa:entity>
+    <jpa:entity xre="false" compositePrimaryKeyClass="CervejariaLocalizacaoPK" abs="false" class="CervejariaLocalizacao" superclassId="_148582649709112" v="true" m="false" rootElement="_14858264963682" id="_1485826500030100">
+        <jpa:ts e="true"/>
+        <jpa:annotation e="true" n="@br.com.rhiemer.api.rest.annotations.RESTful(&quot;CervejariaLocalizacao&quot;)"/>
+        <jpa:annotation e="true" n="@org.hibernate.envers.Audited"/>
+        <jpa:annotation e="true" n="@org.hibernate.envers.AuditTable(&quot;TB_AUDITORIA_CERVEJARIA_LOCALIZACAO&quot;)"/>
+        <jpa:annotation e="true" n="@org.hibernate.annotations.SQLDelete(sql=&quot;UPDATE TB_CERVEJARIA_LOCALIZACAO SET ativo = \'N\', exclusao = sysdate() WHERE id = ? and VERSAO = ? &quot;)"/>
+        <jpa:annotation e="true" n="@org.hibernate.annotations.Where(clause=&quot;ativo = \'S\' &quot;)"/>
+        <jpa:inf e="true" n="br.com.rhiemer.beerpoints.domain.interfaces.IEntityBeerPointsComEnderecoLocalizacao"/>
+        <jpa:attributes>
+            <jpa:many-to-one primaryKey="false" connected-entity-id="_148582649853456" connected-attribute-id="_148582649853558" fetch="LAZY" v="true" name="cervejaria" ft="false" id="_1485826500030101">
+                <jpa:bv/>
+                <jpa:join-column name="cervejaria_id" unique="false" nullable="false" insertable="true" updatable="true"/>
+            </jpa:many-to-one>
+            <jpa:embedded connected-class-id="_148582649781430" v="true" name="enderecoLocalizacao" ft="false" id="_1485826500031102">
+                <jpa:an e="true" n="@org.hibernate.envers.Audited"/>
+                <jpa:bv/>
+            </jpa:embedded>
+        </jpa:attributes>
+        <jpa:el/>
+        <jpa:table name="TB_CERVEJARIA_LOCALIZACAO"/>
+    </jpa:entity>
+    <jpa:entity lbl-ref="_148582649724023" xre="false" compositePrimaryKeyClass="BarCervejaRecepienteVolumePK" abs="false" class="BarCervejaRecepienteVolume" superclassId="_148582649723921" v="true" m="false" rootElement="_14858264963682" id="_1485826500155103">
+        <jpa:ts e="true"/>
+        <jpa:hc e="true"/>
+        <jpa:eq e="true"/>
+        <jpa:annotation e="true" n="@org.hibernate.envers.Audited"/>
+        <jpa:annotation e="true" n="@org.hibernate.envers.AuditTable(&quot;TB_AUDITORIA_BAR_CERVEJA_RECEP_VOL&quot;)"/>
+        <jpa:annotation e="true" n="@br.com.rhiemer.api.rest.annotations.RESTful(&quot;BarCervejaRecepienteVolume&quot;)"/>
+        <jpa:annotation e="true" n="@org.hibernate.annotations.SQLDelete(sql=&quot;UPDATE TB_BAR_CERVEJA_RECEP_VOL SET ativo = \'N\', exclusao = sysdate() WHERE id = ? and VERSAO = ? &quot;)"/>
+        <jpa:annotation e="true" n="@org.hibernate.annotations.Where(clause=&quot;ativo = \'S\' &quot;)"/>
+        <jpa:annotation e="true" n="@br.com.rhiemer.api.jpa.annotations.UniqueKey(columnNames={&quot;barCerveja&quot;, &quot;recepienteVolume&quot;}, validar=true)"/>
+        <jpa:attributes>
+            <jpa:basic attribute-type="java.math.BigDecimal" v="true" name="preco" ft="false" id="_1485826500155106">
+                <jpa:bv>
+                    <jpa:nn/>
+                    <jpa:dmi v="0.00001"/>
+                    <jpa:dma v="9999999999"/>
+                </jpa:bv>
+                <jpa:column unique="false" nullable="true" insertable="true" updatable="true" length="255" precision="10" scale="5"/>
+            </jpa:basic>
+            <jpa:many-to-one primaryKey="false" connected-entity-id="_148582649722918" fetch="LAZY" v="true" name="barCerveja" ft="false" id="_1485826500155104">
+                <jpa:bv/>
+                <jpa:join-column name="bar_cerveja_id" unique="false" nullable="false" insertable="true" updatable="false"/>
+            </jpa:many-to-one>
+            <jpa:many-to-one primaryKey="false" connected-entity-id="_1485826500412108" fetch="LAZY" v="true" name="recepienteVolume" ft="false" id="_1485826500155105">
+                <jpa:bv/>
+                <jpa:join-column name="recepiente_volume_id" unique="false" nullable="false" insertable="true" updatable="false"/>
+            </jpa:many-to-one>
+        </jpa:attributes>
+        <jpa:el/>
+        <jpa:table name="TB_BAR_CERVEJA_RECEP_VOL">
+            <jpa:unique-constraint>
+                <jpa:column-name>bar_cerveja_id</jpa:column-name>
+                <jpa:column-name>recepiente_volume_id</jpa:column-name>
+            </jpa:unique-constraint>
+        </jpa:table>
+    </jpa:entity>
+    <jpa:entity xre="false" compositePrimaryKeyClass="EstiloPK" abs="false" class="Estilo" superclassId="_148582649709112" v="true" m="false" rootElement="_14858264963682" id="_1485826500301107">
+        <jpa:annotation e="true" n="@br.com.rhiemer.api.rest.annotations.RESTful(&quot;Estilo&quot;)"/>
+        <jpa:annotation e="true" n="@org.hibernate.envers.Audited"/>
+        <jpa:annotation e="true" n="@org.hibernate.envers.AuditTable(&quot;TB_AUDITORIA_ESTILO&quot;)"/>
+        <jpa:annotation e="true" n="@org.hibernate.annotations.SQLDelete(sql=&quot;UPDATE TB_ESTILO SET ativo = \'N\', exclusao = sysdate() WHERE id = ? and VERSAO = ? &quot;)"/>
+        <jpa:annotation e="true" n="@org.hibernate.annotations.Where(clause=&quot;ativo = \'S\' &quot;)"/>
+        <jpa:attributes/>
+        <jpa:table name="TB_ESTILO"/>
+    </jpa:entity>
+    <jpa:entity xre="false" compositePrimaryKeyClass="RecepienteVolumePK" abs="false" class="RecepienteVolume" v="true" m="false" rootElement="_14858264963682" id="_1485826500412108">
+        <jpa:ts e="true"/>
+        <jpa:annotation e="true" n="@br.com.rhiemer.api.rest.annotations.RESTful(&quot;RecepienteVolume&quot;)"/>
+        <jpa:annotation e="true" n="@org.hibernate.envers.Audited"/>
+        <jpa:annotation e="true" n="@org.hibernate.envers.AuditTable(&quot;TB_AUDITORIA_RECEPIENTE_VOLUME&quot;)"/>
+        <jpa:annotation e="true" n="@org.hibernate.annotations.SQLDelete(sql=&quot;UPDATE TB_RECEPIENTE_VOLUME SET ativo = \'N\', exclusao = sysdate() WHERE id = ? and VERSAO = ? &quot;)"/>
+        <jpa:annotation e="true" n="@org.hibernate.annotations.Where(clause=&quot;ativo = \'S\' &quot;)"/>
+        <jpa:ext e="true" n="br.com.rhiemer.beerpoints.domain.entity.EntityBeerPointsCoreComIdIncrementalDeleteLogico"/>
+        <jpa:attributes>
+            <jpa:basic attribute-type="java.math.BigDecimal" v="true" name="quantidade" ft="false" id="_1485826500412109">
+                <jpa:bv>
+                    <jpa:nn/>
+                    <jpa:dmi v="0.00001"/>
+                    <jpa:dma v="9999999999"/>
+                </jpa:bv>
+                <jpa:column unique="false" nullable="true" insertable="true" updatable="true" length="255" precision="10" scale="5"/>
+            </jpa:basic>
+            <jpa:many-to-one primaryKey="false" connected-entity-id="_148582649910078" fetch="LAZY" v="true" name="recepiente" ft="false" id="_1485826500412110">
+                <jpa:bv/>
+                <jpa:join-column name="recepiente_id" unique="false" nullable="false" insertable="true" updatable="false"/>
+            </jpa:many-to-one>
+        </jpa:attributes>
+        <jpa:el/>
+        <jpa:table name="TB_RECEPIENTE_VOLUME"/>
+    </jpa:entity>
+    <jpa:entity xre="false" compositePrimaryKeyClass="HarmonizacaoPK" abs="false" class="Harmonizacao" superclassId="_148582649709112" v="true" m="false" rootElement="_14858264963682" id="_1485826500533111">
+        <jpa:annotation e="true" n="@br.com.rhiemer.api.rest.annotations.RESTful(&quot;Harmonizacao&quot;)"/>
+        <jpa:annotation e="true" n="@org.hibernate.envers.Audited"/>
+        <jpa:annotation e="true" n="@org.hibernate.envers.AuditTable(&quot;TB_AUDITORIA_HARMONIZACAO&quot;)"/>
+        <jpa:annotation e="true" n="@org.hibernate.annotations.SQLDelete(sql=&quot;UPDATE TB_HARMONIZACAO SET ativo = \'N\', exclusao = sysdate() WHERE id = ? and VERSAO = ? &quot;)"/>
+        <jpa:annotation e="true" n="@org.hibernate.annotations.Where(clause=&quot;ativo = \'S\' &quot;)"/>
+        <jpa:annotation e="true" n="@br.com.rhiemer.api.jpa.annotations.UniqueKey(columnNames={&quot;barComida&quot;, &quot;cerveja&quot;}, validar=true)"/>
+        <jpa:attributes>
+            <jpa:many-to-one primaryKey="false" connected-entity-id="_148582649920079" fetch="LAZY" v="true" name="barComida" ft="false" id="_1485826500533112">
+                <jpa:bv/>
+                <jpa:join-column name="bar_comida_id" unique="false" nullable="false" insertable="true" updatable="false"/>
+            </jpa:many-to-one>
+            <jpa:many-to-one primaryKey="false" connected-entity-id="_14858264970373" fetch="LAZY" v="true" name="cerveja" ft="false" id="_1485826500533113">
+                <jpa:bv/>
+                <jpa:join-column name="cerveja_id" unique="false" nullable="false" insertable="true" updatable="false"/>
+            </jpa:many-to-one>
+        </jpa:attributes>
+        <jpa:table name="TB_HARMONIZACAO">
+            <jpa:unique-constraint>
+                <jpa:column-name>bar_comida_id</jpa:column-name>
+                <jpa:column-name>cerveja_id</jpa:column-name>
+            </jpa:unique-constraint>
+        </jpa:table>
+    </jpa:entity>
+    <jpa:entity xre="false" compositePrimaryKeyClass="AmargorPK" abs="false" class="Amargor" superclassId="_148582649709112" v="true" m="false" rootElement="_14858264963682" id="_1485826500682114">
+        <jpa:annotation e="true" n="@br.com.rhiemer.api.rest.annotations.RESTful(&quot;Amargor&quot;)"/>
+        <jpa:annotation e="true" n="@org.hibernate.envers.Audited"/>
+        <jpa:annotation e="true" n="@org.hibernate.envers.AuditTable(&quot;TB_AUDITORIA_AMRAGOR&quot;)"/>
+        <jpa:annotation e="true" n="@org.hibernate.annotations.SQLDelete(sql=&quot;UPDATE TB_AMRAGOR SET ativo = \'N\', exclusao = sysdate() WHERE id = ? and VERSAO = ? &quot;)"/>
+        <jpa:annotation e="true" n="@org.hibernate.annotations.Where(clause=&quot;ativo = \'S\' &quot;)"/>
+        <jpa:attributes/>
+        <jpa:table name="TB_AMARGOR"/>
+    </jpa:entity>
+    <jpa:embeddable abs="false" class="Coordenadas" v="true" m="false" rootElement="_14858264963682" id="_148582649783032">
+        <jpa:ts e="true"/>
+        <jpa:attributes>
+            <jpa:basic attribute-type="java.math.BigDecimal" v="true" name="latitude" ft="false" id="_148582649783033">
+                <jpa:bv>
+                    <jpa:dmi v="0.00000001"/>
+                    <jpa:dma v="999"/>
+                </jpa:bv>
+                <jpa:column unique="false" nullable="true" insertable="true" updatable="true" length="255" precision="20" scale="8"/>
+            </jpa:basic>
+            <jpa:basic attribute-type="java.math.BigDecimal" v="true" name="longitude" ft="false" id="_148582649783034">
+                <jpa:bv>
+                    <jpa:dmi v="0.00000001"/>
+                    <jpa:dma v="1000"/>
+                </jpa:bv>
+                <jpa:column unique="false" nullable="true" insertable="true" updatable="true" length="255" precision="20" scale="8"/>
+            </jpa:basic>
+        </jpa:attributes>
+    </jpa:embeddable>
+    <jpa:embeddable abs="false" class="Endereco" v="true" m="false" rootElement="_14858264963682" id="_148582649783036">
+        <jpa:attributes>
+            <jpa:basic attribute-type="String" v="true" name="logradouro" ft="false" id="_148582649783037">
+                <jpa:an e="true" n="@org.hibernate.validator.constraints.NotBlank"/>
+                <jpa:an e="true" n="@org.hibernate.validator.constraints.Length(min=1, max=250)"/>
+                <jpa:an e="true" n="@org.hibernate.envers.Audited"/>
+                <jpa:bv/>
+                <jpa:column unique="false" nullable="true" insertable="true" updatable="true" length="250"/>
+            </jpa:basic>
+            <jpa:basic attribute-type="String" v="true" name="numero" ft="false" id="_148582649783038">
+                <jpa:an e="true" n="@org.hibernate.validator.constraints.NotBlank"/>
+                <jpa:an e="true" n="@org.hibernate.validator.constraints.Length(min=1, max=60)"/>
+                <jpa:an e="true" n="@org.hibernate.envers.Audited"/>
+                <jpa:bv/>
+                <jpa:column unique="false" nullable="true" insertable="true" updatable="true" length="60"/>
+            </jpa:basic>
+            <jpa:basic attribute-type="String" v="true" name="complemento" ft="false" id="_148582649783039">
+                <jpa:an e="true" n="@org.hibernate.validator.constraints.Length(min=1, max=60)"/>
+                <jpa:an e="true" n="@org.hibernate.envers.Audited"/>
+                <jpa:bv/>
+                <jpa:column unique="false" nullable="true" insertable="true" updatable="true" length="60"/>
+            </jpa:basic>
+            <jpa:basic attribute-type="String" v="true" name="cep" ft="false" id="_148582649783040">
+                <jpa:an e="true" n="@org.hibernate.validator.constraints.NotBlank"/>
+                <jpa:an e="true" n="@org.hibernate.validator.constraints.Length(min=1, max=60)"/>
+                <jpa:an e="true" n="@org.hibernate.envers.Audited"/>
+                <jpa:bv/>
+                <jpa:column unique="false" nullable="true" insertable="true" updatable="true" length="60"/>
+            </jpa:basic>
+            <jpa:basic attribute-type="String" v="true" name="observacaoEndereco" ft="false" id="_148582649783041">
+                <jpa:an e="true" n="@org.hibernate.validator.constraints.Length(min=1, max=1000)"/>
+                <jpa:an e="true" n="@org.hibernate.envers.Audited"/>
+                <jpa:bv/>
+                <jpa:column unique="false" nullable="true" insertable="true" updatable="true" length="1000"/>
+            </jpa:basic>
+            <jpa:many-to-one primaryKey="false" connected-entity-id="_148582649883762" fetch="LAZY" v="true" name="municipio" ft="false" id="_148582649783042">
+                <jpa:bv/>
+                <jpa:join-column name="municipio_id" unique="false" nullable="false" insertable="true" updatable="true"/>
+            </jpa:many-to-one>
+        </jpa:attributes>
+    </jpa:embeddable>
+    <jpa:embeddable abs="false" class="EnderecoLocalizacao" v="true" m="false" rootElement="_14858264963682" id="_148582649781430">
+        <jpa:ts e="true"/>
+        <jpa:attributes>
+            <jpa:many-to-one primaryKey="false" connected-entity-id="_148582649834546" fetch="LAZY" v="true" name="localizacao" ft="false" id="_148582649783043">
+                <jpa:bv/>
+                <jpa:join-column name="localizacao_id" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:many-to-one>
+            <jpa:embedded connected-class-id="_148582649783032" v="true" name="coordenadas" ft="false" id="_148582649781431">
+                <jpa:an e="true" n="@org.hibernate.envers.Audited"/>
+                <jpa:bv/>
+            </jpa:embedded>
+            <jpa:embedded connected-class-id="_148582649783036" v="true" name="enderco" ft="false" id="_148582649783035">
+                <jpa:an e="true" n="@org.hibernate.envers.Audited"/>
+                <jpa:bv/>
+            </jpa:embedded>
+        </jpa:attributes>
+    </jpa:embeddable>
+    <jpa:embeddable abs="false" class="CoordenadasRegiao" v="true" m="false" rootElement="_14858264963682" id="_148582649838450">
+        <jpa:attributes>
+            <jpa:basic attribute-type="java.math.BigDecimal" v="true" name="latitudeDelta" ft="false" id="_148582649838451">
+                <jpa:bv>
+                    <jpa:dmi v="0.00000001"/>
+                    <jpa:dma v="999"/>
+                </jpa:bv>
+                <jpa:column unique="false" nullable="true" insertable="true" updatable="true" length="255" precision="20" scale="8"/>
+            </jpa:basic>
+            <jpa:basic attribute-type="java.math.BigDecimal" v="true" name="longitudeDelta" ft="false" id="_148582649838452">
+                <jpa:bv>
+                    <jpa:dmi v="0.00000001"/>
+                    <jpa:dma v="1000"/>
+                </jpa:bv>
+                <jpa:column unique="false" nullable="true" insertable="true" updatable="true" length="255" precision="20" scale="8"/>
+            </jpa:basic>
+            <jpa:basic attribute-type="java.math.BigDecimal" v="true" name="latitude" ft="false" id="_148582649838553">
+                <jpa:bv>
+                    <jpa:dmi v="0.00000001"/>
+                    <jpa:dma v="999"/>
+                </jpa:bv>
+                <jpa:column unique="false" nullable="true" insertable="true" updatable="true" length="255" precision="20" scale="8"/>
+            </jpa:basic>
+            <jpa:basic attribute-type="java.math.BigDecimal" v="true" name="longitude" ft="false" id="_148582649838554">
+                <jpa:bv>
+                    <jpa:dmi v="0.00000001"/>
+                    <jpa:dma v="1000"/>
+                </jpa:bv>
+                <jpa:column unique="false" nullable="true" insertable="true" updatable="true" length="255" precision="20" scale="8"/>
+            </jpa:basic>
+        </jpa:attributes>
+    </jpa:embeddable>
+    <jpa:snp loc="BEFORE_PACKAGE" e="true">/**
+ * This file was generated by the JPA Modeler
+ */</jpa:snp>
+    <jpa:inf e="true" n="java.io.Serializable"/>
+    <jpa:diagram>
+        <plane elementRef="_14858264963682">
+            <shape elementRef="_14858264970373">
+                <Bounds x="1114.0" y="592.0" width="139.0" height="218.0"/>
+            </shape>
+            <shape elementRef="_148582649722918">
+                <Bounds x="1953.0" y="1556.0" width="159.0" height="79.0"/>
+            </shape>
+            <shape elementRef="_148582649734824">
+                <Bounds x="2621.0" y="415.0" width="160.0" height="58.0"/>
+            </shape>
+            <shape elementRef="_148582649754126">
+                <Bounds x="2621.0" y="874.0" width="136.0" height="24.0"/>
+            </shape>
+            <shape elementRef="_148582649778627">
+                <Bounds x="1667.0" y="1400.0" width="167.0" height="92.0"/>
+            </shape>
+            <shape elementRef="_148582649815544">
+                <Bounds x="1381.0" y="874.0" width="139.0" height="58.0"/>
+            </shape>
+            <shape elementRef="_148582649834546">
+                <Bounds x="1114.0" y="1017.0" width="164.0" height="134.0"/>
+            </shape>
+            <shape elementRef="_148582649853456">
+                <Bounds x="2976.0" y="1400.0" width="154.0" height="92.0"/>
+            </shape>
+            <shape elementRef="_148582649870959">
+                <Bounds x="3194.0" y="1556.0" width="193.0" height="92.0"/>
+            </shape>
+            <shape elementRef="_148582649883762">
+                <Bounds x="1953.0" y="415.0" width="150.0" height="113.0"/>
+            </shape>
+            <shape elementRef="_148582649896866">
+                <Bounds x="3507.0" y="1775.0" width="145.0" height="58.0"/>
+            </shape>
+            <shape elementRef="_148582649910078">
+                <Bounds x="1667.0" y="592.0" width="160.0" height="24.0"/>
+            </shape>
+            <shape elementRef="_148582649920079">
+                <Bounds x="2275.0" y="1400.0" width="159.0" height="79.0"/>
+            </shape>
+            <shape elementRef="_148582649934782">
+                <Bounds x="1381.0" y="1215.0" width="189.0" height="100.0"/>
+            </shape>
+            <shape elementRef="_148582649946686">
+                <Bounds x="2976.0" y="1017.0" width="128.0" height="134.0"/>
+            </shape>
+            <shape elementRef="_148582649961491">
+                <Bounds x="784.0" y="874.0" width="188.0" height="79.0"/>
+            </shape>
+            <shape elementRef="_148582649977297">
+                <Bounds x="2275.0" y="1017.0" width="128.0" height="24.0"/>
+            </shape>
+            <shape elementRef="_148582649989798">
+                <Bounds x="1114.0" y="1400.0" width="146.0" height="58.0"/>
+            </shape>
+            <shape elementRef="_1485826500030100">
+                <Bounds x="1381.0" y="415.0" width="222.0" height="92.0"/>
+            </shape>
+            <shape elementRef="_1485826500155103">
+                <Bounds x="784.0" y="415.0" width="266.0" height="113.0"/>
+            </shape>
+            <shape elementRef="_1485826500301107">
+                <Bounds x="2275.0" y="592.0" width="128.0" height="24.0"/>
+            </shape>
+            <shape elementRef="_1485826500412108">
+                <Bounds x="1114.0" y="175.0" width="203.0" height="92.0"/>
+            </shape>
+            <shape elementRef="_1485826500533111">
+                <Bounds x="1953.0" y="1215.0" width="178.0" height="79.0"/>
+            </shape>
+            <shape elementRef="_1485826500682114">
+                <Bounds x="1667.0" y="1017.0" width="146.0" height="24.0"/>
+            </shape>
+            <shape elementRef="_148582649711516">
+                <Bounds x="3194.0" y="1215.0" width="249.0" height="58.0"/>
+            </shape>
+            <shape elementRef="_148582649711414">
+                <Bounds x="2621.0" y="1215.0" width="281.0" height="58.0"/>
+            </shape>
+            <shape elementRef="_148582649709112">
+                <Bounds x="1953.0" y="874.0" width="258.0" height="58.0"/>
+            </shape>
+            <shape elementRef="_148582649724022">
+                <Bounds x="2621.0" y="1897.0" width="291.0" height="58.0"/>
+            </shape>
+            <shape elementRef="_148582649723921">
+                <Bounds x="2275.0" y="1775.0" width="282.0" height="24.0"/>
+            </shape>
+            <shape elementRef="_148582649896872">
+                <Bounds x="784.0" y="1556.0" width="171.0" height="155.0"/>
+            </shape>
+            <shape elementRef="_148582649896871">
+                <Bounds x="371.0" y="1400.0" width="207.0" height="24.0"/>
+            </shape>
+            <shape elementRef="_148582649896869">
+                <Bounds x="4095.0" y="2019.0" width="241.0" height="58.0"/>
+            </shape>
+            <shape elementRef="_148582649896868">
+                <Bounds x="3716.0" y="1897.0" width="315.0" height="24.0"/>
+            </shape>
+            <shape elementRef="_148582649961595">
+                <Bounds x="32.0" y="1215.0" width="275.0" height="58.0"/>
+            </shape>
+            <shape elementRef="_148582649961594">
+                <Bounds x="371.0" y="1017.0" width="349.0" height="24.0"/>
+            </shape>
+            <shape elementRef="_148582649783032">
+                <Bounds x="1381.0" y="32.0" width="176.0" height="79.0"/>
+            </shape>
+            <shape elementRef="_148582649783036">
+                <Bounds x="2275.0" y="175.0" width="167.0" height="176.0"/>
+            </shape>
+            <shape elementRef="_148582649781430">
+                <Bounds x="1667.0" y="175.0" width="222.0" height="113.0"/>
+            </shape>
+            <shape elementRef="_148582649838450">
+                <Bounds x="784.0" y="1215.0" width="215.0" height="121.0"/>
+            </shape>
+        </plane>
+    </jpa:diagram>
+</jpa:entity-mappings>

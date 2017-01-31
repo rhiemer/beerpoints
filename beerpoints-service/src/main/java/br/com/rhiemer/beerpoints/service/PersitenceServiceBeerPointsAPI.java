@@ -8,11 +8,11 @@ import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.inject.Named;
 
-import br.com.rhiemer.beerpoints.modelo.GenericEntityBeerPoints;
+import br.com.rhiemer.beerpoints.domain.entity.EntityBeerPointsCoreModelo;
 
 @Stateless
 @LocalBean
 @Named(SERVICE_APLICACAO)
-public class PersitenceServiceBeerPointsAPI extends PersitenceServiceBeerPoints<GenericEntityBeerPoints,Serializable> {
+public class PersitenceServiceBeerPointsAPI extends PersitenceServiceBeerPointsEntidadeComNome<EntityBeerPointsCoreModelo,Serializable> {
 
 }

@@ -8,13 +8,8 @@
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 		<jta-data-source>java:/ds.beerpoints</jta-data-source>
 		<mapping-file>META-INF/orm.xml</mapping-file>
-		<class>br.com.rhiemer.beerpoints.modelo.Bar</class>
-		<class>br.com.rhiemer.beerpoints.modelo.Cerveja</class>
-		<class>br.com.rhiemer.beerpoints.modelo.BarCerveja</class>
-		<class>br.com.rhiemer.beerpoints.modelo.Fabricante</class>
-		<class>br.com.rhiemer.beerpoints.modelo.Estilo</class>
-		<class>br.com.rhiemer.beerpoints.modelo.Pais</class>
-		
+		<jar-file>lib/beerpoints-domain-${project.version}.jar</jar-file>
+
 		<exclude-unlisted-classes>true</exclude-unlisted-classes>
 
 		<properties>
@@ -24,8 +19,8 @@
 			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect" />
 
 
-			<!--<property name="hibernate.hbm2ddl.auto" value="create-drop" />-->
-			<property name="hibernate.hbm2ddl.auto" value="validate"/>
+			<!--<property name="hibernate.hbm2ddl.auto" value="create-drop" /> -->
+			<property name="hibernate.hbm2ddl.auto" value="validate" />
 			<!-- <property name="hibernate.hbm2ddl.auto" value="update" /> -->
 
 			<property name="hibernate.max_fetch_depth" value="3" />
@@ -50,12 +45,22 @@
 				value="org.hibernate.service.jta.platform.internal.JBossAppServerJtaPlatform" />
 			<property name="hibernate.event.merge.entity_copy_observer"
 				value="allow" />
-			<property name="org.hibernate.envers.do_not_audit_optimistic_locking_field"
+			<property
+				name="org.hibernate.envers.do_not_audit_optimistic_locking_field"
 				value="false" />
 
-			
+			<property name="javax.persistence.schema-generation.scripts.action"
+				value="create" />
+			<property name="javax.persistence.schema-generation.create-source"
+				value="metadata" />
+			<property name="javax.persistence.schema-generation.scripts.create-target"
+				value="target/jpa/sql/create-schema.sql" />
+
+
 
 		</properties>
 
 	</persistence-unit>
+	
+	
 </persistence>

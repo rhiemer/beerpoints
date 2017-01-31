@@ -3,11 +3,11 @@ package br.com.rhiemer.beerpoints.service;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 
-import br.com.rhiemer.beerpoints.modelo.Pais;
+import br.com.rhiemer.beerpoints.domain.modelo.entidades.cerveja.Pais;
 
 @Stateless
 @LocalBean
 public class PaisService extends
-		PersitenceServiceBeerPoints<Pais, Integer> {
+		PersitenceServiceBeerPointsEntidadeComNome<Pais, Integer> {
 
 }

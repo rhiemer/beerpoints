@@ -17,10 +17,10 @@ import java.util.UUID;
 
 import org.hamcrest.Matcher;
 
-import br.com.rhiemer.beerpoints.modelo.EntityBeerPoints;
-import br.com.rhiemer.beerpoints.modelo.GenericEntityBeerPoints;
+import br.com.rhiemer.beerpoints.domain.entity.EntityBeerPointsCoreComIdIncrementalDeleteLogico;
+import br.com.rhiemer.beerpoints.domain.entity.EntityBeerPointsCoreModelo;
 
-public class TestGenericEntidadeBeerPoints<T extends GenericEntityBeerPoints> extends TestEntidadeBeerPoints<T> {
+public class TestGenericEntidadeBeerPoints<T extends EntityBeerPointsCoreModelo> extends TestEntidadeBeerPoints<T> {
 
 	@Override
 	public void testeInclusao() {
@@ -37,9 +37,9 @@ public class TestGenericEntidadeBeerPoints<T extends GenericEntityBeerPoints> ex
 	}
 
 	@Override
-	public <K extends EntityBeerPoints> K criarNovaInstanciaEntidade(Class<K> classe) {
+	public <K extends EntityBeerPointsCoreComIdIncrementalDeleteLogico> K criarNovaInstanciaEntidade(Class<K> classe) {
 		K entidade = super.criarNovaInstanciaEntidade(classe);
-		((GenericEntityBeerPoints) entidade).setNome(UUID.randomUUID().toString().toUpperCase());
+		((EntityBeerPointsCoreModelo) entidade).setNome(UUID.randomUUID().toString().toUpperCase());
 		return entidade;
 	}
 

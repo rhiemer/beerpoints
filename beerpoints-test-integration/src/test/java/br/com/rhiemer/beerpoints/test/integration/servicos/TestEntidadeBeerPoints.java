@@ -20,12 +20,12 @@ import br.com.rhiemer.api.test.integration.annotation.ServiceTestClientRest;
 import br.com.rhiemer.api.test.integration.client.ClientTest;
 import br.com.rhiemer.api.test.integration.testcategory.IntegrationTeste;
 import br.com.rhiemer.api.util.helper.Helper;
-import br.com.rhiemer.beerpoints.modelo.EntityBeerPoints;
+import br.com.rhiemer.beerpoints.domain.entity.EntityBeerPointsCoreComIdIncrementalDeleteLogico;
 import br.com.rhiemer.beerpoints.rest.resource.RestFullBeerPoints;
 
 @IntegrationTeste
 @RunWith(Arquillian.class)
-public class TestEntidadeBeerPoints<T extends EntityBeerPoints> extends ClientTest {
+public class TestEntidadeBeerPoints<T extends EntityBeerPointsCoreComIdIncrementalDeleteLogico> extends ClientTest {
 
 	protected String identificador;
 	protected Class<T> entidadeBeerPoints;
@@ -111,7 +111,7 @@ public class TestEntidadeBeerPoints<T extends EntityBeerPoints> extends ClientTe
 		return "rest";
 	}
 
-	public <K extends EntityBeerPoints> K criarNovaInstanciaEntidade(Class<K> classe) {
+	public <K extends EntityBeerPointsCoreComIdIncrementalDeleteLogico> K criarNovaInstanciaEntidade(Class<K> classe) {
 		K entidade = null;
 		try {
 			entidade = classe.newInstance();
