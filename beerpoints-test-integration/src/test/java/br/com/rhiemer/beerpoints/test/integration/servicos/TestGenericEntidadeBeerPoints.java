@@ -17,8 +17,8 @@ import java.util.UUID;
 
 import org.hamcrest.Matcher;
 
-import br.com.rhiemer.beerpoints.modelo.entidades.entity.EntityBeerPointsCoreComIdIncrementalDeleteLogico;
-import br.com.rhiemer.beerpoints.modelo.entidades.entity.EntityBeerPointsCoreModelo;
+import br.com.rhiemer.beerpoints.domain.entity.EntityBeerPointsCoreComIdIncrementalDeleteLogico;
+import br.com.rhiemer.beerpoints.domain.entity.EntityBeerPointsCoreModelo;
 
 public class TestGenericEntidadeBeerPoints<T extends EntityBeerPointsCoreModelo> extends TestEntidadeBeerPoints<T> {
 

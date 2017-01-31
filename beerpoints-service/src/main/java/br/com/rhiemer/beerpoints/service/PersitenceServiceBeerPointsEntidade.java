@@ -10,10 +10,10 @@ import br.com.rhiemer.api.jpa.annotations.ListenerEvent;
 import br.com.rhiemer.api.jpa.listener.ListenerEnum;
 import br.com.rhiemer.api.jpa.service.PersistenceServiceAplicacao;
 import br.com.rhiemer.api.util.helper.Helper;
-import br.com.rhiemer.beerpoints.modelo.entidades.ControleEntidade;
-import br.com.rhiemer.beerpoints.modelo.entidades.interfaces.IEntityBeerPoints;
-import br.com.rhiemer.beerpoints.modelo.entidades.interfaces.IEntityBeerPointsComControle;
-import br.com.rhiemer.beerpoints.modelo.enums.EnumEntidadeBeerPoints;
+import br.com.rhiemer.beerpoints.domain.enums.EnumEntidadeBeerPoints;
+import br.com.rhiemer.beerpoints.domain.interfaces.IEntityBeerPoints;
+import br.com.rhiemer.beerpoints.domain.interfaces.IEntityBeerPointsComControle;
+import br.com.rhiemer.beerpoints.domain.modelo.entidades.controle.ControleEntidade;
 
 public abstract class PersitenceServiceBeerPointsEntidade<T extends IEntityBeerPoints, K extends Serializable>
 		extends PersistenceServiceAplicacao<T, K> {

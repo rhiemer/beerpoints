@@ -13,7 +13,7 @@ import org.hamcrest.Matcher;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.shrinkwrap.api.Archive;
 
-import br.com.rhiemer.beerpoints.modelo.entidades.Bar;
+import br.com.rhiemer.beerpoints.domain.modelo.entidades.bar.Bar;
 import br.com.rhiemer.beerpoints.test.integration.util.BeerPointstWSUtilsArquillian;
 
 public class TestIntegrationBarService extends TestGenericEntidadeBeerPoints<Bar> {

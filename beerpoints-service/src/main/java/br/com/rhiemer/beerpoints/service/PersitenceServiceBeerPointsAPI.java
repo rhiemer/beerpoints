@@ -8,7 +8,7 @@ import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.inject.Named;
 
-import br.com.rhiemer.beerpoints.modelo.entidades.entity.EntityBeerPointsCoreModelo;
+import br.com.rhiemer.beerpoints.domain.entity.EntityBeerPointsCoreModelo;
 
 @Stateless
 @LocalBean

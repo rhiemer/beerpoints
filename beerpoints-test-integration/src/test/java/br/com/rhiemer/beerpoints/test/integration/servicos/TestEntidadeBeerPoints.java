@@ -20,7 +20,7 @@ import br.com.rhiemer.api.test.integration.annotation.ServiceTestClientRest;
 import br.com.rhiemer.api.test.integration.client.ClientTest;
 import br.com.rhiemer.api.test.integration.testcategory.IntegrationTeste;
 import br.com.rhiemer.api.util.helper.Helper;
-import br.com.rhiemer.beerpoints.modelo.entidades.entity.EntityBeerPointsCoreComIdIncrementalDeleteLogico;
+import br.com.rhiemer.beerpoints.domain.entity.EntityBeerPointsCoreComIdIncrementalDeleteLogico;
 import br.com.rhiemer.beerpoints.rest.resource.RestFullBeerPoints;
 
 @IntegrationTeste

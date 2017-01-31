@@ -3,7 +3,7 @@ package br.com.rhiemer.beerpoints.rest.resource;
 import java.util.List;
 
 import br.com.rhiemer.api.rest.full.RESTFullResource;
-import br.com.rhiemer.beerpoints.modelo.entidades.entity.EntityBeerPointsCoreModelo;
+import br.com.rhiemer.beerpoints.domain.entity.EntityBeerPointsCoreModelo;
 import br.com.rhiemer.beerpoints.service.PersitenceServiceBeerPointsEntidadeComNome;
 
 

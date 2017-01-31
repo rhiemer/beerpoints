@@ -15,8 +15,8 @@ import org.hamcrest.Matcher;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.shrinkwrap.api.Archive;
 
-import br.com.rhiemer.beerpoints.modelo.entidades.Cervejaria;
-import br.com.rhiemer.beerpoints.modelo.enums.EnumTipoCervejaria;
+import br.com.rhiemer.beerpoints.domain.enums.EnumTipoCervejaria;
+import br.com.rhiemer.beerpoints.domain.modelo.entidades.cervejaria.Cervejaria;
 import br.com.rhiemer.beerpoints.test.integration.util.BeerPointstWSUtilsArquillian;
 
 public class TestIntegrationCervejariaService extends TestGenericEntidadeBeerPoints<Cervejaria> {

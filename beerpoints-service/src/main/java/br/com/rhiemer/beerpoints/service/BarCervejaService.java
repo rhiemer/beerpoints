@@ -3,7 +3,7 @@ package br.com.rhiemer.beerpoints.service;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 
-import br.com.rhiemer.beerpoints.modelo.entidades.BarCerveja;
+import br.com.rhiemer.beerpoints.domain.modelo.entidades.bar.BarCerveja;
 
 @Stateless
 @LocalBean

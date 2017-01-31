@@ -9,14 +9,14 @@ import java.util.UUID;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.shrinkwrap.api.Archive;
 
-import br.com.rhiemer.beerpoints.modelo.entidades.Bar;
-import br.com.rhiemer.beerpoints.modelo.entidades.BarCerveja;
-import br.com.rhiemer.beerpoints.modelo.entidades.Cerveja;
-import br.com.rhiemer.beerpoints.modelo.entidades.Cervejaria;
-import br.com.rhiemer.beerpoints.modelo.entidades.Estilo;
-import br.com.rhiemer.beerpoints.modelo.entidades.Pais;
-import br.com.rhiemer.beerpoints.modelo.entidades.entity.EntityBeerPointsCoreModelo;
-import br.com.rhiemer.beerpoints.modelo.enums.EnumTipoCervejaria;
+import br.com.rhiemer.beerpoints.domain.entity.EntityBeerPointsCoreModelo;
+import br.com.rhiemer.beerpoints.domain.enums.EnumTipoCervejaria;
+import br.com.rhiemer.beerpoints.domain.modelo.entidades.bar.Bar;
+import br.com.rhiemer.beerpoints.domain.modelo.entidades.bar.BarCerveja;
+import br.com.rhiemer.beerpoints.domain.modelo.entidades.cerveja.Cerveja;
+import br.com.rhiemer.beerpoints.domain.modelo.entidades.cerveja.Estilo;
+import br.com.rhiemer.beerpoints.domain.modelo.entidades.cerveja.Pais;
+import br.com.rhiemer.beerpoints.domain.modelo.entidades.cervejaria.Cervejaria;
 import br.com.rhiemer.beerpoints.test.integration.util.BeerPointstWSUtilsArquillian;
 
 public class TestIntegrationBarCervejaService extends TestEntidadeBeerPoints<BarCerveja> {

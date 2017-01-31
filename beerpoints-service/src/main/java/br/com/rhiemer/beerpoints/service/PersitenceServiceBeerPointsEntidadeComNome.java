@@ -14,8 +14,8 @@ import br.com.rhiemer.api.jpa.builder.BuilderCriteria;
 import br.com.rhiemer.api.jpa.builder.BuilderCriteriaPredicate;
 import br.com.rhiemer.api.jpa.builder.ParametrizarCriteria;
 import br.com.rhiemer.api.util.dto.Pager;
-import br.com.rhiemer.beerpoints.modelo.entidades.entity.EntityBeerPointsCoreModelo;
-import br.com.rhiemer.beerpoints.modelo.entidades.interfaces.IEntityBeerPointsComNome;
+import br.com.rhiemer.beerpoints.domain.entity.EntityBeerPointsCoreModelo;
+import br.com.rhiemer.beerpoints.domain.interfaces.IEntityBeerPointsComNome;
 
 public abstract class PersitenceServiceBeerPointsEntidadeComNome<T extends IEntityBeerPointsComNome, K extends Serializable>
 		extends PersitenceServiceBeerPointsEntidade {

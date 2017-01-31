@@ -17,11 +17,11 @@ import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.shrinkwrap.api.Archive;
 import org.junit.After;
 
-import br.com.rhiemer.beerpoints.modelo.entidades.Cerveja;
-import br.com.rhiemer.beerpoints.modelo.entidades.Cervejaria;
-import br.com.rhiemer.beerpoints.modelo.entidades.Estilo;
-import br.com.rhiemer.beerpoints.modelo.entidades.Pais;
-import br.com.rhiemer.beerpoints.modelo.enums.EnumTipoCervejaria;
+import br.com.rhiemer.beerpoints.domain.enums.EnumTipoCervejaria;
+import br.com.rhiemer.beerpoints.domain.modelo.entidades.cerveja.Cerveja;
+import br.com.rhiemer.beerpoints.domain.modelo.entidades.cerveja.Estilo;
+import br.com.rhiemer.beerpoints.domain.modelo.entidades.cerveja.Pais;
+import br.com.rhiemer.beerpoints.domain.modelo.entidades.cervejaria.Cervejaria;
 import br.com.rhiemer.beerpoints.test.integration.util.BeerPointstWSUtilsArquillian;
 
 public class TestIntegrationCervejaService extends TestGenericEntidadeBeerPoints<Cerveja> {
