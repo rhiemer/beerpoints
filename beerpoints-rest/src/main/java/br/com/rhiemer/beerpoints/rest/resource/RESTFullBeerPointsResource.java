@@ -4,7 +4,7 @@ import java.util.List;
 
 import br.com.rhiemer.api.rest.full.RESTFullResource;
 import br.com.rhiemer.beerpoints.domain.entity.EntityBeerPointsCoreModelo;
-import br.com.rhiemer.beerpoints.service.PersitenceServiceBeerPointsEntidadeComNome;
+import br.com.rhiemer.beerpoints.service.entity.PersitenceServiceBeerPointsEntidadeComNome;
 
 
 

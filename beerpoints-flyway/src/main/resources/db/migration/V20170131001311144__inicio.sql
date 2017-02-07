@@ -29,14 +29,14 @@ CREATE TABLE TB_AMARGOR (
 )  ENGINE=INNODB;
 CREATE TABLE TB_AUDITORIA_AMRAGOR (
     id INTEGER NOT NULL,
-    ativo CHAR(1) NOT NULL,
+    ativo CHAR(1),
     exclusao DATETIME,
     Inclusao DATETIME,
     ultimaAlteracao DATETIME,
     VERSAO BIGINT,
-    nome VARCHAR(250) NOT NULL,
+    nome VARCHAR(250),
     texto VARCHAR(1000),
-    controleId INTEGER NOT NULL,
+    controleId INTEGER,
     REV INTEGER NOT NULL,
     REVTYPE TINYINT,
     PRIMARY KEY (id , REV)
@@ -205,14 +205,14 @@ CREATE TABLE TB_AUDITORIA_ENTIDADE (
 )  ENGINE=INNODB;
 CREATE TABLE TB_AUDITORIA_ESTILO (
     id INTEGER NOT NULL,
-    ativo CHAR(1) NOT NULL,
+    ativo CHAR(1) ,
     exclusao DATETIME,
     Inclusao DATETIME,
     ultimaAlteracao DATETIME,
     VERSAO BIGINT,
-    nome VARCHAR(250) NOT NULL,
+    nome VARCHAR(250),
     texto VARCHAR(1000),
-    controleId INTEGER NOT NULL,
+    controleId INTEGER,
     REV INTEGER NOT NULL,
     REVTYPE TINYINT,
     PRIMARY KEY (id , REV)
@@ -224,9 +224,9 @@ CREATE TABLE TB_AUDITORIA_FAMILIA (
     Inclusao DATETIME,
     ultimaAlteracao DATETIME,
     VERSAO BIGINT,
-    nome VARCHAR(250) NOT NULL,
+    nome VARCHAR(250) ,
     texto VARCHAR(1000),
-    controleId INTEGER NOT NULL,
+    controleId INTEGER,
     REV INTEGER NOT NULL,
     REVTYPE TINYINT,
     PRIMARY KEY (id , REV)
@@ -317,9 +317,9 @@ CREATE TABLE TB_AUDITORIA_RECEPIENTE (
     Inclusao DATETIME,
     ultimaAlteracao DATETIME,
     VERSAO BIGINT,
-    nome VARCHAR(250) NOT NULL,
+    nome VARCHAR(250) ,
     texto VARCHAR(1000),
-    controleId INTEGER NOT NULL,
+    controleId INTEGER ,
     REV INTEGER NOT NULL,
     REVTYPE TINYINT,
     PRIMARY KEY (id , REV)
@@ -353,14 +353,14 @@ CREATE TABLE TB_AUDITORIA_REGIAO_PAIS (
 )  ENGINE=INNODB;
 CREATE TABLE TB_AUDITORIA_TAG (
     id INTEGER NOT NULL,
-    ativo CHAR(1) NOT NULL,
+    ativo CHAR(1),
     exclusao DATETIME,
     Inclusao DATETIME,
     ultimaAlteracao DATETIME,
     VERSAO BIGINT,
-    nome VARCHAR(250) NOT NULL,
+    nome VARCHAR(250),
     texto VARCHAR(1000),
-    controleId INTEGER NOT NULL,
+    controleId INTEGER,
     REV INTEGER NOT NULL,
     REVTYPE TINYINT,
     PRIMARY KEY (id , REV)
@@ -531,7 +531,7 @@ CREATE TABLE TB_CONTROLE_ENTIDADE (
     VERSAO BIGINT,
     nome VARCHAR(250),
     texto VARCHAR(1000),
-    entidadeId INTEGER NOT NULL,
+    entidadeId INTEGER,
     entidade VARCHAR(255) NOT NULL,
     PRIMARY KEY (id)
 )  ENGINE=INNODB;

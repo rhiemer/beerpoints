@@ -7,7 +7,7 @@ import org.hibernate.envers.Audited;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
 
-import br.com.rhiemer.api.util.annotations.ToString;
+import br.com.rhiemer.api.util.annotations.entity.ToString;
 import br.com.rhiemer.beerpoints.domain.interfaces.IEntityBeerPointsComNome;
 
 @MappedSuperclass

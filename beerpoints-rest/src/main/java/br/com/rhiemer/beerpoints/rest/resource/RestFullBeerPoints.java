@@ -9,7 +9,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
 import br.com.rhiemer.api.rest.full.RestFull;
-import br.com.rhiemer.api.util.annotations.RestClientMetodoClasse;
+import br.com.rhiemer.api.util.annotations.rest.RestClientMetodoClasse;
 
 @Path("/")
 public interface RestFullBeerPoints extends RestFull {

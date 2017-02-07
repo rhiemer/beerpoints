@@ -1,4 +1,4 @@
-package br.com.rhiemer.beerpoints.service;
+package br.com.rhiemer.beerpoints.service.app;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;

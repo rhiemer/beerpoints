@@ -3,6 +3,9 @@ package br.com.rhiemer.beerpoints.domain.enums;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
+
 import br.com.rhiemer.beerpoints.domain.constantes.ConstantesBeerPointsDomain;
 import br.com.rhiemer.beerpoints.domain.interfaces.IEntityBeerPoints;
 import br.com.rhiemer.beerpoints.domain.modelo.entidades.auxiliares.Entidade;
@@ -92,6 +95,7 @@ public enum EnumEntidadeBeerPoints {
 		this.classe = classe;
 	}
 
+	@JsonValue
 	public String getNome() {
 		return nome;
 	}
@@ -106,6 +110,7 @@ public enum EnumEntidadeBeerPoints {
 		return entidade;
 	}
 
+	@JsonCreator
 	public static EnumEntidadeBeerPoints getByNome(String nome) {
 		return LOOKUP_NOME.get(nome);
 	}

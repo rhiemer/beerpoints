@@ -1,4 +1,4 @@
-package br.com.rhiemer.beerpoints.service;
+package br.com.rhiemer.beerpoints.service.entity;
 
 import java.io.Serializable;
 import java.util.List;

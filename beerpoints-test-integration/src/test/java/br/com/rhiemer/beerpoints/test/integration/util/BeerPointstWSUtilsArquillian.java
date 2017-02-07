@@ -60,6 +60,11 @@ public class BeerPointstWSUtilsArquillian {
 		libs = filesList.toArray(new File[] {});
 
 		// gera o projeto ejb
+		JavaArchive jarRhiemerEJB = ShrinkWrap.create(JavaArchive.class, "rhiemer-api-ejb.jar")
+				// adiciona todos os pacotes necessários ao projeto
+				.addPackages(true, getRecursivePackagesRhiemerEJBJar());
+	
+		// gera o projeto ejb
 		JavaArchive jar = ShrinkWrap.create(JavaArchive.class, "beerpoints-service.jar")
 				// gera um beans.xml limpo
 				.addAsManifestResource(EmptyAsset.INSTANCE, ArchivePaths.create("beans.xml"))
@@ -86,13 +91,14 @@ public class BeerPointstWSUtilsArquillian {
 				.addAsLibraries(libs)
 				// contexto web apontando para test afim de não conflitar com
 				// o contexto da aplicação
-				.setApplicationXML("META-INF/application.xml").addAsModule(jar).addAsModule(war);
+				.setApplicationXML("META-INF/application.xml").addAsModule(jar).addAsModule(war)
+				.addAsModule(jarRhiemerEJB);
 		if (fileDomain != null) {
 			ear.addAsLibrary(fileDomain, "beerpoints-domain.jar");
 		}
 
 		// exporta o deploy gerado para verificações
-		// exportDeploy(ear);
+		//exportDeploy(ear);
 
 		return ear;
 	}
@@ -100,6 +106,12 @@ public class BeerPointstWSUtilsArquillian {
 	static void exportDeploy(EnterpriseArchive deploy) {
 		deploy.as(ZipExporter.class).exportTo(new File("C:\\desenvolvimento\\java\\deploy-teste\\" + deploy.getName()),
 				true);
+	}
+
+	private static String[] getRecursivePackagesRhiemerEJBJar() {
+
+		return new String[] { "br.com.rhiemer.api.ejb" };
+
 	}
 
 	private static String[] getRecursivePackagesJar() {
