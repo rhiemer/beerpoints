@@ -8,9 +8,6 @@
 		<ejb>beerpoints-service.jar</ejb>
 	</module>
 	<module>
-		<ejb>rhiemer-api-ejb.jar</ejb>
-	</module>
-	<module>
 		<web>
 			<web-uri>beerpoints-servicos-war.war</web-uri>
 			<context-root>/beerpoints-rest-test</context-root>
