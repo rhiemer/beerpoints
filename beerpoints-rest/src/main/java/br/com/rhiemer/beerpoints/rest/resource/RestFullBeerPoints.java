@@ -1,6 +1,6 @@
 package br.com.rhiemer.beerpoints.rest.resource;
 
-import static br.com.rhiemer.api.util.helper.ConstantesAPI.MEDIA_REST_JSON;
+import static br.com.rhiemer.api.util.constantes.ConstantesAPI.MEDIA_REST_JSON;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -9,7 +9,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
 import br.com.rhiemer.api.rest.full.RestFull;
-import br.com.rhiemer.api.util.annotations.RestClientMetodoClasse;
+import br.com.rhiemer.api.util.annotations.rest.RestClientMetodoClasse;
 
 @Path("/")
 public interface RestFullBeerPoints extends RestFull {

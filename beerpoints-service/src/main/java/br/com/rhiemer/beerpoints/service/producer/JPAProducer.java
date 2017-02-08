@@ -5,11 +5,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 public class JPAProducer {
-	
-	@Produces	
-	@PersistenceContext(unitName="beerpoints-pu")
-    public EntityManager entityManager;
-	
-	
+
+	@Produces
+	@PersistenceContext(unitName = "beerpoints-pu")
+	public EntityManager entityManager;
 
 }

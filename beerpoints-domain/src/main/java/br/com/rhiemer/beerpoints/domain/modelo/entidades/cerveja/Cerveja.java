@@ -152,4 +152,6 @@ public class Cerveja extends EntityBeerPointsCoreModelo {
 		this.amargor = amargor;
 	}
 
+	
+
 }

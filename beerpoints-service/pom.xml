@@ -9,9 +9,7 @@
 		<version>1.0.0-SNAPSHOT</version>
 	</parent>
 
-	<properties>
-		<projectBaseUriJpa>${project.baseUri}</projectBaseUriJpa>
-	</properties>
+
 
 	<dependencies>
 		<dependency>
@@ -25,8 +23,7 @@
 		</dependency>
 	</dependencies>
 
+
 	
-
-
 
 </project>

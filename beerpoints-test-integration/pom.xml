@@ -24,6 +24,8 @@
 		<!-- variável de ambiente $JAVA_HOME -->
 		<arquillian.java.home />
 
+
+
 	</properties>
 
 
@@ -55,7 +57,12 @@
 			<groupId>br.com.rhiemer</groupId>
 			<artifactId>rhiemer-api-rest-client</artifactId>
 			<version>${version.rhiemer.api}</version>
-		</dependency>		
+		</dependency>
+		<dependency>
+			<groupId>br.com.rhiemer</groupId>
+			<artifactId>rhiemer-api-ejb</artifactId>
+			<version>${version.rhiemer.api}</version>
+		</dependency>
 		<dependency>
 			<groupId>org.jboss.resteasy</groupId>
 			<artifactId>resteasy-jaxrs</artifactId>
@@ -153,6 +160,9 @@
 		<!-- por padrão sempre utilizar o servidor que já foi iniciado -->
 		<profile>
 			<id>arquillian-jbossas-remote</id>
+			<properties>
+				<jar.file.beerpoints.pu>lib/beerpoints-domain.jar</jar.file.beerpoints.pu>
+			</properties>
 			<dependencies>
 				<dependency>
 					<groupId>org.wildfly</groupId>
@@ -165,6 +175,9 @@
 		<!-- arquillian gerenciado -->
 		<profile>
 			<id>arquillian-jbossas-managed</id>
+			<properties>
+				<jar.file.beerpoints.pu>lib/beerpoints-domain.jar</jar.file.beerpoints.pu>
+			</properties>
 			<dependencies>
 				<dependency>
 					<groupId>org.wildfly</groupId>

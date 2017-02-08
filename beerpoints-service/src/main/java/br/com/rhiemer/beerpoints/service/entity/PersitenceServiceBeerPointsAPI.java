@@ -1,4 +1,4 @@
-package br.com.rhiemer.beerpoints.service;
+package br.com.rhiemer.beerpoints.service.entity;
 
 import static br.com.rhiemer.api.jpa.constantes.ConstantesAPIJPA.SERVICE_APLICACAO;
 
