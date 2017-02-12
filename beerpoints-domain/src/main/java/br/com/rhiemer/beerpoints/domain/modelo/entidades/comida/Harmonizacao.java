@@ -26,7 +26,7 @@ import br.com.rhiemer.beerpoints.domain.modelo.entidades.cerveja.Cerveja;
 @AuditTable("TB_AUDITORIA_HARMONIZACAO")
 @SQLDelete(sql = "UPDATE TB_HARMONIZACAO SET ativo = 'N', exclusao = sysdate() WHERE id = ? and VERSAO = ? ")
 @Where(clause = "ativo = 'S' ")
-@UniqueKey(columnNames = { "barComida", "cerveja" }, validar = true)
+@UniqueKey(nome="barComida_cerveja",columnNames = { "barComida", "cerveja" }, validar = true)
 public class Harmonizacao extends EntityBeerPointsCoreModelo {
 
 	

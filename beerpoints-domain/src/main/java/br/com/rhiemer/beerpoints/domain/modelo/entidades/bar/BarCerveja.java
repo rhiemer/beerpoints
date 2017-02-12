@@ -31,7 +31,7 @@ import br.com.rhiemer.beerpoints.domain.modelo.entidades.cerveja.Cerveja;
 @NamedQueries({
 		@NamedQuery(name = "BarCerveja.procurarPeloIdLazy", query = "select a from BarCerveja a "
 				+ "left join fetch a.cerveja " + "left join fetch a.bar " + " where a.id =:id") })
-@UniqueKey(columnNames = { "cerveja", "bar" }, validar = true)
+@UniqueKey(nome="cerveja_bar",columnNames = { "cerveja", "bar" }, validar = true)
 public class BarCerveja extends EntityBeerPointsCoreInformacao {
 
 	/**

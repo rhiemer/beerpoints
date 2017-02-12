@@ -26,7 +26,7 @@ import br.com.rhiemer.beerpoints.domain.modelo.entidades.bar.Bar;
 @AuditTable("TB_AUDITORIA_BAR_COMIDA")
 @SQLDelete(sql = "UPDATE TB_BAR_COMIDA SET ativo = 'N', exclusao = sysdate() WHERE id = ? and VERSAO = ? ")
 @Where(clause = "ativo = 'S' ")
-@UniqueKey(columnNames = { "bar", "comida" }, validar = true)
+@UniqueKey(nome="bar_comida",columnNames = { "bar", "comida" }, validar = true)
 public class BarComida extends EntityBeerPointsCoreModelo {
 
 	

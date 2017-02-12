@@ -6,6 +6,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.OneToOne;
 
+import org.hibernate.envers.Audited;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import br.com.rhiemer.beerpoints.domain.interfaces.IEntityBeerPointsComControle;
@@ -23,6 +25,7 @@ public abstract class EntityBeerPointsCoreComControle extends EntityBeerPointsCo
 	@OneToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name = "controleId", referencedColumnName = "id",unique = true, nullable = false, updatable = false)
 	@JsonIgnore
+	@Audited
 	private ControleEntidade controleEntidade;
 
 	@Column(name="controleId",nullable = false, unique = true, updatable = false,insertable=false)

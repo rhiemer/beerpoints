@@ -32,7 +32,6 @@
 	
 	
 	<profiles>
-		<!-- arquillian gerenciado -->
 		<profile>
 			<id>generate-ddl-create</id>
 			<build>

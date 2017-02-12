@@ -31,6 +31,7 @@
 
 		<persistence.unit.name.aplicacao>default</persistence.unit.name.aplicacao>
 		<jar.file.beerpoints.pu>lib/beerpoints-domain-${project.version}.jar</jar.file.beerpoints.pu>
+		<compilerArgument>-proc:none</compilerArgument>
 
 	</properties>
 
@@ -156,6 +157,7 @@
 				<configuration>
 					<source>${project.compile.java.version}</source>
 					<target>${project.compile.java.version}</target>
+					<compilerArgument>${compilerArgument}</compilerArgument>
 				</configuration>
 			</plugin>
 			<plugin>

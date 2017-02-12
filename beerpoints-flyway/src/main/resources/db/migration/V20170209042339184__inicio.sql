@@ -29,6 +29,8 @@ CREATE TABLE TB_AMARGOR (
 )  ENGINE=INNODB;
 CREATE TABLE TB_AUDITORIA_AMRAGOR (
     id INTEGER NOT NULL,
+    REV INTEGER NOT NULL,
+    REVTYPE TINYINT,
     ativo CHAR(1),
     exclusao DATETIME,
     Inclusao DATETIME,
@@ -37,8 +39,6 @@ CREATE TABLE TB_AUDITORIA_AMRAGOR (
     nome VARCHAR(250),
     texto VARCHAR(1000),
     controleId INTEGER,
-    REV INTEGER NOT NULL,
-    REVTYPE TINYINT,
     PRIMARY KEY (id , REV)
 )  ENGINE=INNODB;
 CREATE TABLE TB_AUDITORIA_BAR (
@@ -59,6 +59,7 @@ CREATE TABLE TB_AUDITORIA_BAR (
     logradouro VARCHAR(250),
     numero VARCHAR(60),
     observacaoEndereco VARCHAR(1000),
+    controleId INTEGER,
     municipio_id INTEGER,
     localizacao_id INTEGER,
     PRIMARY KEY (id , REV)
@@ -67,11 +68,12 @@ CREATE TABLE TB_AUDITORIA_BAR_CERVEJA (
     id INTEGER NOT NULL,
     REV INTEGER NOT NULL,
     REVTYPE TINYINT,
-    VERSAO BIGINT,
     ativo CHAR(1),
     exclusao DATETIME,
     Inclusao DATETIME,
     ultimaAlteracao DATETIME,
+    VERSAO BIGINT,
+    controleId INTEGER,
     bar_id INTEGER,
     cerveja_id INTEGER,
     PRIMARY KEY (id , REV)
@@ -80,12 +82,13 @@ CREATE TABLE TB_AUDITORIA_BAR_CERVEJA_RECEP_VOL (
     id INTEGER NOT NULL,
     REV INTEGER NOT NULL,
     REVTYPE TINYINT,
-    VERSAO BIGINT,
     ativo CHAR(1),
     exclusao DATETIME,
     Inclusao DATETIME,
     ultimaAlteracao DATETIME,
+    VERSAO BIGINT,
     preco DECIMAL(10 , 5 ),
+    controleId INTEGER,
     bar_cerveja_id INTEGER,
     recepiente_volume_id INTEGER,
     PRIMARY KEY (id , REV)
@@ -94,13 +97,14 @@ CREATE TABLE TB_AUDITORIA_BAR_COMIDA (
     id INTEGER NOT NULL,
     REV INTEGER NOT NULL,
     REVTYPE TINYINT,
-    VERSAO BIGINT,
     ativo CHAR(1),
     exclusao DATETIME,
     Inclusao DATETIME,
     ultimaAlteracao DATETIME,
+    VERSAO BIGINT,
     nome VARCHAR(250),
     texto VARCHAR(1000),
+    controleId INTEGER,
     bar_id INTEGER,
     comida_id INTEGER,
     PRIMARY KEY (id , REV)
@@ -110,13 +114,14 @@ CREATE TABLE TB_AUDITORIA_CERVEJA (
     REV INTEGER NOT NULL,
     REVTYPE TINYINT,
     ativo CHAR(1),
-    VERSAO BIGINT,
     exclusao DATETIME,
     Inclusao DATETIME,
     ultimaAlteracao DATETIME,
+    VERSAO BIGINT,
     nome VARCHAR(250),
     texto VARCHAR(1000),
     teorAlcolico DECIMAL(5 , 2 ),
+    controleId INTEGER,
     amargor_id INTEGER,
     cervejaria_id INTEGER,
     estilo_id INTEGER,
@@ -128,26 +133,27 @@ CREATE TABLE TB_AUDITORIA_CERVEJA (
 CREATE TABLE TB_AUDITORIA_CERVEJARIA (
     id INTEGER NOT NULL,
     REV INTEGER NOT NULL,
-    VERSAO BIGINT,
     REVTYPE TINYINT,
     ativo CHAR(1),
     exclusao DATETIME,
     Inclusao DATETIME,
     ultimaAlteracao DATETIME,
+    VERSAO BIGINT,
     nome VARCHAR(250),
     texto VARCHAR(1000),
     tipoCervejaria VARCHAR(20),
+    controleId INTEGER,
     PRIMARY KEY (id , REV)
 )  ENGINE=INNODB;
 CREATE TABLE TB_AUDITORIA_CERVEJARIA_LOCALIZACAO (
     id INTEGER NOT NULL,
     REV INTEGER NOT NULL,
     REVTYPE TINYINT,
-    VERSAO BIGINT,
     ativo CHAR(1),
     exclusao DATETIME,
     Inclusao DATETIME,
     ultimaAlteracao DATETIME,
+    VERSAO BIGINT,
     nome VARCHAR(250),
     texto VARCHAR(1000),
     latitude DECIMAL(20 , 8 ),
@@ -157,6 +163,7 @@ CREATE TABLE TB_AUDITORIA_CERVEJARIA_LOCALIZACAO (
     logradouro VARCHAR(250),
     numero VARCHAR(60),
     observacaoEndereco VARCHAR(1000),
+    controleId INTEGER,
     cervejaria_id INTEGER,
     municipio_id INTEGER,
     localizacao_id INTEGER,
@@ -166,13 +173,14 @@ CREATE TABLE TB_AUDITORIA_COMIDA (
     id INTEGER NOT NULL,
     REV INTEGER NOT NULL,
     REVTYPE TINYINT,
-    VERSAO BIGINT,
     ativo CHAR(1),
     exclusao DATETIME,
     Inclusao DATETIME,
     ultimaAlteracao DATETIME,
+    VERSAO BIGINT,
     nome VARCHAR(250),
     texto VARCHAR(1000),
+    controleId INTEGER,
     comida_pai_id INTEGER,
     PRIMARY KEY (id , REV)
 )  ENGINE=INNODB;
@@ -180,32 +188,34 @@ CREATE TABLE TB_AUDITORIA_CONTROLE_ENTIDADE (
     id INTEGER NOT NULL,
     REV INTEGER NOT NULL,
     REVTYPE TINYINT,
-    VERSAO BIGINT,
     ativo CHAR(1),
     exclusao DATETIME,
     Inclusao DATETIME,
     ultimaAlteracao DATETIME,
+    VERSAO BIGINT,
     nome VARCHAR(250),
     texto VARCHAR(1000),
-    entidadeId INTEGER,
     entidade VARCHAR(255),
+    entidadeId INTEGER,
     PRIMARY KEY (id , REV)
 )  ENGINE=INNODB;
 CREATE TABLE TB_AUDITORIA_ENTIDADE (
     id VARCHAR(255) NOT NULL,
     REV INTEGER NOT NULL,
     REVTYPE TINYINT,
-    VERSAO BIGINT,
     ativo CHAR(1),
     exclusao DATETIME,
     Inclusao DATETIME,
     ultimaAlteracao DATETIME,
+    VERSAO BIGINT,
     ordemPesquisa INTEGER,
     PRIMARY KEY (id , REV)
 )  ENGINE=INNODB;
 CREATE TABLE TB_AUDITORIA_ESTILO (
     id INTEGER NOT NULL,
-    ativo CHAR(1) ,
+    REV INTEGER NOT NULL,
+    REVTYPE TINYINT,
+    ativo CHAR(1),
     exclusao DATETIME,
     Inclusao DATETIME,
     ultimaAlteracao DATETIME,
@@ -213,35 +223,34 @@ CREATE TABLE TB_AUDITORIA_ESTILO (
     nome VARCHAR(250),
     texto VARCHAR(1000),
     controleId INTEGER,
-    REV INTEGER NOT NULL,
-    REVTYPE TINYINT,
     PRIMARY KEY (id , REV)
 )  ENGINE=INNODB;
 CREATE TABLE TB_AUDITORIA_FAMILIA (
     id INTEGER NOT NULL,
-    ativo CHAR(1) NOT NULL,
+    REV INTEGER NOT NULL,
+    REVTYPE TINYINT,
+    ativo CHAR(1),
     exclusao DATETIME,
     Inclusao DATETIME,
     ultimaAlteracao DATETIME,
     VERSAO BIGINT,
-    nome VARCHAR(250) ,
+    nome VARCHAR(250),
     texto VARCHAR(1000),
     controleId INTEGER,
-    REV INTEGER NOT NULL,
-    REVTYPE TINYINT,
     PRIMARY KEY (id , REV)
 )  ENGINE=INNODB;
 CREATE TABLE TB_AUDITORIA_HARMONIZACAO (
     id INTEGER NOT NULL,
     REV INTEGER NOT NULL,
     REVTYPE TINYINT,
-    VERSAO BIGINT,
     ativo CHAR(1),
     exclusao DATETIME,
     Inclusao DATETIME,
     ultimaAlteracao DATETIME,
+    VERSAO BIGINT,
     nome VARCHAR(250),
     texto VARCHAR(1000),
+    controleId INTEGER,
     bar_comida_id INTEGER,
     cerveja_id INTEGER,
     PRIMARY KEY (id , REV)
@@ -250,17 +259,18 @@ CREATE TABLE TB_AUDITORIA_LOCALIZACAO (
     id INTEGER NOT NULL,
     REV INTEGER NOT NULL,
     REVTYPE TINYINT,
-    VERSAO BIGINT,
     ativo CHAR(1),
     exclusao DATETIME,
     Inclusao DATETIME,
     ultimaAlteracao DATETIME,
+    VERSAO BIGINT,
     nome VARCHAR(250),
     texto VARCHAR(1000),
     latitude DECIMAL(20 , 8 ),
     latitudeDelta DECIMAL(20 , 8 ),
     longitude DECIMAL(20 , 8 ),
     longitudeDelta DECIMAL(20 , 8 ),
+    controleId INTEGER,
     tipo_id INTEGER,
     PRIMARY KEY (id , REV)
 )  ENGINE=INNODB;
@@ -268,15 +278,16 @@ CREATE TABLE TB_AUDITORIA_MUNICIPIO (
     id INTEGER NOT NULL,
     REV INTEGER NOT NULL,
     REVTYPE TINYINT,
-    VERSAO BIGINT,
     ativo CHAR(1),
     exclusao DATETIME,
     Inclusao DATETIME,
     ultimaAlteracao DATETIME,
+    VERSAO BIGINT,
     nome VARCHAR(250),
     texto VARCHAR(1000),
     codigoIBGE INTEGER,
     localizacao TINYBLOB,
+    controleId INTEGER,
     uf_id INTEGER,
     PRIMARY KEY (id , REV)
 )  ENGINE=INNODB;
@@ -284,75 +295,6 @@ CREATE TABLE TB_AUDITORIA_PAIS (
     id INTEGER NOT NULL,
     REV INTEGER NOT NULL,
     REVTYPE TINYINT,
-    VERSAO BIGINT,
-    ativo CHAR(1),
-    exclusao DATETIME,
-    Inclusao DATETIME,
-    ultimaAlteracao DATETIME,
-    nome VARCHAR(250),
-    texto VARCHAR(1000),
-    pais_localizacao_id INTEGER,
-    PRIMARY KEY (id , REV)
-)  ENGINE=INNODB;
-CREATE TABLE TB_AUDITORIA_PAIS_LOCALIZACAO (
-    id INTEGER NOT NULL,
-    REV INTEGER NOT NULL,
-    REVTYPE TINYINT,
-    VERSAO BIGINT,
-    ativo CHAR(1),
-    exclusao DATETIME,
-    Inclusao DATETIME,
-    ultimaAlteracao DATETIME,
-    nome VARCHAR(250),
-    texto VARCHAR(1000),
-    codigoIBGE INTEGER,
-    localizacao TINYBLOB,
-    sigla VARCHAR(255),
-    PRIMARY KEY (id , REV)
-)  ENGINE=INNODB;
-CREATE TABLE TB_AUDITORIA_RECEPIENTE (
-    id INTEGER NOT NULL,
-    ativo CHAR(1) NOT NULL,
-    exclusao DATETIME,
-    Inclusao DATETIME,
-    ultimaAlteracao DATETIME,
-    VERSAO BIGINT,
-    nome VARCHAR(250) ,
-    texto VARCHAR(1000),
-    controleId INTEGER ,
-    REV INTEGER NOT NULL,
-    REVTYPE TINYINT,
-    PRIMARY KEY (id , REV)
-)  ENGINE=INNODB;
-CREATE TABLE TB_AUDITORIA_RECEPIENTE_VOLUME (
-    id INTEGER NOT NULL,
-    REV INTEGER NOT NULL,
-    REVTYPE TINYINT,
-    VERSAO BIGINT,
-    ativo CHAR(1),
-    exclusao DATETIME,
-    Inclusao DATETIME,
-    ultimaAlteracao DATETIME,
-    quantidade DECIMAL(10 , 5 ),
-    recepiente_id INTEGER,
-    PRIMARY KEY (id , REV)
-)  ENGINE=INNODB;
-CREATE TABLE TB_AUDITORIA_REGIAO_PAIS (
-    id INTEGER NOT NULL,
-    REV INTEGER NOT NULL,
-    REVTYPE TINYINT,
-    VERSAO BIGINT,
-    ativo CHAR(1),
-    exclusao DATETIME,
-    Inclusao DATETIME,
-    ultimaAlteracao DATETIME,
-    nome VARCHAR(250),
-    texto VARCHAR(1000),
-    pais_id INTEGER,
-    PRIMARY KEY (id , REV)
-)  ENGINE=INNODB;
-CREATE TABLE TB_AUDITORIA_TAG (
-    id INTEGER NOT NULL,
     ativo CHAR(1),
     exclusao DATETIME,
     Inclusao DATETIME,
@@ -361,19 +303,91 @@ CREATE TABLE TB_AUDITORIA_TAG (
     nome VARCHAR(250),
     texto VARCHAR(1000),
     controleId INTEGER,
+    pais_localizacao_id INTEGER,
+    PRIMARY KEY (id , REV)
+)  ENGINE=INNODB;
+CREATE TABLE TB_AUDITORIA_PAIS_LOCALIZACAO (
+    id INTEGER NOT NULL,
     REV INTEGER NOT NULL,
     REVTYPE TINYINT,
+    ativo CHAR(1),
+    exclusao DATETIME,
+    Inclusao DATETIME,
+    ultimaAlteracao DATETIME,
+    VERSAO BIGINT,
+    nome VARCHAR(250),
+    texto VARCHAR(1000),
+    codigoIBGE INTEGER,
+    localizacao TINYBLOB,
+    sigla VARCHAR(255),
+    controleId INTEGER,
+    PRIMARY KEY (id , REV)
+)  ENGINE=INNODB;
+CREATE TABLE TB_AUDITORIA_RECEPIENTE (
+    id INTEGER NOT NULL,
+    REV INTEGER NOT NULL,
+    REVTYPE TINYINT,
+    ativo CHAR(1),
+    exclusao DATETIME,
+    Inclusao DATETIME,
+    ultimaAlteracao DATETIME,
+    VERSAO BIGINT,
+    nome VARCHAR(250),
+    texto VARCHAR(1000),
+    controleId INTEGER,
+    PRIMARY KEY (id , REV)
+)  ENGINE=INNODB;
+CREATE TABLE TB_AUDITORIA_RECEPIENTE_VOLUME (
+    id INTEGER NOT NULL,
+    REV INTEGER NOT NULL,
+    REVTYPE TINYINT,
+    ativo CHAR(1),
+    exclusao DATETIME,
+    Inclusao DATETIME,
+    ultimaAlteracao DATETIME,
+    VERSAO BIGINT,
+    quantidade DECIMAL(10 , 5 ),
+    recepiente_id INTEGER,
+    PRIMARY KEY (id , REV)
+)  ENGINE=INNODB;
+CREATE TABLE TB_AUDITORIA_REGIAO_PAIS (
+    id INTEGER NOT NULL,
+    REV INTEGER NOT NULL,
+    REVTYPE TINYINT,
+    ativo CHAR(1),
+    exclusao DATETIME,
+    Inclusao DATETIME,
+    ultimaAlteracao DATETIME,
+    VERSAO BIGINT,
+    nome VARCHAR(250),
+    texto VARCHAR(1000),
+    controleId INTEGER,
+    pais_id INTEGER,
+    PRIMARY KEY (id , REV)
+)  ENGINE=INNODB;
+CREATE TABLE TB_AUDITORIA_TAG (
+    id INTEGER NOT NULL,
+    REV INTEGER NOT NULL,
+    REVTYPE TINYINT,
+    ativo CHAR(1),
+    exclusao DATETIME,
+    Inclusao DATETIME,
+    ultimaAlteracao DATETIME,
+    VERSAO BIGINT,
+    nome VARCHAR(250),
+    texto VARCHAR(1000),
+    controleId INTEGER,
     PRIMARY KEY (id , REV)
 )  ENGINE=INNODB;
 CREATE TABLE TB_AUDITORIA_TIPO_LOCALIZACAO (
     id INTEGER NOT NULL,
     REV INTEGER NOT NULL,
     REVTYPE TINYINT,
-    VERSAO BIGINT,
     ativo CHAR(1),
     exclusao DATETIME,
     Inclusao DATETIME,
     ultimaAlteracao DATETIME,
+    VERSAO BIGINT,
     classe VARCHAR(250),
     nome VARCHAR(250),
     PRIMARY KEY (id , REV)
@@ -382,16 +396,17 @@ CREATE TABLE TB_AUDITORIA_UF (
     id INTEGER NOT NULL,
     REV INTEGER NOT NULL,
     REVTYPE TINYINT,
-    VERSAO BIGINT,
     ativo CHAR(1),
     exclusao DATETIME,
     Inclusao DATETIME,
     ultimaAlteracao DATETIME,
+    VERSAO BIGINT,
     nome VARCHAR(250),
     texto VARCHAR(1000),
     codigoIBGE INTEGER,
     localizacao TINYBLOB,
     sigla VARCHAR(255),
+    controleId INTEGER,
     pais_localizacao_id INTEGER,
     PRIMARY KEY (id , REV)
 )  ENGINE=INNODB;
@@ -531,8 +546,8 @@ CREATE TABLE TB_CONTROLE_ENTIDADE (
     VERSAO BIGINT,
     nome VARCHAR(250),
     texto VARCHAR(1000),
-    entidadeId INTEGER,
     entidade VARCHAR(255) NOT NULL,
+    entidadeId INTEGER,
     PRIMARY KEY (id)
 )  ENGINE=INNODB;
 CREATE TABLE TB_ENTIDADE (
@@ -798,3 +813,23 @@ alter table TB_PAIS add constraint FK_PAIS_LOCALIZACAO foreign key (pais_localiz
 alter table TB_RECEPIENTE_VOLUME add constraint FK_RECEPIENTE_VOLUME_RECEPIENTE foreign key (recepiente_id) references TB_RECEPIENTE (id);
 alter table TB_REGIAO_PAIS add constraint FK_REGIAO_PAIS_PAIS foreign key (pais_id) references TB_PAIS (id);
 alter table TB_UF add constraint FK_UF_PAIS foreign key (pais_localizacao_id) references TB_PAIS_LOCALIZACAO (id);
+alter table TB_AMARGOR add constraint FK_AMARGOR_CONTROLE_ENTIDADE foreign key (controleId) references TB_CONTROLE_ENTIDADE (id);
+alter table TB_BAR_CERVEJA add constraint FK_BAR_CERVEJA_CONTROLE_ENTIDADE foreign key (controleId) references TB_CONTROLE_ENTIDADE (id);
+alter table TB_BAR add constraint FK_BAR_CONTROLE_ENTIDADE foreign key (controleId) references TB_CONTROLE_ENTIDADE (id);
+alter table TB_BAR_CERVEJA_RECEP_VOL add constraint FK_BAR_CERVEJA_RECEP_VOL_CONTROLE_ENTIDADE foreign key (controleId) references TB_CONTROLE_ENTIDADE (id);
+alter table TB_BAR_COMIDA add constraint FK_BAR_COMIDA_CONTROLE_ENTIDADE foreign key (controleId) references TB_CONTROLE_ENTIDADE (id);
+alter table TB_CERVEJA add constraint FK_CERVEJA_CONTROLE_ENTIDADE foreign key (controleId) references TB_CONTROLE_ENTIDADE (id);
+alter table TB_CERVEJARIA add constraint FK_CERVEJARIA_CONTROLE_ENTIDADE foreign key (controleId) references TB_CONTROLE_ENTIDADE (id);
+alter table TB_CERVEJARIA_LOCALIZACAO add constraint FK_CERVEJARIA_LOCALIZACAO_CONTROLE_ENTIDADE foreign key (controleId) references TB_CONTROLE_ENTIDADE (id);
+alter table TB_COMIDA add constraint FK_COMIDA_CONTROLE_ENTIDADE foreign key (controleId) references TB_CONTROLE_ENTIDADE (id);
+alter table TB_ESTILO add constraint FK_ESTILO_CONTROLE_ENTIDADE foreign key (controleId) references TB_CONTROLE_ENTIDADE (id);
+alter table TB_FAMILIA add constraint FK_FAMILIA_CONTROLE_ENTIDADE foreign key (controleId) references TB_CONTROLE_ENTIDADE (id);
+alter table TB_HARMONIZACAO add constraint FK_HARMONIZACAO_CONTROLE_ENTIDADE foreign key (controleId) references TB_CONTROLE_ENTIDADE (id);
+alter table TB_LOCALIZACAO add constraint FK_LOCALIZACAO_CONTROLE_ENTIDADE foreign key (controleId) references TB_CONTROLE_ENTIDADE (id);
+alter table TB_MUNICIPIO add constraint FK_MUNICIPIO_CONTROLE_ENTIDADE foreign key (controleId) references TB_CONTROLE_ENTIDADE (id);
+alter table TB_PAIS add constraint FK_PAIS_CONTROLE_ENTIDADE foreign key (controleId) references TB_CONTROLE_ENTIDADE (id);
+alter table TB_PAIS_LOCALIZACAO add constraint FK_PAIS_LOCALIZACAO_CONTROLE_ENTIDADE foreign key (controleId) references TB_CONTROLE_ENTIDADE (id);
+alter table TB_RECEPIENTE add constraint FK_RECEPIENTE_CONTROLE_ENTIDADE foreign key (controleId) references TB_CONTROLE_ENTIDADE (id);
+alter table TB_REGIAO_PAIS add constraint FK_REGIAO_PAIS_CONTROLE_ENTIDADE foreign key (controleId) references TB_CONTROLE_ENTIDADE (id);
+alter table TB_TAG add constraint FK_TAG_CONTROLE_ENTIDADE foreign key (controleId) references TB_CONTROLE_ENTIDADE (id);
+alter table TB_UF add constraint FK_UF_CONTROLE_ENTIDADE foreign key (controleId) references TB_CONTROLE_ENTIDADE (id);

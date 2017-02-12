@@ -35,7 +35,7 @@ import br.com.rhiemer.beerpoints.domain.interfaces.IEntityBeerPointsComControle;
 @SQLDelete(sql = "UPDATE TB_CONTROLE_ENTIDADE SET ativo = 'N', exclusao = sysdate() WHERE id = ? and VERSAO = ? ")
 @Where(clause = "ativo = 'S' ")
 @AttributeOverride(name = "nome", column = @Column(length = 250, nullable = true))
-@UniqueKey(columnNames = { "entidade", "entidadeId" }, validar = true)
+@UniqueKey(nome="controleEntidade",columnNames = { "entidade", "entidadeId" }, validar = true)
 @NamedQuery(name = "ControleEntidade.procurarPelaEntidade", query = "select a from ControleEntidade a where a.entidade =:entidade and a.entidadeId =:entidadeId ")
 public class ControleEntidade extends EntityBeerPointsComNomeTexto {
 

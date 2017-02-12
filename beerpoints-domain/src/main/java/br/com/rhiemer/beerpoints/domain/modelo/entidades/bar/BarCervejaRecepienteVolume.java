@@ -31,7 +31,7 @@ import br.com.rhiemer.beerpoints.domain.modelo.entidades.cerveja.RecepienteVolum
 @RESTful(ConstantesBeerPointsDomain.BAR_CERVEJA_RECEPIENTE_VOLUME)
 @SQLDelete(sql = "UPDATE TB_BAR_CERVEJA_RECEP_VOL SET ativo = 'N', exclusao = sysdate() WHERE id = ? and VERSAO = ? ")
 @Where(clause = "ativo = 'S' ")
-@UniqueKey(columnNames={"barCerveja","recepienteVolume"},validar=true)
+@UniqueKey(nome="barCerveja_recepienteVolume",columnNames={"barCerveja","recepienteVolume"},validar=true)
 public class BarCervejaRecepienteVolume extends EntityBeerPointsCoreInformacao {
 
 	/**

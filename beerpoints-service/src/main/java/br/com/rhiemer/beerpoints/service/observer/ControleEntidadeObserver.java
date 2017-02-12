@@ -39,26 +39,15 @@ public class ControleEntidadeObserver {
 
 	public void onPreUpdateControleEntidade(
 			@Observes @ListenerEvent(ListenerEnum.PreUpdate) IEntityBeerPointsComControle entityBeerPointsComControle) {
-		ControleEntidade controleEntidade = procurarPelaEntidade(entityBeerPointsComControle);
+		ControleEntidade controleEntidade = controleEntidadeService.procurarPelaEntidade(entityBeerPointsComControle);
 		controleEntidade.relacionar(entityBeerPointsComControle);
 	}
 
 	public void onPreRemoveControleEntidade(
 			@Observes @ListenerEvent(ListenerEnum.PreRemove) IEntityBeerPointsComControle entityBeerPointsComControle) {
-		ControleEntidade controleEntidade = procurarPelaEntidade(entityBeerPointsComControle);
+		ControleEntidade controleEntidade = controleEntidadeService.procurarPelaEntidade(entityBeerPointsComControle);
 		controleEntidade.relacionar(entityBeerPointsComControle);
 	}
 
-	private ControleEntidade procurarPelaEntidade(final IEntityBeerPointsComControle entityBeerPointsComControle) {
-
-		Map<Object, Object> parametros = new HashMap<>();
-		parametros.put("entidade", EnumEntidadeBeerPoints.getByClasse(entityBeerPointsComControle.getClass()));
-		parametros.put("entidadeId", entityBeerPointsComControle.getPrimaryKey());
-		BuilderQuery query = BuilderQuery.builder().tipoQuery(EnumTipoQuery.namedQuery)
-				.sql("ControleEntidade.procurarPelaEntidade").parameters(parametros).build();
-		ControleEntidade result = (ControleEntidade) controleEntidadeService.excutarTypeQueryUniqueResult(query);
-		return result;
-
-	}
-
+	
 }
