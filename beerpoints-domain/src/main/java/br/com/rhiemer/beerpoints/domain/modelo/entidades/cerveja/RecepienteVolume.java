@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.ForeignKey;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -37,7 +38,7 @@ public class RecepienteVolume extends EntityBeerPointsCoreComIdIncrementalDelete
 
 	@NotNull
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "recepiente_id", nullable = false, updatable = false)
+	@JoinColumn(name = "recepiente_id", nullable = false, updatable = false, foreignKey = @ForeignKey(name = "FK_RECEP_VOL_RECEPIENTE"))
 	private Recepiente recepiente;
 
 	@NotNull

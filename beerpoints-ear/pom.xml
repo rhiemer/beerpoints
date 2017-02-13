@@ -18,12 +18,6 @@
 	<dependencies>
 		<!-- ANCINE -->
 		<dependency>
-			<groupId>br.com.rhiemer</groupId>
-			<version>${version.rhiemer.api}</version>
-			<artifactId>rhiemer-api-ejb</artifactId>
-			<type>ejb</type>
-		</dependency>
-		<dependency>
 			<groupId>br.com.rhiemer.beerpoints</groupId>
 			<version>${project.version}</version>
 			<artifactId>beerpoints-service</artifactId>
@@ -57,11 +51,6 @@
 					<earSourceDirectory>src/main/resources</earSourceDirectory>
 					<generateApplicationXml>true</generateApplicationXml>
 					<modules>
-						<ejbModule>
-							<groupId>br.com.rhiemer</groupId>
-							<artifactId>rhiemer-api-ejb</artifactId>
-							<bundleFileName>rhiemer-api-ejb.jar</bundleFileName>
-						</ejbModule>
 						<ejbModule>
 							<groupId>br.com.rhiemer.beerpoints</groupId>
 							<artifactId>beerpoints-service</artifactId>

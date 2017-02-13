@@ -2,14 +2,17 @@ package br.com.rhiemer.beerpoints.domain.modelo.entidades.localizacao;
 
 import java.util.Set;
 
+import javax.persistence.AssociationOverride;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.ForeignKey;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
@@ -24,12 +27,14 @@ import br.com.rhiemer.beerpoints.domain.embeddable.CoordenadasRegiao;
 import br.com.rhiemer.beerpoints.domain.entity.EntityBeerPointsCoreModelo;
 
 @Entity
-@Table(name = "TB_LOCALIZACAO")
+@Table(name = "TB_LOCALIZACAO", uniqueConstraints = {
+		@UniqueConstraint(columnNames = { "controle_id" }, name = "UK_LOCALIZACAO_CONTROLE_ID") })
 @RESTful(ConstantesBeerPointsDomain.LOCALIZACAO)
 @Audited
 @AuditTable("TB_AUDITORIA_LOCALIZACAO")
 @SQLDelete(sql = "UPDATE TB_LOCALIZACAO SET ativo = 'N', exclusao = sysdate() WHERE id = ? and VERSAO = ? ")
 @Where(clause = "ativo = 'S' ")
+@AssociationOverride(name = "controle_id", foreignKey = @ForeignKey(name = "FK_LOCALIZACAO_CONTROLE_ENTIDADE"))
 public class Localizacao extends EntityBeerPointsCoreModelo {
 
 	/**
@@ -40,13 +45,13 @@ public class Localizacao extends EntityBeerPointsCoreModelo {
 	@Embedded
 	@Audited
 	private CoordenadasRegiao coordenadasRegiao;
-	
+
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "tipo_id", nullable = false)
+	@JoinColumn(name = "tipo_id", nullable = false, foreignKey = @ForeignKey(name = "FK_LOCALIZACAO_TIPO_LOCALIZACAO"))
 	private TipoLocalizacao tipo;
 
 	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(name = "RE_LOCALIZACAO", joinColumns = @JoinColumn(name = "id_localizacao_pai", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "id_localizacao_filha", referencedColumnName = "id"))
+	@JoinTable(name = "RE_LOCALIZACAO", joinColumns = @JoinColumn(name = "id_localizacao_pai", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "id_localizacao_filha", referencedColumnName = "id"), foreignKey = @ForeignKey(name = "FK_LOCALIZACAO_FILHAS"), inverseForeignKey = @ForeignKey(name = "FK_LOCALIZACAO_FILHAS_INVERSE"))
 	@JsonIgnore
 	private Set<Localizacao> localizacaoFilhas;
 

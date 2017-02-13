@@ -23,9 +23,9 @@ import br.com.rhiemer.api.util.helper.Helper;
 import br.com.rhiemer.beerpoints.domain.entity.EntityBeerPointsCoreComIdIncrementalDeleteLogico;
 import br.com.rhiemer.beerpoints.rest.resource.RestFullBeerPoints;
 
-@IntegrationTeste
 @RunWith(Arquillian.class)
-public class TestEntidadeBeerPoints<T extends EntityBeerPointsCoreComIdIncrementalDeleteLogico> extends ClientTest {
+public class TestEntidadeBeerPoints<T extends EntityBeerPointsCoreComIdIncrementalDeleteLogico> extends ClientTest
+		implements IntegrationTeste {
 
 	protected String identificador;
 	protected Class<T> entidadeBeerPoints;
@@ -78,7 +78,7 @@ public class TestEntidadeBeerPoints<T extends EntityBeerPointsCoreComIdIncrement
 
 	public void testeInclusao() {
 		this.entidadeIncluida = null;
-		this.fase = "Inclusão";		
+		this.fase = "Inclusão";
 		T entidadeAIncluir = criarEntidade();
 		this.entidadeIncluida = criarEntidadeServico(entidadeAIncluir);
 		testarCamposInclusao(entidadeIncluida, entidadeAIncluir);
@@ -101,7 +101,7 @@ public class TestEntidadeBeerPoints<T extends EntityBeerPointsCoreComIdIncrement
 	public void beforeTestePersistencieERecuperacaoServicoEntidade() {
 
 	}
-	
+
 	public void beforeAlteracaoTestePersistencieERecuperacaoServicoEntidade() {
 
 	}
@@ -177,7 +177,6 @@ public class TestEntidadeBeerPoints<T extends EntityBeerPointsCoreComIdIncrement
 	public void testarCamposBuscarEntidade(T entidadeRecuperada, T entidadeTeste) {
 		testarCamposBasicos(entidadeRecuperada, entidadeTeste);
 	}
-
 
 	public void carregarCampos(T entidade) {
 

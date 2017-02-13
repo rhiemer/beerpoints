@@ -1,5 +1,7 @@
 package br.com.rhiemer.beerpoints.service.app;
 
+import static br.com.rhiemer.beerpoints.domain.modelo.entidades.controle.ControleEntidade.CONTROLE_ENTIDADE_UNIQUE_KEY;
+
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 
@@ -10,12 +12,12 @@ import br.com.rhiemer.beerpoints.service.entity.PersitenceServiceBeerPointsEntid
 
 @Stateless
 @LocalBean
-public class ControleEntidadeService extends
-		PersitenceServiceBeerPointsEntidadeComNome<ControleEntidade,String> {
-	
-	
-    public  ControleEntidade procurarPelaEntidade(final IEntityBeerPointsComControle entityBeerPointsComControle) {
-    	ControleEntidade result = (ControleEntidade)procurarPorUniqueKeyByNome("controleEntidade",EnumEntidadeBeerPoints.getByClasse(entityBeerPointsComControle.getClass()),entityBeerPointsComControle.getPrimaryKey());
+public class ControleEntidadeService extends PersitenceServiceBeerPointsEntidadeComNome<ControleEntidade, String> {
+
+	public ControleEntidade procurarPelaEntidade(final IEntityBeerPointsComControle entityBeerPointsComControle) {
+		ControleEntidade result = (ControleEntidade) procurarPorUniqueKeyByNome(CONTROLE_ENTIDADE_UNIQUE_KEY,
+				EnumEntidadeBeerPoints.getByClasse(entityBeerPointsComControle.getClass()),
+				entityBeerPointsComControle.getPrimaryKey());
 		return result;
 
 	}

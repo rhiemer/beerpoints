@@ -250,6 +250,34 @@
 			</plugins>
 		</pluginManagement>
 	</build>
+	
+	<profiles>
+		<profile>
+			<id>default</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<exec.skip>true</exec.skip>
+			</properties>
+		</profile>
+		<profile>
+			<id>full</id>
+			<activation>
+				<property>
+					<name>full</name>
+				</property>
+			</activation>
+		</profile>
+		<profile>
+			<id>server</id>
+			<activation>
+				<property>
+					<name>server</name>
+				</property>
+			</activation>
+		</profile>
+	</profiles>
 
 
 </project>

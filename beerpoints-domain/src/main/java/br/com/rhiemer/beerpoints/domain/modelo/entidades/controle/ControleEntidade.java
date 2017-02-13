@@ -6,7 +6,6 @@ import javax.persistence.AttributeOverride;
 import javax.persistence.Column;
 import javax.persistence.Convert;
 import javax.persistence.Entity;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.persistence.UniqueConstraint;
@@ -28,25 +27,20 @@ import br.com.rhiemer.beerpoints.domain.interfaces.IEntityBeerPointsComControle;
 
 @Entity
 @Table(name = "TB_CONTROLE_ENTIDADE", uniqueConstraints = {
-		@UniqueConstraint(columnNames = { "entidade", "entidadeId" }) })
+		@UniqueConstraint(columnNames = { "entidade", "entidadeId" }, name = "UK_CONTROLE_ENTIDADE") })
 @RESTful(ConstantesBeerPointsDomain.CONTROLE_ENTIDADE)
 @Audited
 @AuditTable("TB_AUDITORIA_CONTROLE_ENTIDADE")
 @SQLDelete(sql = "UPDATE TB_CONTROLE_ENTIDADE SET ativo = 'N', exclusao = sysdate() WHERE id = ? and VERSAO = ? ")
 @Where(clause = "ativo = 'S' ")
 @AttributeOverride(name = "nome", column = @Column(length = 250, nullable = true))
-@UniqueKey(nome="controleEntidade",columnNames = { "entidade", "entidadeId" }, validar = true)
-@NamedQuery(name = "ControleEntidade.procurarPelaEntidade", query = "select a from ControleEntidade a where a.entidade =:entidade and a.entidadeId =:entidadeId ")
+@UniqueKey(nome = ControleEntidade.CONTROLE_ENTIDADE_UNIQUE_KEY, columnNames = { "entidade",
+		"entidadeId" }, validar = true)
 public class ControleEntidade extends EntityBeerPointsComNomeTexto {
 
-	/**
-	 * 
-	 */
+	public static final String CONTROLE_ENTIDADE_UNIQUE_KEY = "controleEntidade";
 	private static final long serialVersionUID = 5915147083075996444L;
 	protected static final String[] camposAtualizacao = new String[] { "nome", "texto" };
-	
-	
-	
 
 	@Transient
 	protected IEntityBeerPointsComControle entityBeerPointsComControle;
@@ -93,7 +87,7 @@ public class ControleEntidade extends EntityBeerPointsComNomeTexto {
 		super.prePersist();
 		Optional.ofNullable(this.entityBeerPointsComControle).ifPresent(t -> criarEntidade());
 	}
-	
+
 	@Override
 	protected void preUpdate() {
 		super.preUpdate();

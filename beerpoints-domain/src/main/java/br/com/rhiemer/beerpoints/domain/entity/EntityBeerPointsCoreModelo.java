@@ -27,12 +27,12 @@ public abstract class EntityBeerPointsCoreModelo extends EntityBeerPointsComNome
 	private static final long serialVersionUID = 6329286668684785571L;
 
 	@OneToOne(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE })
-	@JoinColumn(name = "controleId", referencedColumnName = "id", unique = true, nullable = false, updatable = false)
+	@JoinColumn(name = "controle_id", referencedColumnName = "id", nullable = false, updatable = false)
 	@JsonIgnore
 	@Audited
 	private ControleEntidade controleEntidade;
 
-	@Column(name = "controleId", nullable = false, unique = true, updatable = false, insertable = false)
+	@Column(name = "controle_id", updatable = false, insertable = false)
 	private Integer controleId;
 
 	public Integer getControleId() {

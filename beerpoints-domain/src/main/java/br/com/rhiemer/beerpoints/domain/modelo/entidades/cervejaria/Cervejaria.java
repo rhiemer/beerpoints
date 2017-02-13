@@ -2,12 +2,15 @@ package br.com.rhiemer.beerpoints.domain.modelo.entidades.cervejaria;
 
 import java.util.List;
 
+import javax.persistence.AssociationOverride;
 import javax.persistence.Column;
 import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.ForeignKey;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -25,12 +28,14 @@ import br.com.rhiemer.beerpoints.domain.entity.EntityBeerPointsCoreModelo;
 import br.com.rhiemer.beerpoints.domain.enums.EnumTipoCervejaria;
 
 @Entity
-@Table(name = "TB_CERVEJARIA")
+@Table(name = "TB_CERVEJARIA", uniqueConstraints = {
+		@UniqueConstraint(columnNames = { "controle_id" }, name = "UK_CERVEJARIA_CONTROLE_ID") })
 @RESTful(ConstantesBeerPointsDomain.CERVEJARIA)
 @Audited
 @AuditTable("TB_AUDITORIA_CERVEJARIA")
 @SQLDelete(sql = "UPDATE TB_CERVEJARIA SET ativo = 'N', exclusao = sysdate() WHERE id = ? and VERSAO = ? ")
 @Where(clause = "ativo = 'S' ")
+@AssociationOverride(name = "controle_id", foreignKey = @ForeignKey(name = "FK_CERVEJARIA_CONTROLE_ENTIDADE"))
 public class Cervejaria extends EntityBeerPointsCoreModelo {
 
 	/**

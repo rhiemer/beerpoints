@@ -9,6 +9,7 @@ import javax.persistence.metamodel.StaticMetamodel;
 public abstract class UF_ extends br.com.rhiemer.beerpoints.domain.entity.EntityBeerPointsCoreModelo_ {
 
 	public static volatile SingularAttribute<UF, String> sigla;
+	public static volatile SingularAttribute<UF, Localizacao> localizacao;
 	public static volatile SingularAttribute<UF, Integer> codigoIBGE;
 	public static volatile SingularAttribute<UF, PaisLocalizacao> pais;
 

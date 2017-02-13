@@ -17,21 +17,21 @@ import br.com.rhiemer.beerpoints.domain.constantes.ConstantesBeerPointsDomain;
 import br.com.rhiemer.beerpoints.domain.interfaces.IEntityBeerPointsAuxiliar;
 
 @Entity
-@Table(name="TB_ENTIDADE")
+@Table(name = "TA_ENTIDADE")
 @RESTful(ConstantesBeerPointsDomain.ENTIDADE)
 @Audited
 @AuditTable("TB_AUDITORIA_ENTIDADE")
-@SQLDelete(sql = "UPDATE TB_ENTIDADE SET ativo = 'N', exclusao = sysdate() WHERE id = ? and VERSAO = ? ")
+@SQLDelete(sql = "UPDATE TA_ENTIDADE SET ativo = 'N', exclusao = sysdate() WHERE id = ? and VERSAO = ? ")
 @Where(clause = "ativo = 'S' ")
-public class Entidade extends GenericEntityComIdStringDeleteLogico implements IEntityBeerPointsAuxiliar  {
+public class Entidade extends GenericEntityComIdStringDeleteLogico implements IEntityBeerPointsAuxiliar {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 5915147083075996444L;
-	
+
 	@NotNull
-	@Column(length = 3,nullable=false)
+	@Column(length = 3, nullable = false)
 	@Length(min = 1, max = 3)
 	@Audited
 	private Integer ordemPesquisa;
@@ -43,6 +43,5 @@ public class Entidade extends GenericEntityComIdStringDeleteLogico implements IE
 	public void setOrdemPesquisa(Integer ordemPesquisa) {
 		this.ordemPesquisa = ordemPesquisa;
 	}
-	
 
 }

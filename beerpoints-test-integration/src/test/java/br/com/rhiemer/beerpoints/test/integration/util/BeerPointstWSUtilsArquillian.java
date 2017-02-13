@@ -35,7 +35,8 @@ public class BeerPointstWSUtilsArquillian {
 	 * 
 	 * @return EAR gerado para os testes
 	 */
-	public static Archive<?> gerarDeployment() {
+	
+	public static Archive<?> gerarDeployment(Class<?>... classes) {
 
 		// adiciona bibliotecas do empacotamento
 		Collection<String> deps = new ArrayList<>();
@@ -70,6 +71,10 @@ public class BeerPointstWSUtilsArquillian {
 				.addAsResource("environment.properties")
 				// adiciona todos os pacotes necessários ao projeto
 				.addPackages(true, getRecursivePackagesJar());
+		
+		if (classes != null)
+		 for (Class<?> classe:classes)	
+		  jar.addClass(classe);	
 
 		// gera um war com as classes do projeto web
 		WebArchive war = ShrinkWrap.create(WebArchive.class, "beerpoints-servicos-war.war")

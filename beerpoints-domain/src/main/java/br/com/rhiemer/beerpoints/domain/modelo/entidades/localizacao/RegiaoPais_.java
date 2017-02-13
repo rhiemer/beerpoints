@@ -9,6 +9,7 @@ import javax.persistence.metamodel.StaticMetamodel;
 @StaticMetamodel(RegiaoPais.class)
 public abstract class RegiaoPais_ extends br.com.rhiemer.beerpoints.domain.entity.EntityBeerPointsCoreModelo_ {
 
+	public static volatile SingularAttribute<RegiaoPais, Localizacao> localizacao;
 	public static volatile SingularAttribute<RegiaoPais, Pais> pais;
 
 }

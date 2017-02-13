@@ -9,6 +9,7 @@ import javax.persistence.metamodel.StaticMetamodel;
 public abstract class Municipio_ extends br.com.rhiemer.beerpoints.domain.entity.EntityBeerPointsCoreModelo_ {
 
 	public static volatile SingularAttribute<Municipio, UF> uf;
+	public static volatile SingularAttribute<Municipio, Localizacao> localizacao;
 	public static volatile SingularAttribute<Municipio, Integer> codigoIBGE;
 
 }

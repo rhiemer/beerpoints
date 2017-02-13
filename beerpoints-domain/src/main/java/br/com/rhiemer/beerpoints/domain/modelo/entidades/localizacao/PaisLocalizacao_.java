@@ -9,6 +9,7 @@ import javax.persistence.metamodel.StaticMetamodel;
 public abstract class PaisLocalizacao_ extends br.com.rhiemer.beerpoints.domain.entity.EntityBeerPointsCoreModelo_ {
 
 	public static volatile SingularAttribute<PaisLocalizacao, String> sigla;
+	public static volatile SingularAttribute<PaisLocalizacao, Localizacao> localizacao;
 	public static volatile SingularAttribute<PaisLocalizacao, Integer> codigoIBGE;
 
 }
