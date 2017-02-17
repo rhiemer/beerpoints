@@ -6,4 +6,10 @@
 
 	<display-name>BeerPoints Serviços Teste</display-name>
 
+	<context-param>
+		<param-name>resteasy.resources</param-name>
+		<param-value>org.jboss.resteasy.plugins.stats.RegistryStatsResource</param-value>
+	</context-param>
+
+
 </web-app>

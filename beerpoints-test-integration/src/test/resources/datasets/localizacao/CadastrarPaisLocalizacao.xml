@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+	
+	<TB_CONTROLE_ENTIDADE id="-1" ativo="S" VERSAO="1" nome="Pais Localização Teste" entidade="PaisLocalizacao" entidadeId="-1"/>
+	<TB_CONTROLE_ENTIDADE id="-2" ativo="S" VERSAO="1" nome="Localização Teste" entidade="Localizacao" entidadeId="-1"/>	
+	<TA_TIPO_LOCALIZACAO id="-1" ativo="S" VERSAO="1" nome="Tipo Localização Teste" />
+	<TB_LOCALIZACAO id="-1" ativo="S" VERSAO="1" nome="Localização Teste" controle_id="-2" tipo_id="-1" />
+	<TA_PAIS_LOCALIZACAO id="-1" localizacao="-1" ativo="S" VERSAO="1" nome="Pais Localização Teste" controle_id="-1" codigoIBGE="1"  sigla="TESTE" />
+	
+</dataset>

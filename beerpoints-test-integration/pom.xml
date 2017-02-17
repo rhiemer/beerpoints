@@ -64,6 +64,11 @@
 			<version>${version.rhiemer.api}</version>
 		</dependency>
 		<dependency>
+			<groupId>br.com.rhiemer</groupId>
+			<artifactId>rhiemer-api-rest-resources</artifactId>
+			<version>${version.rhiemer.api}</version>
+		</dependency>
+		<dependency>
 			<groupId>org.jboss.resteasy</groupId>
 			<artifactId>resteasy-jaxrs</artifactId>
 			<scope>provided</scope>
@@ -90,7 +95,8 @@
 			<version>1.0.0.Alpha7</version>
 		</dependency>
 
-
+		
+		
 	</dependencies>
 
 	<build>

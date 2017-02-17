@@ -35,13 +35,14 @@ public class BeerPointstWSUtilsArquillian {
 	 * 
 	 * @return EAR gerado para os testes
 	 */
-	
+
 	public static Archive<?> gerarDeployment(Class<?>... classes) {
 
 		// adiciona bibliotecas do empacotamento
 		Collection<String> deps = new ArrayList<>();
 		deps.add("br.com.rhiemer:rhiemer-api-test-integration");
 		deps.add("br.com.rhiemer:rhiemer-api-rest-client");
+		deps.add("br.com.rhiemer:rhiemer-api-rest-resources");
 		deps.add("br.com.rhiemer.beerpoints:beerpoints-domain");
 
 		// busca as
@@ -49,11 +50,17 @@ public class BeerPointstWSUtilsArquillian {
 				.loadPomFromFile("pom.xml").resolve(deps).withTransitivity().asFile();
 
 		List<File> filesList = new ArrayList<>(Arrays.asList(libs));
+		List<File> filesListWeb = new ArrayList<>();
 		File fileDomain = null;
 		for (File file : filesList) {
 			if (file.getName().indexOf("beerpoints-domain-") > -1) {
 				filesList.remove(file);
 				fileDomain = file;
+				break;
+			}
+			if (file.getName().indexOf("rhiemer-api-rest-resources-") > -1) {
+				filesList.remove(file);
+				filesListWeb.add(file);
 				break;
 			}
 		}
@@ -71,15 +78,18 @@ public class BeerPointstWSUtilsArquillian {
 				.addAsResource("environment.properties")
 				// adiciona todos os pacotes necessários ao projeto
 				.addPackages(true, getRecursivePackagesJar());
-		
+
 		if (classes != null)
-		 for (Class<?> classe:classes)	
-		  jar.addClass(classe);	
+			for (Class<?> classe : classes)
+				jar.addClass(classe);
+		
+		
 
 		// gera um war com as classes do projeto web
 		WebArchive war = ShrinkWrap.create(WebArchive.class, "beerpoints-servicos-war.war")
 				.addPackages(true, getRecursivePackagesWeb())
 				.addAsWebInfResource(EmptyAsset.INSTANCE, ArchivePaths.create("beans.xml"))
+				.addAsLibraries(filesListWeb.toArray(new File[]{}))
 				// se não ter um web.xml separado dos projetos o arquillian não
 				// encontra
 				.setWebXML("META-INF/web.xml");
@@ -115,7 +125,7 @@ public class BeerPointstWSUtilsArquillian {
 
 	private static String[] getRecursivePackagesWeb() {
 
-		return new String[] { "br.com.rhiemer.beerpoints.rest" };
+		return new String[] { "br.com.rhiemer.beerpoints.rest", "br.com.rhiemer.beerpoints.test.integration.rest" };
 
 	}
 

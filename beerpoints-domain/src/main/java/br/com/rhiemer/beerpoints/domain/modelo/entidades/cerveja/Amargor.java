@@ -20,8 +20,8 @@ import br.com.rhiemer.beerpoints.domain.entity.EntityBeerPointsCoreModelo;
 		@UniqueConstraint(columnNames = { "controle_id" }, name = "UK_AMARGOR_CONTROLE_ID") })
 @RESTful(ConstantesBeerPointsDomain.AMARGOR)
 @Audited
-@AuditTable("TB_AUDITORIA_AMRAGOR")
-@SQLDelete(sql = "UPDATE TA_AMRAGOR SET ativo = 'N', exclusao = sysdate() WHERE id = ? and VERSAO = ? ")
+@AuditTable("TB_AUDITORIA_AMARGOR")
+@SQLDelete(sql = "UPDATE TA_AMARGOR SET ativo = 'N', exclusao = sysdate() WHERE id = ? and VERSAO = ? ")
 @Where(clause = "ativo = 'S' ")
 @AssociationOverride(name = "controle_id", foreignKey = @ForeignKey(name = "FK_AMARGOR_CONTROLE_ENTIDADE"))
 public class Amargor extends EntityBeerPointsCoreModelo {

@@ -11,7 +11,7 @@ import javax.ws.rs.Produces;
 import br.com.rhiemer.api.rest.full.RestFull;
 import br.com.rhiemer.api.util.annotations.rest.RestClientMetodoClasse;
 
-@Path("/")
+@Path("/generic")
 public interface RestFullBeerPoints extends RestFull {
 
 	@GET

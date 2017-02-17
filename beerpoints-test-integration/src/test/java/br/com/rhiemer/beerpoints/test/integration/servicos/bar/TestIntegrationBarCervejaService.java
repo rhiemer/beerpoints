@@ -1,4 +1,4 @@
-package br.com.rhiemer.beerpoints.test.integration.servicos;
+package br.com.rhiemer.beerpoints.test.integration.servicos.bar;
 
 
 import static org.junit.Assert.assertEquals;
@@ -17,6 +17,7 @@ import br.com.rhiemer.beerpoints.domain.modelo.entidades.cerveja.Cerveja;
 import br.com.rhiemer.beerpoints.domain.modelo.entidades.cerveja.Estilo;
 import br.com.rhiemer.beerpoints.domain.modelo.entidades.cerveja.Pais;
 import br.com.rhiemer.beerpoints.domain.modelo.entidades.cervejaria.Cervejaria;
+import br.com.rhiemer.beerpoints.test.integration.servicos.abstracts.TestEntidadeBeerPoints;
 import br.com.rhiemer.beerpoints.test.integration.util.BeerPointstWSUtilsArquillian;
 
 public class TestIntegrationBarCervejaService extends TestEntidadeBeerPoints<BarCerveja> {

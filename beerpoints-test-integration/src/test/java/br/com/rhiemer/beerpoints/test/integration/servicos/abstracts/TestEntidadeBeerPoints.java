@@ -1,7 +1,12 @@
-package br.com.rhiemer.beerpoints.test.integration.servicos;
+package br.com.rhiemer.beerpoints.test.integration.servicos.abstracts;
 
 import static org.hamcrest.CoreMatchers.isA;
 import static org.junit.Assert.assertNotNull;
+import static br.com.rhiemer.beerpoints.rest.resource.ProjetoDomainApplication.DOMAIN_REST_PADRAO;
+import static br.com.rhiemer.beerpoints.rest.resource.ProjetoDomainApplication.DOMAIN_REST_PADRAO_BARRA;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.ws.rs.BadRequestException;
 import javax.ws.rs.NotFoundException;
@@ -10,6 +15,7 @@ import org.jboss.arquillian.container.test.api.RunAsClient;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.arquillian.junit.InSequence;
 import org.junit.After;
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -18,6 +24,7 @@ import org.junit.runner.RunWith;
 import br.com.rhiemer.api.rest.annotations.RESTful;
 import br.com.rhiemer.api.test.integration.annotation.ServiceTestClientRest;
 import br.com.rhiemer.api.test.integration.client.ClientTest;
+import br.com.rhiemer.api.test.integration.dbunit.DBUnitRestConsumer;
 import br.com.rhiemer.api.test.integration.testcategory.IntegrationTeste;
 import br.com.rhiemer.api.util.helper.Helper;
 import br.com.rhiemer.beerpoints.domain.entity.EntityBeerPointsCoreComIdIncrementalDeleteLogico;
@@ -27,6 +34,7 @@ import br.com.rhiemer.beerpoints.rest.resource.RestFullBeerPoints;
 public class TestEntidadeBeerPoints<T extends EntityBeerPointsCoreComIdIncrementalDeleteLogico> extends ClientTest
 		implements IntegrationTeste {
 
+	private static final String FOLDER_DATASETS_DB_UNIT = "datasets";
 	protected String identificador;
 	protected Class<T> entidadeBeerPoints;
 	protected String fase;
@@ -39,11 +47,48 @@ public class TestEntidadeBeerPoints<T extends EntityBeerPointsCoreComIdIncrement
 	@ServiceTestClientRest
 	protected RestFullBeerPoints rest;
 
+	protected final List<String> arquivosDbUnit = new ArrayList<>();
+	protected boolean dbUnitCriado = false;
+	protected boolean dbUnitRemovido = false;
+
 	public TestEntidadeBeerPoints() {
 		entidadeBeerPoints = Helper.getClassPrincipal(this.getClass());
 		RESTful restFull = getEntidadeBeerPoints().getAnnotation(RESTful.class);
 		if (restFull != null)
 			identificador = restFull.value();
+	}
+
+	@Before
+	public void before() {
+		insertDBUnit();
+	}
+
+	protected void inserirArquivosDbUnit() {
+
+	}
+
+	protected void addArquivoDbUnit(String arquivo) {
+		arquivosDbUnit.add(FOLDER_DATASETS_DB_UNIT.concat(arquivo));
+
+	}
+
+	protected void insertDBUnit() {
+		inserirArquivosDbUnit();
+		if (arquivosDbUnit.size() > 0) {
+			DBUnitRestConsumer.createRemoteDataset(urlAplicacao.toString().concat(DOMAIN_REST_PADRAO_BARRA),
+					Helper.collectionToString(arquivosDbUnit, ","));
+			dbUnitCriado = true;
+		}
+
+	}
+
+	protected void removeDBUnit() {
+		if (dbUnitCriado) {
+			DBUnitRestConsumer.deleteRemoteDataset(urlAplicacao.toString(),
+					Helper.collectionToString(arquivosDbUnit, ","));
+			dbUnitRemovido = true;
+		}
+
 	}
 
 	@Test
@@ -64,6 +109,7 @@ public class TestEntidadeBeerPoints<T extends EntityBeerPointsCoreComIdIncrement
 			buscarEntidadeServico(entidadeIncluida.getId());
 			entidadeIncluida = null;
 		}
+		removeDBUnit();
 	}
 
 	@Test
@@ -108,7 +154,7 @@ public class TestEntidadeBeerPoints<T extends EntityBeerPointsCoreComIdIncrement
 
 	@Override
 	protected String getPath() {
-		return "rest";
+		return DOMAIN_REST_PADRAO;
 	}
 
 	public <K extends EntityBeerPointsCoreComIdIncrementalDeleteLogico> K criarNovaInstanciaEntidade(Class<K> classe) {
