@@ -50,7 +50,7 @@
 		<!-- API's -->
 		<dependency>
 			<groupId>br.com.rhiemer</groupId>
-			<artifactId>rhiemer-api-test-integration</artifactId>
+			<artifactId>rhiemer-api-test-integration-dbunit</artifactId>
 			<version>${version.rhiemer.api}</version>
 		</dependency>
 		<dependency>

@@ -1,9 +1,9 @@
 package br.com.rhiemer.beerpoints.test.integration.servicos.abstracts;
 
+import static br.com.rhiemer.beerpoints.rest.resource.ProjetoDomainApplication.DOMAIN_REST_PADRAO;
+
 import static org.hamcrest.CoreMatchers.isA;
 import static org.junit.Assert.assertNotNull;
-import static br.com.rhiemer.beerpoints.rest.resource.ProjetoDomainApplication.DOMAIN_REST_PADRAO;
-import static br.com.rhiemer.beerpoints.rest.resource.ProjetoDomainApplication.DOMAIN_REST_PADRAO_BARRA;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +15,6 @@ import org.jboss.arquillian.container.test.api.RunAsClient;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.arquillian.junit.InSequence;
 import org.junit.After;
-import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -23,23 +22,23 @@ import org.junit.runner.RunWith;
 
 import br.com.rhiemer.api.rest.annotations.RESTful;
 import br.com.rhiemer.api.test.integration.annotation.ServiceTestClientRest;
-import br.com.rhiemer.api.test.integration.client.ClientTest;
-import br.com.rhiemer.api.test.integration.dbunit.DBUnitRestConsumer;
+import br.com.rhiemer.api.test.integration.dbunit.TestIntegrationDBUnit;
 import br.com.rhiemer.api.test.integration.testcategory.IntegrationTeste;
 import br.com.rhiemer.api.util.helper.Helper;
 import br.com.rhiemer.beerpoints.domain.entity.EntityBeerPointsCoreComIdIncrementalDeleteLogico;
 import br.com.rhiemer.beerpoints.rest.resource.RestFullBeerPoints;
+import br.com.rhiemer.beerpoints.test.integration.rest.RESTFullDeleteBeerPoints;
 
 @RunWith(Arquillian.class)
-public class TestEntidadeBeerPoints<T extends EntityBeerPointsCoreComIdIncrementalDeleteLogico> extends ClientTest
-		implements IntegrationTeste {
+public class TestEntidadeBeerPoints<T extends EntityBeerPointsCoreComIdIncrementalDeleteLogico>
+		extends TestIntegrationDBUnit implements IntegrationTeste {
 
-	private static final String FOLDER_DATASETS_DB_UNIT = "datasets";
 	protected String identificador;
 	protected Class<T> entidadeBeerPoints;
 	protected String fase;
 	protected T entidadeIncluida;
 	protected T entidadeAlterada;
+	protected boolean precisaDeletar = false;
 
 	@Rule
 	public ExpectedException expectedException = ExpectedException.none();
@@ -47,9 +46,12 @@ public class TestEntidadeBeerPoints<T extends EntityBeerPointsCoreComIdIncrement
 	@ServiceTestClientRest
 	protected RestFullBeerPoints rest;
 
-	protected final List<String> arquivosDbUnit = new ArrayList<>();
-	protected boolean dbUnitCriado = false;
-	protected boolean dbUnitRemovido = false;
+	@ServiceTestClientRest
+	protected RESTFullDeleteBeerPoints restDelete;
+
+	protected boolean precisaDeletar() {
+		return (this.precisaDeletar||this.dbUnitCriado);
+	}
 
 	public TestEntidadeBeerPoints() {
 		entidadeBeerPoints = Helper.getClassPrincipal(this.getClass());
@@ -58,37 +60,9 @@ public class TestEntidadeBeerPoints<T extends EntityBeerPointsCoreComIdIncrement
 			identificador = restFull.value();
 	}
 
-	@Before
-	public void before() {
-		insertDBUnit();
-	}
-
-	protected void inserirArquivosDbUnit() {
-
-	}
-
-	protected void addArquivoDbUnit(String arquivo) {
-		arquivosDbUnit.add(FOLDER_DATASETS_DB_UNIT.concat(arquivo));
-
-	}
-
-	protected void insertDBUnit() {
-		inserirArquivosDbUnit();
-		if (arquivosDbUnit.size() > 0) {
-			DBUnitRestConsumer.createRemoteDataset(urlAplicacao.toString().concat(DOMAIN_REST_PADRAO_BARRA),
-					Helper.collectionToString(arquivosDbUnit, ","));
-			dbUnitCriado = true;
-		}
-
-	}
-
-	protected void removeDBUnit() {
-		if (dbUnitCriado) {
-			DBUnitRestConsumer.deleteRemoteDataset(urlAplicacao.toString(),
-					Helper.collectionToString(arquivosDbUnit, ","));
-			dbUnitRemovido = true;
-		}
-
+	@Override
+	protected String folderDataSetsDbUnit() {
+		return "";
 	}
 
 	@Test
@@ -99,18 +73,32 @@ public class TestEntidadeBeerPoints<T extends EntityBeerPointsCoreComIdIncrement
 		testeInclusao();
 		testeAlteracao();
 	}
+	
+	@After
+	@InSequence(2)
+	public void zTesteDeletarEntidadeBancoDados() {
+		if (entidadeIncluida != null) {
+			if (precisaDeletar())
+			{	
+				fase = "Exclusão Banco de Dados";
+				deletarEntidadeServico(entidadeIncluida.getId());
+			}	
+			entidadeIncluida = null;
+		}
+	}
 
 	@After
+	@InSequence(1)
 	public void testeDeletarEntidade() {
 		if (entidadeIncluida != null) {
 			fase = "Exclusão";
 			removerEntidadeServico(entidadeIncluida.getId());
 			expectedException.expect(isA(NotFoundException.class));
-			buscarEntidadeServico(entidadeIncluida.getId());
-			entidadeIncluida = null;
+			buscarEntidadeServico(entidadeIncluida.getId());			
 		}
-		removeDBUnit();
 	}
+	
+	
 
 	@Test
 	@InSequence(2)
@@ -150,6 +138,10 @@ public class TestEntidadeBeerPoints<T extends EntityBeerPointsCoreComIdIncrement
 
 	public void beforeAlteracaoTestePersistencieERecuperacaoServicoEntidade() {
 
+	}
+
+	protected void deletarEntidadeServico(Integer id) {
+		restDelete.delete(getIdentificador(), id.toString());
 	}
 
 	@Override

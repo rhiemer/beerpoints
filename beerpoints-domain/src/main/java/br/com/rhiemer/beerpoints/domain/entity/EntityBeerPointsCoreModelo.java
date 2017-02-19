@@ -25,6 +25,8 @@ public abstract class EntityBeerPointsCoreModelo extends EntityBeerPointsComNome
 	 * 
 	 */
 	private static final long serialVersionUID = 6329286668684785571L;
+	
+	
 
 	@OneToOne(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE })
 	@JoinColumn(name = "controle_id", referencedColumnName = "id", nullable = false, updatable = false)
@@ -34,6 +36,29 @@ public abstract class EntityBeerPointsCoreModelo extends EntityBeerPointsComNome
 
 	@Column(name = "controle_id", updatable = false, insertable = false)
 	private Integer controleId;
+	
+	
+	
+
+	public EntityBeerPointsCoreModelo() {
+		super();
+	}
+
+	public EntityBeerPointsCoreModelo(int chave, String nome) {
+		super(chave, nome);
+	}
+
+	public EntityBeerPointsCoreModelo(int chave) {
+		super(chave);
+	}
+
+	public EntityBeerPointsCoreModelo(Integer chave, String nome) {
+		super(chave, nome);
+	}
+
+	public EntityBeerPointsCoreModelo(Integer chave) {
+		super(chave);
+	}
 
 	public Integer getControleId() {
 		// erro ao converter o JSON no retorno dos serviços

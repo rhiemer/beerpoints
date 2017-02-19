@@ -42,6 +42,26 @@ public class Pais extends EntityBeerPointsCoreModelo {
 	@JoinColumn(name = "pais_localizacao_id", nullable = false, foreignKey = @ForeignKey(name = "FK_PAIS_PAIS_LOCALIZACAO"))
 	private PaisLocalizacao paisLocalizacao;
 
+	public Pais() {
+		super();
+	}
+
+	public Pais(int chave, String nome) {
+		super(chave, nome);
+	}
+
+	public Pais(int chave) {
+		super(chave);
+	}
+
+	public Pais(Integer chave, String nome) {
+		super(chave, nome);
+	}
+
+	public Pais(Integer chave) {
+		super(chave);
+	}
+
 	public PaisLocalizacao getPaisLocalizacao() {
 		return paisLocalizacao;
 	}

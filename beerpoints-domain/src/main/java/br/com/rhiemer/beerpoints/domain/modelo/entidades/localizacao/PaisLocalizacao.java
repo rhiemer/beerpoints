@@ -52,6 +52,26 @@ public class PaisLocalizacao extends EntityBeerPointsCoreModelo
 	@JoinColumn(name = "localizacao_id", nullable = false, foreignKey = @ForeignKey(name = "FK_PAIS_LOCALIZACAO_LOCALIZACAO"))
 	private Localizacao localizacao;
 
+	public PaisLocalizacao() {
+		super();
+	}
+
+	public PaisLocalizacao(int chave, String nome) {
+		super(chave, nome);
+	}
+
+	public PaisLocalizacao(int chave) {
+		super(chave);
+	}
+
+	public PaisLocalizacao(Integer chave, String nome) {
+		super(chave, nome);
+	}
+
+	public PaisLocalizacao(Integer chave) {
+		super(chave);
+	}
+
 	public Integer getCodigoIBGE() {
 		return codigoIBGE;
 	}

@@ -40,9 +40,9 @@ public class BeerPointstWSUtilsArquillian {
 
 		// adiciona bibliotecas do empacotamento
 		Collection<String> deps = new ArrayList<>();
-		deps.add("br.com.rhiemer:rhiemer-api-test-integration");
 		deps.add("br.com.rhiemer:rhiemer-api-rest-client");
 		deps.add("br.com.rhiemer:rhiemer-api-rest-resources");
+		deps.add("br.com.rhiemer:rhiemer-api-test-integration-dbunit");
 		deps.add("br.com.rhiemer.beerpoints:beerpoints-domain");
 
 		// busca as
@@ -52,18 +52,20 @@ public class BeerPointstWSUtilsArquillian {
 		List<File> filesList = new ArrayList<>(Arrays.asList(libs));
 		List<File> filesListWeb = new ArrayList<>();
 		File fileDomain = null;
-		for (File file : filesList) {
-			if (file.getName().indexOf("beerpoints-domain-") > -1) {
+		for (int i = filesList.size()-1; i >= 0; i--) {
+			File file = filesList.get(i);
+			if (fileDomain == null && file.getName().indexOf("beerpoints-domain-") > -1) {
 				filesList.remove(file);
-				fileDomain = file;
-				break;
+				fileDomain = file;	
+				continue;
 			}
 			if (file.getName().indexOf("rhiemer-api-rest-resources-") > -1) {
 				filesList.remove(file);
-				filesListWeb.add(file);
-				break;
+				filesListWeb.add(file);				
+				continue;
 			}
 		}
+		
 
 		libs = filesList.toArray(new File[] {});
 
@@ -82,17 +84,18 @@ public class BeerPointstWSUtilsArquillian {
 		if (classes != null)
 			for (Class<?> classe : classes)
 				jar.addClass(classe);
-		
-		
 
 		// gera um war com as classes do projeto web
 		WebArchive war = ShrinkWrap.create(WebArchive.class, "beerpoints-servicos-war.war")
 				.addPackages(true, getRecursivePackagesWeb())
 				.addAsWebInfResource(EmptyAsset.INSTANCE, ArchivePaths.create("beans.xml"))
-				.addAsLibraries(filesListWeb.toArray(new File[]{}))
+				.addAsResource("CadastrarPaisLocalizacao.xml")
+				.addAsLibraries(filesListWeb.toArray(new File[] {}))
 				// se não ter um web.xml separado dos projetos o arquillian não
 				// encontra
 				.setWebXML("META-INF/web.xml");
+
+		//HelperArquillian.addWebFiles(war, new File("src/test/resources/datasets"));
 
 		// empacota com ear o jar e o war acima
 		EnterpriseArchive ear = ShrinkWrap

@@ -16,12 +16,35 @@ public abstract class EntityBeerPointsComNomeTexto extends EntityBeerPointsComNo
 	 * 
 	 */
 	private static final long serialVersionUID = 8658827480259901073L;
+	
+	
+
 
 	@Column(length = 1000)
 	@Length(min = 1, max = 1000)
 	@Audited
 	private String texto;
 
+	public EntityBeerPointsComNomeTexto() {
+		super();
+	}
+	
+	public EntityBeerPointsComNomeTexto(int chave, String nome) {
+		super(chave, nome);
+	}
+	
+	public EntityBeerPointsComNomeTexto(int chave) {
+		super(chave);
+	}
+	
+	public EntityBeerPointsComNomeTexto(Integer chave, String nome) {
+		super(chave, nome);
+	}
+	
+	public EntityBeerPointsComNomeTexto(Integer chave) {
+		super(chave);
+	}
+	
 	public String getTexto() {
 		return texto;
 	}
