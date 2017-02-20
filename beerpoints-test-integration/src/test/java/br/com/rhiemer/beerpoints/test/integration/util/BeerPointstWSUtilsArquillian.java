@@ -17,6 +17,8 @@ import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.jboss.shrinkwrap.resolver.api.maven.Maven;
 
+import br.com.rhiemer.api.test.integration.helper.HelperArquillian;
+
 /**
  * Classe com deploy para testes dos serviços rests
  * 
@@ -88,14 +90,13 @@ public class BeerPointstWSUtilsArquillian {
 		// gera um war com as classes do projeto web
 		WebArchive war = ShrinkWrap.create(WebArchive.class, "beerpoints-servicos-war.war")
 				.addPackages(true, getRecursivePackagesWeb())
-				.addAsWebInfResource(EmptyAsset.INSTANCE, ArchivePaths.create("beans.xml"))
-				.addAsResource("CadastrarPaisLocalizacao.xml")
+				.addAsWebInfResource(EmptyAsset.INSTANCE, ArchivePaths.create("beans.xml"))				
 				.addAsLibraries(filesListWeb.toArray(new File[] {}))
 				// se não ter um web.xml separado dos projetos o arquillian não
 				// encontra
 				.setWebXML("META-INF/web.xml");
 
-		//HelperArquillian.addWebFiles(war, new File("src/test/resources/datasets"));
+		HelperArquillian.addResourcesFiles(war, new File("src/test/resources/datasets"));
 
 		// empacota com ear o jar e o war acima
 		EnterpriseArchive ear = ShrinkWrap

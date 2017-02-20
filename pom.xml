@@ -21,6 +21,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.compile.java.version>1.8</project.compile.java.version>
+		<app.name>beerpoints</app.name>
 		<version.rhiemer.api>1.0.0-SNAPSHOT</version.rhiemer.api>
 		<version.jboss.pom>10.1.0.Final</version.jboss.pom>
 

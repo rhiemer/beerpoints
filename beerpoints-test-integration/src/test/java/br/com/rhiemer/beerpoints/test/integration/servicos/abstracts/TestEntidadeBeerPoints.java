@@ -1,12 +1,8 @@
 package br.com.rhiemer.beerpoints.test.integration.servicos.abstracts;
 
 import static br.com.rhiemer.beerpoints.rest.resource.ProjetoDomainApplication.DOMAIN_REST_PADRAO;
-
 import static org.hamcrest.CoreMatchers.isA;
 import static org.junit.Assert.assertNotNull;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.ws.rs.BadRequestException;
 import javax.ws.rs.NotFoundException;
@@ -50,7 +46,7 @@ public class TestEntidadeBeerPoints<T extends EntityBeerPointsCoreComIdIncrement
 	protected RESTFullDeleteBeerPoints restDelete;
 
 	protected boolean precisaDeletar() {
-		return (this.precisaDeletar||this.dbUnitCriado);
+		return (this.precisaDeletar || this.dbUnitCriado);
 	}
 
 	public TestEntidadeBeerPoints() {
@@ -58,11 +54,6 @@ public class TestEntidadeBeerPoints<T extends EntityBeerPointsCoreComIdIncrement
 		RESTful restFull = getEntidadeBeerPoints().getAnnotation(RESTful.class);
 		if (restFull != null)
 			identificador = restFull.value();
-	}
-
-	@Override
-	protected String folderDataSetsDbUnit() {
-		return "";
 	}
 
 	@Test
@@ -73,16 +64,15 @@ public class TestEntidadeBeerPoints<T extends EntityBeerPointsCoreComIdIncrement
 		testeInclusao();
 		testeAlteracao();
 	}
-	
+
 	@After
 	@InSequence(2)
 	public void zTesteDeletarEntidadeBancoDados() {
 		if (entidadeIncluida != null) {
-			if (precisaDeletar())
-			{	
+			if (precisaDeletar()) {
 				fase = "Exclusão Banco de Dados";
 				deletarEntidadeServico(entidadeIncluida.getId());
-			}	
+			}
 			entidadeIncluida = null;
 		}
 	}
@@ -94,11 +84,9 @@ public class TestEntidadeBeerPoints<T extends EntityBeerPointsCoreComIdIncrement
 			fase = "Exclusão";
 			removerEntidadeServico(entidadeIncluida.getId());
 			expectedException.expect(isA(NotFoundException.class));
-			buscarEntidadeServico(entidadeIncluida.getId());			
+			buscarEntidadeServico(entidadeIncluida.getId());
 		}
 	}
-	
-	
 
 	@Test
 	@InSequence(2)

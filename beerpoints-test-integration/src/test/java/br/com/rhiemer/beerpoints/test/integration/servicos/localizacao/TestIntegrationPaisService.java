@@ -10,7 +10,7 @@ import br.com.rhiemer.beerpoints.test.integration.servicos.abstracts.TestGeneric
 import br.com.rhiemer.beerpoints.test.integration.util.BeerPointstWSUtilsArquillian;
 
 
-@DbUnitAdicionarArquivo("CadastrarPaisLocalizacao.xml")
+@DbUnitAdicionarArquivo("localizacao/CadastrarPaisLocalizacao.xml")
 public class TestIntegrationPaisService extends TestGenericEntidadeBeerPoints<Pais> {
 
 	@Deployment
