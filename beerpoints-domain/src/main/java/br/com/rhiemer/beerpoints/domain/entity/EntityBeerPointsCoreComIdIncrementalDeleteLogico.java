@@ -11,4 +11,18 @@ implements IEntityBeerPointsCore {
 	 */
 	private static final long serialVersionUID = 2531029845099837511L;
 
+	public EntityBeerPointsCoreComIdIncrementalDeleteLogico() {
+		super();
+	}
+
+	public EntityBeerPointsCoreComIdIncrementalDeleteLogico(int chave) {
+		super(chave);
+	}
+
+	public EntityBeerPointsCoreComIdIncrementalDeleteLogico(Integer chave) {
+		super(chave);
+	}
+	
+	
+
 }

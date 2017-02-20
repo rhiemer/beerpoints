@@ -11,24 +11,46 @@ import br.com.rhiemer.api.util.annotations.entity.ToString;
 import br.com.rhiemer.beerpoints.domain.interfaces.IEntityBeerPointsComNome;
 
 @MappedSuperclass
-public abstract class EntityBeerPointsComNome extends EntityBeerPointsCoreComIdIncrementalDeleteLogico implements IEntityBeerPointsComNome {
+public abstract class EntityBeerPointsComNome extends EntityBeerPointsCoreComIdIncrementalDeleteLogico
+		implements IEntityBeerPointsComNome {
 
-	
-
-	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -1426879399390543682L;
-	
+
 	@NotBlank
 	@Column(length = 250, nullable = false)
 	@Length(min = 1, max = 250)
 	@ToString
 	@Audited
-	private String nome;	
+	private String nome;
 
-	/* (non-Javadoc)
+	public EntityBeerPointsComNome() {
+		super();
+	}
+
+	public EntityBeerPointsComNome(int chave) {
+		super(chave);
+	}
+
+	public EntityBeerPointsComNome(Integer chave) {
+		super(chave);
+	}
+
+	public EntityBeerPointsComNome(int chave, String nome) {
+		super(chave);
+		this.setNome(nome);
+	}
+
+	public EntityBeerPointsComNome(Integer chave, String nome) {
+		super(chave);
+		this.setNome(nome);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see br.com.rhiemer.beerpoints.modelo.IEntityBeerPointsComNome#getNome()
 	 */
 	@Override
@@ -36,13 +58,16 @@ public abstract class EntityBeerPointsComNome extends EntityBeerPointsCoreComIdI
 		return nome;
 	}
 
-	/* (non-Javadoc)
-	 * @see br.com.rhiemer.beerpoints.modelo.IEntityBeerPointsComNome#setNome(java.lang.String)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * br.com.rhiemer.beerpoints.modelo.IEntityBeerPointsComNome#setNome(java.
+	 * lang.String)
 	 */
 	@Override
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
 
-	
 }

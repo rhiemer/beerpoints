@@ -1,13 +1,14 @@
-package br.com.rhiemer.beerpoints.test.integration.servicos;
+package br.com.rhiemer.beerpoints.test.integration.servicos.cerveja;
 
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.shrinkwrap.api.Archive;
 
-import br.com.rhiemer.beerpoints.domain.modelo.entidades.cerveja.Pais;
+import br.com.rhiemer.beerpoints.domain.modelo.entidades.cerveja.Estilo;
+import br.com.rhiemer.beerpoints.test.integration.servicos.abstracts.TestGenericEntidadeBeerPoints;
 import br.com.rhiemer.beerpoints.test.integration.util.BeerPointstWSUtilsArquillian;
 
 
-public class TestIntegrationPaisService extends TestGenericEntidadeBeerPoints<Pais> {
+public class TestIntegrationEstiloService extends TestGenericEntidadeBeerPoints<Estilo> {
 	
 	@Deployment
 	public static Archive<?> createTestableDeployment() {

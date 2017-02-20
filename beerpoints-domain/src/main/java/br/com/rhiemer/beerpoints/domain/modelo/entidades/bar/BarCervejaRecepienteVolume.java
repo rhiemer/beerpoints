@@ -2,9 +2,11 @@ package br.com.rhiemer.beerpoints.domain.modelo.entidades.bar;
 
 import java.math.BigDecimal;
 
+import javax.persistence.AssociationOverride;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.ForeignKey;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -25,13 +27,17 @@ import br.com.rhiemer.beerpoints.domain.entity.EntityBeerPointsCoreInformacao;
 import br.com.rhiemer.beerpoints.domain.modelo.entidades.cerveja.RecepienteVolume;
 
 @Entity
-@Table(name = "TB_BAR_CERVEJA_RECEP_VOL",uniqueConstraints={@UniqueConstraint(columnNames = {"bar_cerveja_id" , "recepiente_volume_id"})})
+@Table(name = "TB_BAR_CERVEJA_RECEP_VOL", uniqueConstraints = {
+		@UniqueConstraint(columnNames = { "bar_cerveja_id",
+				"recepiente_volume_id" }, name = "UK_BAR_CERV_RECEP_VOL_BAR_CERV_RECEP_VOL"),
+		@UniqueConstraint(columnNames = { "controle_id" }, name = "UK_BAR_CERVEJA_RECEP_VOL_CONTROLE_ID") })
 @Audited
 @AuditTable("TB_AUDITORIA_BAR_CERVEJA_RECEP_VOL")
 @RESTful(ConstantesBeerPointsDomain.BAR_CERVEJA_RECEPIENTE_VOLUME)
 @SQLDelete(sql = "UPDATE TB_BAR_CERVEJA_RECEP_VOL SET ativo = 'N', exclusao = sysdate() WHERE id = ? and VERSAO = ? ")
 @Where(clause = "ativo = 'S' ")
-@UniqueKey(columnNames={"barCerveja","recepienteVolume"},validar=true)
+@UniqueKey(nome = "barCerveja_recepienteVolume", columnNames = { "barCerveja", "recepienteVolume" }, validar = true)
+@AssociationOverride(name = "controle_id", foreignKey = @ForeignKey(name = "FK_BAR_CERV_RECEB_VOL_CONTROLE_ENTIDADE"))
 public class BarCervejaRecepienteVolume extends EntityBeerPointsCoreInformacao {
 
 	/**
@@ -39,15 +45,14 @@ public class BarCervejaRecepienteVolume extends EntityBeerPointsCoreInformacao {
 	 */
 	private static final long serialVersionUID = 5915147083075996444L;
 
+	@NotNull
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "bar_cerveja_id", nullable = false, updatable = false, foreignKey = @ForeignKey(name = "FK_BAR_CERV_RECEP_VOL_BAR_CERVEJA"))
+	private BarCerveja barCerveja;
 
 	@NotNull
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "bar_cerveja_id", nullable = false,updatable=false)
-	private BarCerveja barCerveja;
-	
-	@NotNull
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "recepiente_volume_id", nullable = false,updatable=false)
+	@JoinColumn(name = "recepiente_volume_id", nullable = false, updatable = false, foreignKey = @ForeignKey(name = "FK_BAR_CERV_RECEP_VOL_RECEP_VOL"))
 	private RecepienteVolume recepienteVolume;
 
 	@NotNull
@@ -79,8 +84,5 @@ public class BarCervejaRecepienteVolume extends EntityBeerPointsCoreInformacao {
 	public void setPreco(BigDecimal preco) {
 		this.preco = preco;
 	}
-
-	
-	
 
 }

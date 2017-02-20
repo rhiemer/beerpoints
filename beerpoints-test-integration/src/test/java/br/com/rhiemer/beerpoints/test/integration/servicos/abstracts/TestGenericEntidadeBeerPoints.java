@@ -1,4 +1,4 @@
-package br.com.rhiemer.beerpoints.test.integration.servicos;
+package br.com.rhiemer.beerpoints.test.integration.servicos.abstracts;
 
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.equalTo;

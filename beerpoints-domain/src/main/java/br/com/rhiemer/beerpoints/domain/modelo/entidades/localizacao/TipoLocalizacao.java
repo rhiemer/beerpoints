@@ -1,7 +1,9 @@
 package br.com.rhiemer.beerpoints.domain.modelo.entidades.localizacao;
 
+import javax.persistence.AssociationOverride;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.SQLDelete;
@@ -18,12 +20,13 @@ import br.com.rhiemer.beerpoints.domain.constantes.ConstantesBeerPointsDomain;
 import br.com.rhiemer.beerpoints.domain.interfaces.IEntityBeerPointsAuxiliar;
 
 @Entity
-@Table(name = "TB_TIPO_LOCALIZACAO")
+@Table(name = "TA_TIPO_LOCALIZACAO")
 @RESTful(ConstantesBeerPointsDomain.TIPO_LOCALIZACAO)
 @Audited
 @AuditTable("TB_AUDITORIA_TIPO_LOCALIZACAO")
-@SQLDelete(sql = "UPDATE TB_TIPO_LOCALIZACAO SET ativo = 'N', exclusao = sysdate() WHERE id = ? and VERSAO = ? ")
+@SQLDelete(sql = "UPDATE TA_TIPO_LOCALIZACAO SET ativo = 'N', exclusao = sysdate() WHERE id = ? and VERSAO = ? ")
 @Where(clause = "ativo = 'S' ")
+@AssociationOverride(name = "controle_id", foreignKey = @ForeignKey(name = "FK_TIPO_LOCALIZACAO_CONTROLE_ENTIDADE"))
 public class TipoLocalizacao extends GenericEntityComIdIncrementalDeleteLogico implements IEntityBeerPointsAuxiliar {
 
 	/**

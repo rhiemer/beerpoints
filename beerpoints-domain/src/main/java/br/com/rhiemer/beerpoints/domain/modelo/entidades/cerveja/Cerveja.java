@@ -3,14 +3,17 @@ package br.com.rhiemer.beerpoints.domain.modelo.entidades.cerveja;
 import java.math.BigDecimal;
 import java.util.List;
 
+import javax.persistence.AssociationOverride;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.ForeignKey;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -29,7 +32,8 @@ import br.com.rhiemer.beerpoints.domain.modelo.entidades.cervejaria.Cervejaria;
 import br.com.rhiemer.beerpoints.domain.modelo.entidades.localizacao.RegiaoPais;
 
 @Entity
-@Table(name = "TB_CERVEJA")
+@Table(name = "TB_CERVEJA", uniqueConstraints = {
+		@UniqueConstraint(columnNames = { "controle_id" }, name = "UK_CERVEJA_CONTROLE_ID") })
 @RESTful(ConstantesBeerPointsDomain.CERVEJA)
 @NamedQuery(name = "Cerveja.procurarPeloIdLazy", query = "select a from Cerveja a " + "left join fetch a.estilo "
 		+ "left join fetch a.cervejaria " + "left join fetch a.pais " + "where a.id =:id")
@@ -37,6 +41,7 @@ import br.com.rhiemer.beerpoints.domain.modelo.entidades.localizacao.RegiaoPais;
 @AuditTable("TB_AUDITORIA_CERVEJA")
 @SQLDelete(sql = "UPDATE TB_CERVEJA SET ativo = 'N', exclusao = sysdate() WHERE id = ? and VERSAO = ? ")
 @Where(clause = "ativo = 'S' ")
+@AssociationOverride(name = "controle_id", foreignKey = @ForeignKey(name = "FK_CERVEJA_CONTROLE_ENTIDADE"))
 public class Cerveja extends EntityBeerPointsCoreModelo {
 
 	/**
@@ -49,36 +54,36 @@ public class Cerveja extends EntityBeerPointsCoreModelo {
 
 	@NotNull
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "estilo_id", nullable = false)
+	@JoinColumn(name = "estilo_id", nullable = false, foreignKey = @ForeignKey(name = "FK_CERVEJA_ESTILO"))
 	private Estilo estilo;
-	
+
 	@NotNull
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "familia_id", nullable = false)
+	@JoinColumn(name = "familia_id", nullable = false, foreignKey = @ForeignKey(name = "FK_CERVEJA_FAMILIA"))
 	private Familia familia;
 
 	@NotNull
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "cervejaria_id", nullable = false)
+	@JoinColumn(name = "cervejaria_id", nullable = false, foreignKey = @ForeignKey(name = "FK_CERVEJA_CERVEJARIA"))
 	private Cervejaria cervejaria;
-	
+
 	@NotNull
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "amargor_id", nullable = false)
+	@JoinColumn(name = "amargor_id", nullable = false, foreignKey = @ForeignKey(name = "FK_CERVEJA_AMARGOR"))
 	private Amargor amargor;
 
 	@NotNull
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "pais_id", nullable = false)
+	@JoinColumn(name = "pais_id", nullable = false, foreignKey = @ForeignKey(name = "FK_CERVEJA_PAIS"))
 	private Pais pais;
-	
+
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "regiao_pais_id", nullable = false)
+	@JoinColumn(name = "regiao_pais_id", nullable = false, foreignKey = @ForeignKey(name = "FK_CERVEJA_REGIAO_PAIS"))
 	private RegiaoPais regiaoPais;
 
 	@JsonIgnore
 	@XmlTransient
-	@OneToMany(mappedBy = "cerveja", fetch = FetchType.LAZY)	
+	@OneToMany(mappedBy = "cerveja", fetch = FetchType.LAZY)
 	private List<BarCerveja> bares;
 
 	@JsonIgnore
@@ -101,7 +106,6 @@ public class Cerveja extends EntityBeerPointsCoreModelo {
 		this.teorAlcolico = teorAlcolico;
 	}
 
-
 	public Estilo getEstilo() {
 		return estilo;
 	}
@@ -109,8 +113,6 @@ public class Cerveja extends EntityBeerPointsCoreModelo {
 	public void setEstilo(Estilo estilo) {
 		this.estilo = estilo;
 	}
-
-	
 
 	public Pais getPais() {
 		return pais;
@@ -151,7 +153,5 @@ public class Cerveja extends EntityBeerPointsCoreModelo {
 	public void setAmargor(Amargor amargor) {
 		this.amargor = amargor;
 	}
-
-	
 
 }

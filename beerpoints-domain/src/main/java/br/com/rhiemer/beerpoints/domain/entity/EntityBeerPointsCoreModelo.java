@@ -9,6 +9,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.OneToOne;
 
+import org.hibernate.envers.Audited;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import br.com.rhiemer.beerpoints.domain.interfaces.IEntityBeerPointsComControle;
@@ -23,14 +25,40 @@ public abstract class EntityBeerPointsCoreModelo extends EntityBeerPointsComNome
 	 * 
 	 */
 	private static final long serialVersionUID = 6329286668684785571L;
+	
+	
 
 	@OneToOne(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE })
-	@JoinColumn(name = "controleId", referencedColumnName = "id", unique = true, nullable = false, updatable = false)
+	@JoinColumn(name = "controle_id", referencedColumnName = "id", nullable = false, updatable = false)
 	@JsonIgnore
+	@Audited
 	private ControleEntidade controleEntidade;
 
-	@Column(name = "controleId", nullable = false, unique = true, updatable = false, insertable = false)
+	@Column(name = "controle_id", updatable = false, insertable = false)
 	private Integer controleId;
+	
+	
+	
+
+	public EntityBeerPointsCoreModelo() {
+		super();
+	}
+
+	public EntityBeerPointsCoreModelo(int chave, String nome) {
+		super(chave, nome);
+	}
+
+	public EntityBeerPointsCoreModelo(int chave) {
+		super(chave);
+	}
+
+	public EntityBeerPointsCoreModelo(Integer chave, String nome) {
+		super(chave, nome);
+	}
+
+	public EntityBeerPointsCoreModelo(Integer chave) {
+		super(chave);
+	}
 
 	public Integer getControleId() {
 		// erro ao converter o JSON no retorno dos serviços

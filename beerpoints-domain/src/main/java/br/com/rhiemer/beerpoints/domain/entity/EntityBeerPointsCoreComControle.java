@@ -1,10 +1,15 @@
 package br.com.rhiemer.beerpoints.domain.entity;
 
+import java.util.Optional;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.OneToOne;
+
+import org.hibernate.envers.Audited;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -19,25 +24,30 @@ public abstract class EntityBeerPointsCoreComControle extends EntityBeerPointsCo
 	 * 
 	 */
 	private static final long serialVersionUID = 7073080721361887314L;
-	
-	@OneToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name = "controleId", referencedColumnName = "id",unique = true, nullable = false, updatable = false)
+
+	@OneToOne(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE })
+	@JoinColumn(name = "controle_id", referencedColumnName = "id", nullable = false, updatable = false)
 	@JsonIgnore
+	@Audited
 	private ControleEntidade controleEntidade;
 
-	@Column(name="controleId",nullable = false, unique = true, updatable = false,insertable=false)
+	@Column(name = "controle_id", updatable = false, insertable = false)
 	private Integer controleId;
-	
-	
 
 	public Integer getControleId() {
-		return controleId;
+		// erro ao converter o JSON no retorno dos serviços
+		try {
+			return Optional.ofNullable(this.controleEntidade).map(t -> t.getId()).orElse(this.controleId);
+
+		} catch (Exception e) {
+			return this.controleId;
+		}
 	}
 
 	public void setControleId(Integer controleId) {
 		this.controleId = controleId;
 	}
-	
+
 	@Override
 	public ControleEntidade getControleEntidade() {
 		return controleEntidade;

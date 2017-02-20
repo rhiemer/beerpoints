@@ -10,8 +10,8 @@
 	</parent>
 
 	<dependencies>
-		
-		
+
+
 		<dependency>
 			<groupId>br.com.rhiemer.beerpoints</groupId>
 			<artifactId>beerpoints-service</artifactId>
@@ -31,7 +31,12 @@
 			<artifactId>rhiemer-api-rest</artifactId>
 			<version>${version.rhiemer.api}</version>
 		</dependency>
-
+		
+		<dependency>
+			<groupId>br.com.rhiemer</groupId>
+			<artifactId>rhiemer-api-rest-resources</artifactId>
+			<version>${version.rhiemer.api}</version>
+		</dependency>
 	</dependencies>
 
 	<build>

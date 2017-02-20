@@ -1,4 +1,4 @@
-package br.com.rhiemer.beerpoints.test.integration.servicos;
+package br.com.rhiemer.beerpoints.test.integration.servicos.cerveja;
 
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.equalTo;
@@ -17,6 +17,7 @@ import org.jboss.shrinkwrap.api.Archive;
 
 import br.com.rhiemer.beerpoints.domain.enums.EnumTipoCervejaria;
 import br.com.rhiemer.beerpoints.domain.modelo.entidades.cervejaria.Cervejaria;
+import br.com.rhiemer.beerpoints.test.integration.servicos.abstracts.TestGenericEntidadeBeerPoints;
 import br.com.rhiemer.beerpoints.test.integration.util.BeerPointstWSUtilsArquillian;
 
 public class TestIntegrationCervejariaService extends TestGenericEntidadeBeerPoints<Cervejaria> {
