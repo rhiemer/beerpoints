@@ -7,10 +7,12 @@ import org.hibernate.envers.Audited;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
 
+import br.com.rhiemer.api.jpa.annotations.OrderByAtributo;
 import br.com.rhiemer.api.util.annotations.entity.ToString;
 import br.com.rhiemer.beerpoints.domain.interfaces.IEntityBeerPointsComNome;
 
 @MappedSuperclass
+@OrderByAtributo("nome")
 public abstract class EntityBeerPointsComNome extends EntityBeerPointsCoreComIdIncrementalDeleteLogico
 		implements IEntityBeerPointsComNome {
 

@@ -39,7 +39,7 @@
 	
 	<extension qualifier="persistence">
 		<property name="defaultDataSource">java:/ds.beerpoints</property>
-		<property name="defaultTransactionMode">DISABLED</property>
+		<property name="defaultTransactionMode">ROLLBACK</property>
 		<property name="defaultCleanupPhase">AFTER</property>
 		<property name="defaultCleanupStrategy">USED_ROWS_ONLY</property>
 	</extension>
@@ -47,7 +47,7 @@
 	<extension qualifier="persistence-dbunit">
 		<property name="useIdentityInsert">false</property>
 		<property name="excludePoi">true</property>
-		<property name="qualifiedTableNames">true</property>		
+		<property name="qualifiedTableNames">true</property>	
 	</extension>
 
 	
