@@ -53,7 +53,17 @@ public class Cerveja extends EntityBeerPointsCoreModelo {
 	private BigDecimal teorAlcolico;
 
 	@NotNull
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY,optional=false)
+	@JoinColumn(name = "pais_id", nullable = false, foreignKey = @ForeignKey(name = "FK_CERVEJA_PAIS"))
+	private Pais pais;
+
+	@NotNull
+	@ManyToOne(fetch = FetchType.LAZY,optional=false)
+	@JoinColumn(name = "cervejaria_id", nullable = false, foreignKey = @ForeignKey(name = "FK_CERVEJA_CERVEJARIA"))
+	private Cervejaria cervejaria;
+
+	@NotNull
+	@ManyToOne(fetch = FetchType.LAZY,optional=false)
 	@JoinColumn(name = "estilo_id", nullable = false, foreignKey = @ForeignKey(name = "FK_CERVEJA_ESTILO"))
 	private Estilo estilo;
 
@@ -64,18 +74,9 @@ public class Cerveja extends EntityBeerPointsCoreModelo {
 
 	@NotNull
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "cervejaria_id", nullable = false, foreignKey = @ForeignKey(name = "FK_CERVEJA_CERVEJARIA"))
-	private Cervejaria cervejaria;
-
-	@NotNull
-	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "amargor_id", nullable = false, foreignKey = @ForeignKey(name = "FK_CERVEJA_AMARGOR"))
 	private Amargor amargor;
 
-	@NotNull
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "pais_id", nullable = false, foreignKey = @ForeignKey(name = "FK_CERVEJA_PAIS"))
-	private Pais pais;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "regiao_pais_id", nullable = false, foreignKey = @ForeignKey(name = "FK_CERVEJA_REGIAO_PAIS"))
