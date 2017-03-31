@@ -45,6 +45,22 @@ public class TesteListarCerveja implements ExcludeTeste, IntegrationTeste {
 		BuilderCriteriaJPA query = BuilderCriteriaJPA.builderCreate().resultClass(Cerveja.class).parametrosExecucao(ExecucaoAtributos.builder()).build();
 		List<Cerveja> cervejas = cervejaService.excutarQueryList(query);
 		Assert.assertNotNull(cervejas);
+		Assert.assertTrue(cervejas.size() > 0);
+		Assert.assertNotNull(cervejas.get(0).getPais());
+		Assert.assertNotNull(cervejas.get(0).getPais().getNome());
+	}
+	
+	
+	@Test
+	@UsingDataSet("testes/ListarCervejaTeste.xml")
+	@Cleanup(phase = TestExecutionPhase.AFTER, strategy = CleanupStrategy.USED_ROWS_ONLY)
+	@Transactional(TransactionMode.ROLLBACK)
+	public void testeRecuperarListaDeCervejasSemAtributos() throws Exception {
+		BuilderCriteriaJPA query = BuilderCriteriaJPA.builderCreate().resultClass(Cerveja.class).build();
+		List<Cerveja> cervejas = cervejaService.excutarQueryList(query);
+		Assert.assertNotNull(cervejas);
+		Assert.assertTrue(cervejas.size() > 0);
+		Assert.assertNull(cervejas.get(0).getPais());
 	}
 
 }
