@@ -18,6 +18,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import br.com.rhiemer.api.jpa.builder.BuilderCriteriaJPA;
+import br.com.rhiemer.api.jpa.parametros.execucao.ExecucaoSemLazy;
 import br.com.rhiemer.api.test.integration.testcategory.IntegrationTeste;
 import br.com.rhiemer.api.test.unit.testcategory.ExcludeTeste;
 import br.com.rhiemer.api.util.dao.parametros.execucao.ExecucaoAtributos;
@@ -57,10 +58,11 @@ public class TesteListarCerveja implements ExcludeTeste, IntegrationTeste {
 	@Transactional(TransactionMode.ROLLBACK)
 	public void testeRecuperarListaDeCervejasSemAtributos() throws Exception {
 		BuilderCriteriaJPA query = BuilderCriteriaJPA.builderCreate().resultClass(Cerveja.class).build();
-		List<Cerveja> cervejas = cervejaService.excutarQueryList(query);
+		List<Cerveja> cervejas = cervejaService.excutarQueryList(query,ExecucaoSemLazy.builder());
 		Assert.assertNotNull(cervejas);
 		Assert.assertTrue(cervejas.size() > 0);
 		Assert.assertNull(cervejas.get(0).getPais());
+		Assert.assertNull(cervejas.get(0).getBares());
 	}
 
 }
