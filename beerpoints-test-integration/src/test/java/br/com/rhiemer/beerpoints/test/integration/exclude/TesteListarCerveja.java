@@ -27,6 +27,9 @@ import br.com.rhiemer.beerpoints.service.cerveja.CervejaService;
 import br.com.rhiemer.beerpoints.test.integration.util.BeerPointstWSUtilsArquillian;
 
 @RunWith(Arquillian.class)
+@UsingDataSet("testes/ListarCervejaTeste.xml")
+@Cleanup(phase = TestExecutionPhase.AFTER, strategy = CleanupStrategy.USED_ROWS_ONLY)
+@Transactional(TransactionMode.ROLLBACK)
 public class TesteListarCerveja implements ExcludeTeste, IntegrationTeste {
 
 	@Inject
@@ -39,9 +42,6 @@ public class TesteListarCerveja implements ExcludeTeste, IntegrationTeste {
 	}
 
 	@Test
-	@UsingDataSet("testes/ListarCervejaTeste.xml")
-	@Cleanup(phase = TestExecutionPhase.AFTER, strategy = CleanupStrategy.USED_ROWS_ONLY)
-	@Transactional(TransactionMode.ROLLBACK)
 	public void testeRecuperarListaDeCervejas() throws Exception {
 		BuilderCriteriaJPA query = BuilderCriteriaJPA.builderCreate().resultClass(Cerveja.class).parametrosExecucao(ExecucaoAtributos.builder()).build();
 		List<Cerveja> cervejas = cervejaService.excutarQueryList(query);
@@ -53,9 +53,6 @@ public class TesteListarCerveja implements ExcludeTeste, IntegrationTeste {
 	
 	
 	@Test
-	@UsingDataSet("testes/ListarCervejaTeste.xml")
-	@Cleanup(phase = TestExecutionPhase.AFTER, strategy = CleanupStrategy.USED_ROWS_ONLY)
-	@Transactional(TransactionMode.ROLLBACK)
 	public void testeRecuperarListaDeCervejasSemAtributos() throws Exception {
 		BuilderCriteriaJPA query = BuilderCriteriaJPA.builderCreate().resultClass(Cerveja.class).build();
 		List<Cerveja> cervejas = cervejaService.excutarQueryList(query,ExecucaoSemLazy.builder());
@@ -63,6 +60,15 @@ public class TesteListarCerveja implements ExcludeTeste, IntegrationTeste {
 		Assert.assertTrue(cervejas.size() > 0);
 		Assert.assertNull(cervejas.get(0).getPais());
 		Assert.assertNull(cervejas.get(0).getBares());
+	}
+	
+	
+	@Test
+	public void testeRecuperarListaDeCervejasPrimaryKey() throws Exception {
+		BuilderCriteriaJPA query = BuilderCriteriaJPA.builderCreate().resultClass(Cerveja.class).build().primaryKey(-1);
+		Cerveja cerveja = (Cerveja)cervejaService.excutarQueryUniqueResult(query);
+		Assert.assertNotNull(cerveja);
+		Assert.assertEquals(cerveja.getId(),new Integer(-1));
 	}
 
 }
