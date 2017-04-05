@@ -42,33 +42,32 @@ public class TesteListarCerveja implements ExcludeTeste, IntegrationTeste {
 	}
 
 	@Test
-	public void testeRecuperarListaDeCervejas() throws Exception {
-		BuilderCriteriaJPA query = BuilderCriteriaJPA.builderCreate().resultClass(Cerveja.class).parametrosExecucao(ExecucaoAtributos.builder()).build();
+	public void testeRecuperarListaDeCervejas() {
+		BuilderCriteriaJPA query = BuilderCriteriaJPA.builderCreate().resultClass(Cerveja.class)
+				.parametrosExecucao(ExecucaoAtributos.builder()).build();
 		List<Cerveja> cervejas = cervejaService.excutarQueryList(query);
 		Assert.assertNotNull(cervejas);
 		Assert.assertTrue(cervejas.size() > 0);
 		Assert.assertNotNull(cervejas.get(0).getPais());
 		Assert.assertNotNull(cervejas.get(0).getPais().getNome());
 	}
-	
-	
+
 	@Test
-	public void testeRecuperarListaDeCervejasSemAtributos() throws Exception {
+	public void testeRecuperarListaDeCervejasSemAtributos() {
 		BuilderCriteriaJPA query = BuilderCriteriaJPA.builderCreate().resultClass(Cerveja.class).build();
-		List<Cerveja> cervejas = cervejaService.excutarQueryList(query,ExecucaoSemLazy.builder());
+		List<Cerveja> cervejas = cervejaService.excutarQueryList(query, ExecucaoSemLazy.builder());
 		Assert.assertNotNull(cervejas);
 		Assert.assertTrue(cervejas.size() > 0);
 		Assert.assertNull(cervejas.get(0).getPais());
 		Assert.assertNull(cervejas.get(0).getBares());
 	}
-	
-	
+
 	@Test
-	public void testeRecuperarListaDeCervejasPrimaryKey() throws Exception {
+	public void testeRecuperarCervejaPrimaryKey() {
 		BuilderCriteriaJPA query = BuilderCriteriaJPA.builderCreate().resultClass(Cerveja.class).build().primaryKey(-1);
-		Cerveja cerveja = (Cerveja)cervejaService.excutarQueryUniqueResult(query);
+		Cerveja cerveja = (Cerveja) cervejaService.excutarQueryUniqueResult(query);
 		Assert.assertNotNull(cerveja);
-		Assert.assertEquals(cerveja.getId(),new Integer(-1));
+		Assert.assertEquals(cerveja.getId(), new Integer(-1));
 	}
 
 }
