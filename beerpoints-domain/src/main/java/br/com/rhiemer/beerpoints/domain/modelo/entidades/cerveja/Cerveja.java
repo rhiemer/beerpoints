@@ -48,6 +48,26 @@ public class Cerveja extends EntityBeerPointsCoreModelo {
 	 * 
 	 */
 	private static final long serialVersionUID = 5915147083075996444L;
+	
+	public Cerveja() {
+		super();
+	}
+
+	public Cerveja(int chave, String nome) {
+		super(chave, nome);
+	}
+
+	public Cerveja(int chave) {
+		super(chave);
+	}
+
+	public Cerveja(Integer chave, String nome) {
+		super(chave, nome);
+	}
+
+	public Cerveja(Integer chave) {
+		super(chave);
+	}
 
 	@Column(precision = 5, scale = 2)
 	private BigDecimal teorAlcolico;

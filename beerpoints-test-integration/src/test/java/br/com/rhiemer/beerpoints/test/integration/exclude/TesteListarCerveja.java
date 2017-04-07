@@ -14,7 +14,9 @@ import org.jboss.arquillian.transaction.api.annotation.TransactionMode;
 import org.jboss.arquillian.transaction.api.annotation.Transactional;
 import org.jboss.shrinkwrap.api.Archive;
 import org.junit.Assert;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 
 import br.com.rhiemer.api.jpa.builder.BuilderCriteriaJPA;
@@ -22,7 +24,9 @@ import br.com.rhiemer.api.jpa.parametros.execucao.ExecucaoSemLazy;
 import br.com.rhiemer.api.test.integration.testcategory.IntegrationTeste;
 import br.com.rhiemer.api.test.unit.testcategory.ExcludeTeste;
 import br.com.rhiemer.api.util.dao.parametros.execucao.ExecucaoAtributos;
+import br.com.rhiemer.beerpoints.domain.enums.EnumEntidadeBeerPoints;
 import br.com.rhiemer.beerpoints.domain.modelo.entidades.cerveja.Cerveja;
+import br.com.rhiemer.beerpoints.domain.modelo.entidades.controle.ControleEntidade;
 import br.com.rhiemer.beerpoints.service.cerveja.CervejaService;
 import br.com.rhiemer.beerpoints.test.integration.util.BeerPointstWSUtilsArquillian;
 
@@ -34,6 +38,9 @@ public class TesteListarCerveja implements ExcludeTeste, IntegrationTeste {
 
 	@Inject
 	private CervejaService cervejaService;
+
+	@Rule
+	public ExpectedException expectedException = ExpectedException.none();
 
 	@Deployment
 	public static Archive<?> createTestableDeployment() {
@@ -68,6 +75,32 @@ public class TesteListarCerveja implements ExcludeTeste, IntegrationTeste {
 		Cerveja cerveja = (Cerveja) cervejaService.excutarQueryUniqueResult(query);
 		Assert.assertNotNull(cerveja);
 		Assert.assertEquals(cerveja.getId(), new Integer(-1));
+	}
+
+	@Test
+	public void testeRecuperarCervejaPrimaryKeyEntity() {
+		BuilderCriteriaJPA query = BuilderCriteriaJPA.builderCreate().resultClass(Cerveja.class).build()
+				.primaryKey(new Cerveja(-1));
+		Cerveja cerveja = (Cerveja) cervejaService.excutarQueryUniqueResult(query);
+		Assert.assertNotNull(cerveja);
+		Assert.assertEquals(cerveja.getId(), new Integer(-1));
+	}
+
+	@Test
+	public void testeRecuperarCervejaPrimaryKeyEntityNot() {
+		BuilderCriteriaJPA query = BuilderCriteriaJPA.builderCreate().resultClass(Cerveja.class).build()
+				.primaryKeyNot(-1);
+		Cerveja cerveja = (Cerveja) cervejaService.excutarQueryUniqueResult(query);
+		Assert.assertNull(cerveja);
+	}
+
+	@Test
+	public void testeRecuperarCervejaUniqueKey() {
+		BuilderCriteriaJPA query = BuilderCriteriaJPA.builderCreate().resultClass(ControleEntidade.class).build()
+				.uniqueKeyByParams(EnumEntidadeBeerPoints.getByNome("Cervejaria"), -1);
+		ControleEntidade controleEntidade = (ControleEntidade) cervejaService.excutarQueryUniqueResult(query);
+		Assert.assertNotNull(controleEntidade);
+		Assert.assertEquals(controleEntidade.getId(), new Integer(-4));
 	}
 
 }
