@@ -52,6 +52,33 @@ public class Cervejaria extends EntityBeerPointsCoreModelo {
 	@JsonIgnore
 	@XmlTransient
 	private List<CervejariaLocalizacao> localizacoes;
+	
+	
+
+	public Cervejaria() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Cervejaria(int chave, String nome) {
+		super(chave, nome);
+		// TODO Auto-generated constructor stub
+	}
+
+	public Cervejaria(int chave) {
+		super(chave);
+		// TODO Auto-generated constructor stub
+	}
+
+	public Cervejaria(Integer chave, String nome) {
+		super(chave, nome);
+		// TODO Auto-generated constructor stub
+	}
+
+	public Cervejaria(Integer chave) {
+		super(chave);
+		// TODO Auto-generated constructor stub
+	}
 
 	public EnumTipoCervejaria getTipoCervejaria() {
 		return tipoCervejaria;
