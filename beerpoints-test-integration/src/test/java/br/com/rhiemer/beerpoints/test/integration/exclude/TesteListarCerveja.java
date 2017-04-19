@@ -120,7 +120,7 @@ public class TesteListarCerveja implements ExcludeTeste, IntegrationTeste {
 	@Test
 	public void testeRecuperarCervejaEqualAtribute() {
 		BuilderCriteriaJPA query = BuilderCriteriaJPA.builderCreate().resultClass(Cerveja.class).build()
-				.equalAtribute("cerveja teste ", Cerveja_.nome);
+				.equalAtribute("cerveja teste ", Cerveja_.nome).root();
 		Cerveja cerveja = (Cerveja) cervejaService.excutarQueryUniqueResult(query);
 		Assert.assertNotNull(cerveja);
 		Assert.assertEquals(cerveja.getId(), new Integer(-1));
@@ -161,7 +161,7 @@ public class TesteListarCerveja implements ExcludeTeste, IntegrationTeste {
 	@Test
 	public void testeRecuperarCervejaEqualCervejariaNomeAtributo() {
 		BuilderCriteriaJPA query = BuilderCriteriaJPA.builderCreate().resultClass(Cerveja.class).build()
-				.equalAtribute("Cervejaria Teste", Cerveja_.cervejaria, Cervejaria_.nome).fetch("cervejaria");
+				.equalAtribute("Cervejaria Teste", Cerveja_.cervejaria, Cervejaria_.nome).root().fetch("cervejaria");
 		Cerveja cerveja = (Cerveja) cervejaService.excutarQueryUniqueResult(query, ExecucaoSemLazy.builder());
 		Assert.assertNotNull(cerveja);
 		Assert.assertEquals(cerveja.getId(), new Integer(-1));

@@ -31,4 +31,31 @@ public class Estilo extends EntityBeerPointsCoreModelo {
 	 */
 	private static final long serialVersionUID = 5915147083075996444L;
 
+	public Estilo() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Estilo(int chave, String nome) {
+		super(chave, nome);
+		// TODO Auto-generated constructor stub
+	}
+
+	public Estilo(int chave) {
+		super(chave);
+		// TODO Auto-generated constructor stub
+	}
+
+	public Estilo(Integer chave, String nome) {
+		super(chave, nome);
+		// TODO Auto-generated constructor stub
+	}
+
+	public Estilo(Integer chave) {
+		super(chave);
+		// TODO Auto-generated constructor stub
+	}
+	
+	
+
 }
