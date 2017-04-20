@@ -20,13 +20,11 @@ import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 
 import br.com.rhiemer.api.jpa.builder.BuilderCriteriaJPA;
-import br.com.rhiemer.api.jpa.criteria.builder.ParametroCriteriaJPADto;
 import br.com.rhiemer.api.jpa.parametros.execucao.ExecucaoSemLazy;
 import br.com.rhiemer.api.test.integration.testcategory.IntegrationTeste;
 import br.com.rhiemer.api.test.unit.testcategory.ExcludeTeste;
 import br.com.rhiemer.api.util.dao.parametros.execucao.ExecucaoAtributos;
 import br.com.rhiemer.beerpoints.domain.enums.EnumEntidadeBeerPoints;
-import br.com.rhiemer.beerpoints.domain.modelo.entidades.cerveja.Amargor_;
 import br.com.rhiemer.beerpoints.domain.modelo.entidades.cerveja.Cerveja;
 import br.com.rhiemer.beerpoints.domain.modelo.entidades.cerveja.Cerveja_;
 import br.com.rhiemer.beerpoints.domain.modelo.entidades.cervejaria.Cervejaria;
@@ -101,6 +99,15 @@ public class TesteListarCerveja implements ExcludeTeste, IntegrationTeste {
 
 	@Test
 	public void testeRecuperarCervejaUniqueKey() {
+		BuilderCriteriaJPA query = BuilderCriteriaJPA.builderCreate().resultClass(ControleEntidade.class).build()
+				.uniqueKeyByParams("Cervejaria", -1);
+		ControleEntidade controleEntidade = (ControleEntidade) cervejaService.excutarQueryUniqueResult(query);
+		Assert.assertNotNull(controleEntidade);
+		Assert.assertEquals(controleEntidade.getId(), new Integer(-4));
+	}
+
+	@Test
+	public void testeRecuperarCervejaUniqueKeyEnum() {
 		BuilderCriteriaJPA query = BuilderCriteriaJPA.builderCreate().resultClass(ControleEntidade.class).build()
 				.uniqueKeyByParams(EnumEntidadeBeerPoints.getByNome("Cervejaria"), -1);
 		ControleEntidade controleEntidade = (ControleEntidade) cervejaService.excutarQueryUniqueResult(query);

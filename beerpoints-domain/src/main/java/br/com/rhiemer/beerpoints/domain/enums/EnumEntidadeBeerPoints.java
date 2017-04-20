@@ -3,6 +3,8 @@ package br.com.rhiemer.beerpoints.domain.enums;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.persistence.Id;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
@@ -87,7 +89,9 @@ public enum EnumEntidadeBeerPoints {
 		}
 	}
 
+	@Id
 	private String nome;
+	@Id
 	private Class<?> classe;
 
 	private EnumEntidadeBeerPoints(String nome, Class<? extends IEntityBeerPoints> classe) {
