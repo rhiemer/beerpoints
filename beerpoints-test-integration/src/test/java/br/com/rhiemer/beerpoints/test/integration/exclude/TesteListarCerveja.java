@@ -20,6 +20,7 @@ import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 
 import br.com.rhiemer.api.jpa.builder.BuilderCriteriaJPA;
+import br.com.rhiemer.api.jpa.criteria.builder.ParametroCriteriaJPADto;
 import br.com.rhiemer.api.jpa.parametros.execucao.ExecucaoSemLazy;
 import br.com.rhiemer.api.test.integration.testcategory.IntegrationTeste;
 import br.com.rhiemer.api.test.unit.testcategory.ExcludeTeste;
@@ -27,9 +28,11 @@ import br.com.rhiemer.api.util.dao.parametros.execucao.ExecucaoAtributos;
 import br.com.rhiemer.beerpoints.domain.enums.EnumEntidadeBeerPoints;
 import br.com.rhiemer.beerpoints.domain.modelo.entidades.cerveja.Cerveja;
 import br.com.rhiemer.beerpoints.domain.modelo.entidades.cerveja.Cerveja_;
+import br.com.rhiemer.beerpoints.domain.modelo.entidades.cerveja.Pais_;
 import br.com.rhiemer.beerpoints.domain.modelo.entidades.cervejaria.Cervejaria;
 import br.com.rhiemer.beerpoints.domain.modelo.entidades.cervejaria.Cervejaria_;
 import br.com.rhiemer.beerpoints.domain.modelo.entidades.controle.ControleEntidade;
+import br.com.rhiemer.beerpoints.domain.modelo.entidades.localizacao.PaisLocalizacao_;
 import br.com.rhiemer.beerpoints.service.cerveja.CervejaService;
 import br.com.rhiemer.beerpoints.test.integration.util.BeerPointstWSUtilsArquillian;
 
@@ -195,6 +198,37 @@ public class TesteListarCerveja implements ExcludeTeste, IntegrationTeste {
 		Assert.assertNotNull(cervejas);
 		Assert.assertTrue(cervejas.size() > 0);
 		Assert.assertEquals(cervejas.get(0).getId(), new Integer(-1));
+	}
+
+	@Test
+	public void testeRecuperarCervejaEqualAtributeComplex() {
+		BuilderCriteriaJPA query = BuilderCriteriaJPA.builderCreate().resultClass(Cerveja.class).build()
+				.equalAtribute("1", Cerveja_.pais, Pais_.paisLocalizacao, PaisLocalizacao_.codigoIBGE).root()
+				.fetch(Cerveja_.pais, Pais_.paisLocalizacao);
+		Cerveja cerveja = (Cerveja) cervejaService.excutarQueryUniqueResult(query);
+		Assert.assertNotNull(cerveja);
+		Assert.assertEquals(cerveja.getId(), new Integer(-1));
+		Assert.assertNotNull(cerveja.getPais());
+		Assert.assertNotNull(cerveja.getPais().getPaisLocalizacao());
+		Assert.assertEquals(cerveja.getPais().getPaisLocalizacao().getCodigoIBGE(), new Integer(1));
+	}
+
+	@Test
+	public void testeRecuperarCervejaEqualIsExpression() {
+		BuilderCriteriaJPA query = BuilderCriteriaJPA.builderCreate().resultClass(Cerveja.class).build()
+				.equal("cervejaria.id", new ParametroCriteriaJPADto().setIsExpression(true), "familia.id").root();
+		Cerveja cerveja = (Cerveja) cervejaService.excutarQueryUniqueResult(query);
+		Assert.assertNotNull(cerveja);
+		Assert.assertEquals(cerveja.getId(), new Integer(-1));
+	}
+
+	@Test
+	public void testeRecuperarCervejaLike() {
+		BuilderCriteriaJPA query = BuilderCriteriaJPA.builderCreate().resultClass(Cerveja.class).build()
+				.like("nome", "cerveja").root();
+		Cerveja cerveja = (Cerveja) cervejaService.excutarQueryUniqueResult(query);
+		Assert.assertNotNull(cerveja);
+		Assert.assertEquals(cerveja.getId(), new Integer(-1));
 	}
 
 }
