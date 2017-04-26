@@ -231,4 +231,48 @@ public class TesteListarCerveja implements ExcludeTeste, IntegrationTeste {
 		Assert.assertEquals(cerveja.getId(), new Integer(-1));
 	}
 
+	@Test
+	public void testeRecuperarCervejaILike() {
+		BuilderCriteriaJPA query = BuilderCriteriaJPA.builderCreate().resultClass(Cerveja.class).build()
+				.iLike("nome", "zzzz cerveja teste xxx cccc").root();
+		Cerveja cerveja = (Cerveja) cervejaService.excutarQueryUniqueResult(query);
+		Assert.assertNotNull(cerveja);
+		Assert.assertEquals(cerveja.getId(), new Integer(-1));
+	}
+
+	@Test
+	public void testeRecuperarCervejaILikeQuoteString() {
+		BuilderCriteriaJPA query = BuilderCriteriaJPA.builderCreate().resultClass(Cerveja.class).build()
+				.iLike("nome", "zzzz \"cerveja dddkd\" xxx cccc").root();
+		Cerveja cerveja = (Cerveja) cervejaService.excutarQueryUniqueResult(query);
+		Assert.assertNull(cerveja);
+	}
+
+	@Test
+	public void testeRecuperarCervejaILikeStringEqual() {
+		BuilderCriteriaJPA query = BuilderCriteriaJPA.builderCreate().resultClass(Cerveja.class).build()
+				.iLike("nome", "\"=Cerveja Teste\"").root();
+		Cerveja cerveja = (Cerveja) cervejaService.excutarQueryUniqueResult(query);
+		Assert.assertNotNull(cerveja);
+		Assert.assertEquals(cerveja.getId(), new Integer(-1));
+	}
+
+	@Test
+	public void testeRecuperarCervejaNotEqual() {
+		BuilderCriteriaJPA query = BuilderCriteriaJPA.builderCreate().resultClass(Cerveja.class).build()
+				.notEqual("nome", "ggsfsf").root();
+		Cerveja cerveja = (Cerveja) cervejaService.excutarQueryUniqueResult(query);
+		Assert.assertNotNull(cerveja);
+		Assert.assertEquals(cerveja.getId(), new Integer(-1));
+	}
+
+	@Test
+	public void testeRecuperarCervejaIn() {
+		BuilderCriteriaJPA query = BuilderCriteriaJPA.builderCreate().resultClass(Cerveja.class).build()
+				.in("id", -1, -2, -300, -1000000).root();
+		Cerveja cerveja = (Cerveja) cervejaService.excutarQueryUniqueResult(query);
+		Assert.assertNotNull(cerveja);
+		Assert.assertEquals(cerveja.getId(), new Integer(-1));
+	}
+
 }
