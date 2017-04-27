@@ -275,4 +275,107 @@ public class TesteListarCerveja implements ExcludeTeste, IntegrationTeste {
 		Assert.assertEquals(cerveja.getId(), new Integer(-1));
 	}
 
+	@Test
+	public void testeRecuperarCervejaNotIn() {
+		BuilderCriteriaJPA query = BuilderCriteriaJPA.builderCreate().resultClass(Cerveja.class).build()
+				.notIn("id", -300, -1000000).root();
+		Cerveja cerveja = (Cerveja) cervejaService.excutarQueryUniqueResult(query);
+		Assert.assertNotNull(cerveja);
+		Assert.assertEquals(cerveja.getId(), new Integer(-1));
+	}
+
+	@Test
+	public void testeRecuperarCervejaMaiorQue() {
+		BuilderCriteriaJPA query = BuilderCriteriaJPA.builderCreate().resultClass(Cerveja.class).build()
+				.maiorQue("id", -300).root();
+		Cerveja cerveja = (Cerveja) cervejaService.excutarQueryUniqueResult(query);
+		Assert.assertNotNull(cerveja);
+		Assert.assertEquals(cerveja.getId(), new Integer(-1));
+	}
+
+	@Test
+	public void testeRecuperarCervejaMaiorQueOuIgual() {
+		BuilderCriteriaJPA query = BuilderCriteriaJPA.builderCreate().resultClass(Cerveja.class).build()
+				.maiorQueOuIgual("id", -1).root();
+		Cerveja cerveja = (Cerveja) cervejaService.excutarQueryUniqueResult(query);
+		Assert.assertNotNull(cerveja);
+		Assert.assertEquals(cerveja.getId(), new Integer(-1));
+	}
+
+	@Test
+	public void testeRecuperarCervejaMenorQue() {
+		BuilderCriteriaJPA query = BuilderCriteriaJPA.builderCreate().resultClass(Cerveja.class).build()
+				.menorQue("id", 0).root();
+		Cerveja cerveja = (Cerveja) cervejaService.excutarQueryUniqueResult(query);
+		Assert.assertNotNull(cerveja);
+		Assert.assertEquals(cerveja.getId(), new Integer(-1));
+	}
+
+	@Test
+	public void testeRecuperarCervejaMenorQueOuIgual() {
+		BuilderCriteriaJPA query = BuilderCriteriaJPA.builderCreate().resultClass(Cerveja.class).build()
+				.menorQueOuIgual("id", -1).root();
+		Cerveja cerveja = (Cerveja) cervejaService.excutarQueryUniqueResult(query);
+		Assert.assertNotNull(cerveja);
+		Assert.assertEquals(cerveja.getId(), new Integer(-1));
+	}
+
+	@Test
+	public void testeRecuperarCervejaIsNull() {
+		BuilderCriteriaJPA query = BuilderCriteriaJPA.builderCreate().resultClass(Cerveja.class).build()
+				.isNull("exclusao").root();
+		Cerveja cerveja = (Cerveja) cervejaService.excutarQueryUniqueResult(query);
+		Assert.assertNotNull(cerveja);
+		Assert.assertEquals(cerveja.getId(), new Integer(-1));
+	}
+
+	@Test
+	public void testeRecuperarCervejaIsNotNull() {
+		BuilderCriteriaJPA query = BuilderCriteriaJPA.builderCreate().resultClass(Cerveja.class).build().isNotNull("id")
+				.root();
+		Cerveja cerveja = (Cerveja) cervejaService.excutarQueryUniqueResult(query);
+		Assert.assertNotNull(cerveja);
+		Assert.assertEquals(cerveja.getId(), new Integer(-1));
+	}
+
+	@Test
+	public void testeRecuperarCervejaBetween() {
+		BuilderCriteriaJPA query = BuilderCriteriaJPA.builderCreate().resultClass(Cerveja.class).build()
+				.between("id", -100000, -1).root();
+		Cerveja cerveja = (Cerveja) cervejaService.excutarQueryUniqueResult(query);
+		Assert.assertNotNull(cerveja);
+		Assert.assertEquals(cerveja.getId(), new Integer(-1));
+	}
+
+	@Test
+	public void testeRecuperarCervejaBetweenCampo() {
+		BuilderCriteriaJPA query = BuilderCriteriaJPA.builderCreate().resultClass(Cerveja.class).build()
+				.betweenCampo("cervejaria.controleId", "pais.controleId", -5).root();
+		Cerveja cerveja = (Cerveja) cervejaService.excutarQueryUniqueResult(query);
+		Assert.assertNotNull(cerveja);
+		Assert.assertEquals(cerveja.getId(), new Integer(-1));
+	}
+
+	@Test
+	public void testeOrderByAsc() {
+		BuilderCriteriaJPA query = BuilderCriteriaJPA.builderCreate().resultClass(ControleEntidade.class).build()
+				.orderBy("nome");
+		List<ControleEntidade> controleEntidades = cervejaService.excutarQueryList(query);
+		Assert.assertNotNull(controleEntidades);
+		Assert.assertTrue(controleEntidades.size() > 0);
+		Assert.assertNotNull(controleEntidades.get(0));
+		Assert.assertEquals(controleEntidades.get(0).getId(), new Integer(-3));
+	}
+
+	@Test
+	public void testeOrderByDesc() {
+		BuilderCriteriaJPA query = BuilderCriteriaJPA.builderCreate().resultClass(ControleEntidade.class).build()
+				.orderByDesc("nome");
+		List<ControleEntidade> controleEntidades = cervejaService.excutarQueryList(query);
+		Assert.assertNotNull(controleEntidades);
+		Assert.assertTrue(controleEntidades.size() > 0);
+		Assert.assertNotNull(controleEntidades.get(0));
+		Assert.assertEquals(controleEntidades.get(0).getId(), new Integer(-8));
+	}
+
 }
