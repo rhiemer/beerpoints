@@ -378,4 +378,11 @@ public class TesteListarCerveja implements ExcludeTeste, IntegrationTeste {
 		Assert.assertEquals(controleEntidades.get(0).getId(), new Integer(-8));
 	}
 
+	@Test
+	public void testeDistinctJoin() {
+		BuilderCriteriaJPA query = BuilderCriteriaJPA.builderCreate().resultClass(Cerveja.class).build().join("bares");
+		Cerveja cerveja = (Cerveja) cervejaService.excutarQueryUniqueResult(query);
+		Assert.assertNotNull(cerveja);
+	}
+
 }
