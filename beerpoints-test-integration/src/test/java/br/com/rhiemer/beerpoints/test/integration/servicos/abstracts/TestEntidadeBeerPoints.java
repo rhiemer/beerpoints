@@ -16,10 +16,10 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 
-import br.com.rhiemer.api.rest.annotations.RESTful;
 import br.com.rhiemer.api.test.integration.annotation.ServiceTestClientRest;
 import br.com.rhiemer.api.test.integration.dbunit.TestIntegrationDBUnit;
 import br.com.rhiemer.api.test.integration.testcategory.IntegrationTeste;
+import br.com.rhiemer.api.util.annotations.rest.RESTful;
 import br.com.rhiemer.api.util.helper.Helper;
 import br.com.rhiemer.beerpoints.domain.entity.EntityBeerPointsCoreComIdIncrementalDeleteLogico;
 import br.com.rhiemer.beerpoints.rest.resource.RestFullBeerPoints;

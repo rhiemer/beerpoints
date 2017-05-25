@@ -14,8 +14,8 @@ import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
 
 import br.com.rhiemer.api.jpa.entity.GenericEntityComIdIncrementalDeleteLogico;
-import br.com.rhiemer.api.rest.annotations.RESTful;
 import br.com.rhiemer.api.util.annotations.entity.ToString;
+import br.com.rhiemer.api.util.annotations.rest.RESTful;
 import br.com.rhiemer.beerpoints.domain.constantes.ConstantesBeerPointsDomain;
 import br.com.rhiemer.beerpoints.domain.interfaces.IEntityBeerPointsAuxiliar;
 

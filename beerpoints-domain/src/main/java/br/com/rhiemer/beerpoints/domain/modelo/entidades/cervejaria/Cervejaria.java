@@ -21,7 +21,7 @@ import org.hibernate.envers.Audited;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import br.com.rhiemer.api.rest.annotations.RESTful;
+import br.com.rhiemer.api.util.annotations.rest.RESTful;
 import br.com.rhiemer.beerpoints.domain.constantes.ConstantesBeerPointsDomain;
 import br.com.rhiemer.beerpoints.domain.converter.EnumTipoCervejariaConverter;
 import br.com.rhiemer.beerpoints.domain.entity.EntityBeerPointsCoreModelo;

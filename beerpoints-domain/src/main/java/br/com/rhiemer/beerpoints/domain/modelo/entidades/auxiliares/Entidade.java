@@ -12,7 +12,7 @@ import org.hibernate.envers.Audited;
 import org.hibernate.validator.constraints.Length;
 
 import br.com.rhiemer.api.jpa.entity.GenericEntityComIdStringDeleteLogico;
-import br.com.rhiemer.api.rest.annotations.RESTful;
+import br.com.rhiemer.api.util.annotations.rest.RESTful;
 import br.com.rhiemer.beerpoints.domain.constantes.ConstantesBeerPointsDomain;
 import br.com.rhiemer.beerpoints.domain.interfaces.IEntityBeerPointsAuxiliar;
 

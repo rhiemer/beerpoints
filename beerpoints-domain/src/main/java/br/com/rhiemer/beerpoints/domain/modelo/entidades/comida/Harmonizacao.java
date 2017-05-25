@@ -16,7 +16,7 @@ import org.hibernate.envers.AuditTable;
 import org.hibernate.envers.Audited;
 
 import br.com.rhiemer.api.jpa.annotations.UniqueKey;
-import br.com.rhiemer.api.rest.annotations.RESTful;
+import br.com.rhiemer.api.util.annotations.rest.RESTful;
 import br.com.rhiemer.beerpoints.domain.constantes.ConstantesBeerPointsDomain;
 import br.com.rhiemer.beerpoints.domain.entity.EntityBeerPointsCoreModelo;
 import br.com.rhiemer.beerpoints.domain.modelo.entidades.cerveja.Cerveja;
