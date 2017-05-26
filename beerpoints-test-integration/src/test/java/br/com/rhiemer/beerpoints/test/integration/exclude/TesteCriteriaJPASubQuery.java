@@ -61,7 +61,7 @@ public class TesteCriteriaJPASubQuery implements ExcludeTeste, IntegrationTeste 
 
 		List<Predicate> predicatesSubQuery = new ArrayList<Predicate>();
 		predicatesSubQuery
-				.add(criteriaBuilder.equal(subRootEntity.<Integer>get(Estilo_.id), from.<Integer>get(Cerveja_.id)));
+				.add(criteriaBuilder.equal(subRootEntity.<Estilo>get(Cerveja_.estilo), from.<Integer>get(Estilo_.id)));
 		Expression<String> exp = subRootEntity.<String>get(Cerveja_.nome);
 		predicatesSubQuery.add(criteriaBuilder.and(criteriaBuilder.like(criteriaBuilder.upper(exp), "%TESTE%")));
 		subquery.where(predicatesSubQuery.toArray(new Predicate[] {}));

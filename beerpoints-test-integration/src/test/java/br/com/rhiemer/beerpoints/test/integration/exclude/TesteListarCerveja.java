@@ -28,6 +28,7 @@ import br.com.rhiemer.api.util.dao.parametros.execucao.ExecucaoAtributos;
 import br.com.rhiemer.beerpoints.domain.enums.EnumEntidadeBeerPoints;
 import br.com.rhiemer.beerpoints.domain.modelo.entidades.cerveja.Cerveja;
 import br.com.rhiemer.beerpoints.domain.modelo.entidades.cerveja.Cerveja_;
+import br.com.rhiemer.beerpoints.domain.modelo.entidades.cerveja.Estilo;
 import br.com.rhiemer.beerpoints.domain.modelo.entidades.cerveja.Pais_;
 import br.com.rhiemer.beerpoints.domain.modelo.entidades.cervejaria.Cervejaria;
 import br.com.rhiemer.beerpoints.domain.modelo.entidades.cervejaria.Cervejaria_;
@@ -383,6 +384,15 @@ public class TesteListarCerveja implements ExcludeTeste, IntegrationTeste {
 		BuilderCriteriaJPA query = BuilderCriteriaJPA.builderCreate().resultClass(Cerveja.class).build().join("bares");
 		Cerveja cerveja = (Cerveja) cervejaService.excutarQueryUniqueResult(query);
 		Assert.assertNotNull(cerveja);
+	}
+
+	@Test
+	public void testeExists() {
+		BuilderCriteriaJPA query = BuilderCriteriaJPA.builderCreate().resultClass(Estilo.class).build()
+				.subQuery("cerveja").equal("estilo","{root}.id").iLike("nome", "teste").root().exists("cerveja")
+				.root();
+		Estilo estilo = (Estilo) cervejaService.excutarQueryUniqueResult(query);
+		Assert.assertNotNull(estilo);
 	}
 
 }
