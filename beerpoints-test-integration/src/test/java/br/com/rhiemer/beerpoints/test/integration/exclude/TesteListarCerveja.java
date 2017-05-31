@@ -389,8 +389,16 @@ public class TesteListarCerveja implements ExcludeTeste, IntegrationTeste {
 	@Test
 	public void testeExists() {
 		BuilderCriteriaJPA query = BuilderCriteriaJPA.builderCreate().resultClass(Estilo.class).build()
-				.subQuery("cerveja").equal("estilo","{root}.id").iLike("nome", "teste").root().exists("cerveja")
-				.root();
+				.exists("cerveja").equal("estilo", "{root}.id").iLike("nome", "teste").root();
+		Estilo estilo = (Estilo) cervejaService.excutarQueryUniqueResult(query);
+		Assert.assertNotNull(estilo);
+	}
+
+	@Test
+	public void testeExistsSubQuery() {
+		BuilderCriteriaJPA query = BuilderCriteriaJPA.builderCreate().resultClass(Estilo.class).build()
+				.subQuery("cerveja").equal("estilo", "{root}.id").iLike("nome", "teste").root()
+				.existsSubQuery("cerveja").root();
 		Estilo estilo = (Estilo) cervejaService.excutarQueryUniqueResult(query);
 		Assert.assertNotNull(estilo);
 	}
